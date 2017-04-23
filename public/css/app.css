@@ -1,0 +1,29 @@
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    background: #eee;
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash {
+    background: #fff;
+    width: 100%;
+    padding: 10px;
+    margin: -100px 0 0;
+    text-align: center;
+}
+
+.splash span {
+    color: #4288CE;
+}

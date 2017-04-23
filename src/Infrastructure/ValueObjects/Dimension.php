@@ -1,0 +1,50 @@
+<?php
+
+namespace Gks\Infrastructure\ValueObjects;
+
+final class Dimension
+{
+    /**
+     * @var NonZeroUnsignedInteger
+     */
+    private $width;
+
+    /**
+     * @var NonZeroUnsignedInteger
+     */
+    private $height;
+
+    /**
+     * @param NonZeroUnsignedInteger $width
+     * @param NonZeroUnsignedInteger $height
+     */
+    public function __construct(NonZeroUnsignedInteger $width, NonZeroUnsignedInteger $height)
+    {
+        $this->width = $width;
+        $this->height = $height;
+    }
+
+    /**
+     * @return NonZeroUnsignedInteger
+     */
+    public function getWidth(): NonZeroUnsignedInteger
+    {
+        return $this->width;
+    }
+
+    /**
+     * @return NonZeroUnsignedInteger
+     */
+    public function getHeight(): NonZeroUnsignedInteger
+    {
+        return $this->height;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->width.'x'.$this->height;
+    }
+}
