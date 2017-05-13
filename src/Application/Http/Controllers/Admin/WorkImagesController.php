@@ -64,7 +64,7 @@ class WorkImagesController
 
         /** @var UploadedFile $image */
         $image = $request->getUploadedFiles()['image'];
-        $image->moveTo(__DIR__.'/../../../../../resources/images/'.$imageId.'_'.$image->getClientFilename());
+        $image->moveTo(__DIR__.'/../../../../../storage/images/source/'.$imageId.'_'.$image->getClientFilename());
 
         $work->addImage(new Image($imageId, $image->getClientFilename()));
 
