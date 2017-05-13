@@ -3,6 +3,7 @@
 namespace Gks\Application\Providers;
 
 use Gks\Application\Http\Controllers\Admin\DashboardController;
+use Gks\Application\Http\Controllers\Admin\RemoveImageRequestHandler;
 use Gks\Application\Http\Controllers\Admin\SessionController;
 use Gks\Application\Http\Controllers\Admin\WorkImagesController;
 use Gks\Application\Http\Controllers\Admin\WorksController;
@@ -87,6 +88,7 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->get('/admin/works/{id}/destroy', [WorksController::class, 'destroy'])->setName('admin.works.destroy');
             $route->get('/admin/works/{id}/images', [WorkImagesController::class, 'index'])->setName('admin.works.images.index');
             $route->post('/admin/works/{id}/images', [WorkImagesController::class, 'store'])->setName('admin.works.images.store');
+            $route->post('/admin/works/{work_id}/images/{image_id}', $this->container->get(RemoveImageRequestHandler::class))->setName('admin.images.destroy');
 
             return $route;
         });

@@ -29,6 +29,10 @@
                         alt=""
                     >
                 </div>
+                <form action="/admin/works/<?= $work->getWorkId() ?>/images/<?= $image->getImageId() ?>" method="post">
+                    <input type="hidden" name="_csrf_token" value="<?= $csrf_token ?>">
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                </form>
             </div>
         <?php endforeach; ?>
     </div>
