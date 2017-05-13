@@ -46,7 +46,6 @@ class UpdateWork
             );
         }
 
-
         return new static(new Work($workId, $type, $title, $dimension));
     }
 
