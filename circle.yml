@@ -9,7 +9,7 @@ dependencies:
   cache_directories:
     - vendor
   pre:
-    - if [[ "${CIRCLE_BRANCH}" == "develop" ]] ; then sed -i 's/^;//' /opt/circleci/php/$(phpenv global)/etc/conf.d/xdebug.ini ; fi
+    - if [[ "${CIRCLE_BRANCH}" == "master" ]] ; then sed -i 's/^;//' /opt/circleci/php/$(phpenv global)/etc/conf.d/xdebug.ini ; fi
     #- cp .env.ci .env
   override:
     - composer install --prefer-source --no-interaction
@@ -17,8 +17,8 @@ dependencies:
 test:
   override:
     #- composer lint -- --dry-run
-    - if [[ "${CIRCLE_BRANCH}" == "develop" ]] ; then vendor/bin/phpunit --coverage-clover clover.xml -d memory_limit=512M ; else vendor/bin/phpunit -d memory_limit=512M ; fi
-    - if [[ "${CIRCLE_BRANCH}" == "develop" ]] ; then CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN vendor/bin/test-reporter --coverage-report=clover.xml ; fi
+    - if [[ "${CIRCLE_BRANCH}" == "master" ]] ; then vendor/bin/phpunit --coverage-clover clover.xml -d memory_limit=512M ; else vendor/bin/phpunit -d memory_limit=512M ; fi
+    - if [[ "${CIRCLE_BRANCH}" == "master" ]] ; then CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN vendor/bin/test-reporter --coverage-report=clover.xml ; fi
 
 deployment:
   production:
