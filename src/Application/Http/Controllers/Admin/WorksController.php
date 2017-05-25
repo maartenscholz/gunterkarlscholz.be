@@ -16,6 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Sirius\Validation\Rule\GreaterThan;
 use Sirius\Validation\Rule\InList;
+use Sirius\Validation\Rule\Required;
 use Sirius\Validation\Validator;
 use Zend\Diactoros\Response\RedirectResponse;
 
@@ -99,12 +100,12 @@ class WorksController
     {
         $validator = new Validator();
 
-        $validator->add('type', 'required');
-        $validator->add('type', 'inList', [InList::OPTION_LIST => Type::TYPES]);
-        $validator->add('title[nl_BE]', 'required');
-        $validator->add('title[en_US]', 'required');
-        $validator->add('title[fr_FR]', 'required');
-        $validator->add('title[de_DE]', 'required');
+        $validator->add('type', Required::class);
+        $validator->add('type', InList::class, [InList::OPTION_LIST => Type::TYPES]);
+        $validator->add('title[nl_BE]', Required::class);
+        $validator->add('title[en_US]', Required::class);
+        $validator->add('title[fr_FR]', Required::class);
+        $validator->add('title[de_DE]', Required::class);
 
         if (!$validator->validate($request->getParsedBody())) {
             $this->session->setFlash('errors', $validator->getMessages());
@@ -146,14 +147,14 @@ class WorksController
     {
         $validator = new Validator();
 
-        $validator->add('type', 'required');
-        $validator->add('type', 'inList', [InList::OPTION_LIST => Type::TYPES]);
-        $validator->add('title[nl_BE]', 'required');
-        $validator->add('title[en_US]', 'required');
-        $validator->add('title[fr_FR]', 'required');
-        $validator->add('title[de_DE]', 'required');
-        $validator->add('width', 'greaterThan', [GreaterThan::OPTION_MIN => 0]);
-        $validator->add('height', 'greaterThan', [GreaterThan::OPTION_MIN => 0, GreaterThan::OPTION_INCLUSIVE]);
+        $validator->add('type', Required::class);
+        $validator->add('type', InList::class, [InList::OPTION_LIST => Type::TYPES]);
+        $validator->add('title[nl_BE]', Required::class);
+        $validator->add('title[en_US]', Required::class);
+        $validator->add('title[fr_FR]', Required::class);
+        $validator->add('title[de_DE]', Required::class);
+        $validator->add('width', GreaterThan::class, [GreaterThan::OPTION_MIN => 0]);
+        $validator->add('height', GreaterThan::class, [GreaterThan::OPTION_MIN => 0, GreaterThan::OPTION_INCLUSIVE]);
         $validator->add('width', MatchNotEmpty::class, [MatchNotEmpty::OPTION_ITEM => 'height']);
         $validator->add('height', MatchNotEmpty::class, [MatchNotEmpty::OPTION_ITEM => 'width']);
 
