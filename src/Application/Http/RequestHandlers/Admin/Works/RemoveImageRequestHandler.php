@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Application\Http\Controllers\Admin;
+namespace Gks\Application\Http\RequestHandlers\Admin\Works;
 
 use Gks\Domain\Works\Commands\RemoveImage;
 use Gks\Domain\Works\Images\ImageId;

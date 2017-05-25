@@ -6,6 +6,7 @@ use Aura\Session\Session;
 use Gks\Application\Http\Controllers\Admin;
 use Gks\Application\Http\Controllers\HomeController;
 use Gks\Application\Http\Controllers\ImagesController;
+use Gks\Application\Http\RequestHandlers\Admin\Works;
 use Gks\Domain\Works\WorksRepository;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Glide\Server;
@@ -25,7 +26,7 @@ class AppServiceProvider extends AbstractServiceProvider
         Admin\DashboardController::class,
         Admin\WorksController::class,
         Admin\WorkImagesController::class,
-        Admin\RemoveImageRequestHandler::class,
+        Works\RemoveImageRequestHandler::class,
     ];
 
     /**
@@ -72,8 +73,8 @@ class AppServiceProvider extends AbstractServiceProvider
             );
         });
 
-        $this->container->share(Admin\RemoveImageRequestHandler::class, function () {
-            return new Admin\RemoveImageRequestHandler($this->container->get(CommandBus::class));
+        $this->container->share(Works\RemoveImageRequestHandler::class, function () {
+            return new Works\RemoveImageRequestHandler($this->container->get(CommandBus::class));
         });
     }
 }

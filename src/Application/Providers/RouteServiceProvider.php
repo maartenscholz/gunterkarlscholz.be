@@ -3,7 +3,6 @@
 namespace Gks\Application\Providers;
 
 use Gks\Application\Http\Controllers\Admin\DashboardController;
-use Gks\Application\Http\Controllers\Admin\RemoveImageRequestHandler;
 use Gks\Application\Http\Controllers\Admin\SessionController;
 use Gks\Application\Http\Controllers\Admin\WorkImagesController;
 use Gks\Application\Http\Controllers\Admin\WorksController;
@@ -12,6 +11,7 @@ use Gks\Application\Http\Controllers\ImagesController;
 use Gks\Application\Http\Middleware\AuthorizationMiddleware;
 use Gks\Application\Http\Middleware\GuestMiddleware;
 use Gks\Application\Http\MiddlewareStrategy;
+use Gks\Application\Http\RequestHandlers\Admin\Works\RemoveImageRequestHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteCollection;
 use Psr\Http\Message\ResponseInterface;
