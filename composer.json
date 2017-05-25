@@ -13,6 +13,7 @@
         "filp/whoops": "^2.1",
         "graphaware/neo4j-php-client": "^4.4",
         "laravel/homestead": "^3.0",
+        "league/flysystem": "^1.0",
         "league/glide": "^1.1",
         "league/pipeline": "^0.2.2",
         "league/plates": "^3.1",
@@ -36,6 +37,7 @@
         "sort-packages": true
     },
     "require-dev": {
-        "deployer/deployer": "^4.3"
+        "deployer/deployer": "^4.3",
+        "phpunit/phpunit": "^6.1"
     }
 }
