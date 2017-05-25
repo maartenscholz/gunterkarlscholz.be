@@ -37,6 +37,7 @@
         "sort-packages": true
     },
     "require-dev": {
+        "codeclimate/php-test-reporter": "^0.4.4",
         "deployer/deployer": "^4.3",
         "phpunit/phpunit": "^6.1"
     }
