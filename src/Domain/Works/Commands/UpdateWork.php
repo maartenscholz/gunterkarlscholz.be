@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\Works\Commands;
 
-use Gks\Infrastructure\ValueObjects\Dimension;
+use Gks\Infrastructure\ValueObjects\Dimensions;
 use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
 use Gks\Domain\Works\Title;
 use Gks\Domain\Works\Type;
@@ -40,7 +40,7 @@ class UpdateWork
         $dimension = null;
 
         if ($parsedBody['width'] !== '' && $parsedBody['height'] !== '') {
-            $dimension = new Dimension(
+            $dimension = new Dimensions(
                 new NonZeroUnsignedInteger((int) $parsedBody['width']),
                 new NonZeroUnsignedInteger((int) $parsedBody['height'])
             );

@@ -2,7 +2,7 @@
 
 namespace Gks\Infrastructure\ValueObjects;
 
-final class Dimension
+final class Dimensions
 {
     /**
      * @var NonZeroUnsignedInteger

@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\Works\Commands;
 
-use Gks\Infrastructure\ValueObjects\Dimension;
+use Gks\Infrastructure\ValueObjects\Dimensions;
 use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
 use Gks\Domain\Works\Title;
 use Gks\Domain\Works\Type;
@@ -27,7 +27,7 @@ class AddWork
     private $title;
 
     /**
-     * @var Dimension
+     * @var Dimensions
      */
     private $dimension;
 
@@ -37,9 +37,9 @@ class AddWork
      * @param WorkId $workId
      * @param Type $type
      * @param Title $title
-     * @param Dimension $dimension
+     * @param Dimensions $dimension
      */
-    public function __construct(WorkId $workId, Type $type, Title $title, Dimension $dimension = null)
+    public function __construct(WorkId $workId, Type $type, Title $title, Dimensions $dimension = null)
     {
         $this->workId = $workId;
         $this->type = $type;
@@ -61,7 +61,7 @@ class AddWork
         $dimension = null;
 
         if ($parsedBody['width'] && $parsedBody['height']) {
-            $dimension = new Dimension(
+            $dimension = new Dimensions(
                 new NonZeroUnsignedInteger((int) $parsedBody['width']),
                 new NonZeroUnsignedInteger((int) $parsedBody['height'])
             );
@@ -95,7 +95,7 @@ class AddWork
     }
 
     /**
-     * @return Dimension
+     * @return Dimensions
      */
     public function getDimension()
     {

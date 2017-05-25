@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\Works;
 
-use Gks\Infrastructure\ValueObjects\Dimension;
+use Gks\Infrastructure\ValueObjects\Dimensions;
 use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
 use Gks\Domain\Works\Images\Image;
 use Gks\Domain\Works\Images\ImageId;
@@ -51,7 +51,7 @@ class Neo4jWorksRepository implements WorksRepository
         $dimension = null;
 
         if ($workNode->containsKey('width') && $workNode->containsKey('width')) {
-            $dimension = new Dimension(
+            $dimension = new Dimensions(
                 new NonZeroUnsignedInteger($workNode->get('width')),
                 new NonZeroUnsignedInteger($workNode->get('height'))
             );
