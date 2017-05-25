@@ -20,8 +20,8 @@ test:
     - if [[ "${CIRCLE_BRANCH}" == "master" ]] ; then vendor/bin/phpunit --coverage-clover clover.xml -d memory_limit=512M ; else vendor/bin/phpunit -d memory_limit=512M ; fi
     - if [[ "${CIRCLE_BRANCH}" == "master" ]] ; then CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN vendor/bin/test-reporter --coverage-report=clover.xml ; fi
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - dep deploy
+#deployment:
+#  production:
+#    branch: master
+#    commands:
+#      - dep deploy
