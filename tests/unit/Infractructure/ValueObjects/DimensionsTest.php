@@ -11,7 +11,7 @@ class DimensionsTest extends TestCase
     /**
      * @test
      */
-    public function it_return_the_width_and_height()
+    public function it_returns_the_width_and_height()
     {
         $width = new NonZeroUnsignedInteger(100);
         $height = new NonZeroUnsignedInteger(75);

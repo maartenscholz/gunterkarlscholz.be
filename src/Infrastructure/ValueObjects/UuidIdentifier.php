@@ -14,7 +14,7 @@ abstract class UuidIdentifier
     /**
      * @param string $value
      */
-    protected function __construct($value)
+    protected function __construct(string $value)
     {
         $this->value = $value;
     }
@@ -32,7 +32,7 @@ abstract class UuidIdentifier
      *
      * @return static
      */
-    public static function fromString($string)
+    public static function fromString(string $string)
     {
         return new static($string);
     }
@@ -40,7 +40,7 @@ abstract class UuidIdentifier
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -48,7 +48,7 @@ abstract class UuidIdentifier
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getValue();
     }
