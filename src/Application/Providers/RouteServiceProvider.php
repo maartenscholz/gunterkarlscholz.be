@@ -81,7 +81,7 @@ class RouteServiceProvider extends AbstractServiceProvider
 
             $route->get('/admin', [DashboardController::class, 'index'])->setName('admin.dashboard');
             $route->get('/admin/works', $this->container->get(Works\IndexRequestHandler::class))->setName('admin.works.index');
-            $route->get('/admin/works/create', [WorksController::class, 'create'])->setName('admin.works.create');
+            $route->get('/admin/works/create', $this->container->get(Works\AddRequestHandler::class))->setName('admin.works.create');
             $route->post('/admin/works', [WorksController::class, 'store'])->setName('admin.works.store');
             $route->get('/admin/works/{id}/edit', [WorksController::class, 'edit'])->setName('admin.works.edit');
             $route->put('/admin/works/{id}', [WorksController::class, 'update'])->setName('admin.works.update');

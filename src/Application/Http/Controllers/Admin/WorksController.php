@@ -65,19 +65,6 @@ class WorksController
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     *
-     * @return ResponseInterface
-     */
-    public function create(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        $response->getBody()->write($this->templates->render('admin::works/create'));
-
-        return $response;
-    }
-
-    /**
-     * @param ServerRequestInterface $request
      *
      * @return RedirectResponse
      */
