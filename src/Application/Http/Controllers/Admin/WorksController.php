@@ -69,21 +69,6 @@ class WorksController
      *
      * @return ResponseInterface
      */
-    public function index(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        $works = $this->repository->all();
-
-        $response->getBody()->write($this->templates->render('admin::works/index', compact('works')));
-
-        return $response;
-    }
-
-    /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     *
-     * @return ResponseInterface
-     */
     public function create(ServerRequestInterface $request, ResponseInterface $response)
     {
         $response->getBody()->write($this->templates->render('admin::works/create'));

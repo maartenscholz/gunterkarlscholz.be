@@ -11,7 +11,7 @@ use Gks\Application\Http\Controllers\ImagesController;
 use Gks\Application\Http\Middleware\AuthorizationMiddleware;
 use Gks\Application\Http\Middleware\GuestMiddleware;
 use Gks\Application\Http\MiddlewareStrategy;
-use Gks\Application\Http\RequestHandlers\Admin\Works\RemoveImageRequestHandler;
+use Gks\Application\Http\RequestHandlers\Admin\Works;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteCollection;
 use Psr\Http\Message\ResponseInterface;
@@ -80,7 +80,7 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->get('image/{path}', [ImagesController::class, 'show'])->setName('images.show');
 
             $route->get('/admin', [DashboardController::class, 'index'])->setName('admin.dashboard');
-            $route->get('/admin/works', [WorksController::class, 'index'])->setName('admin.works.index');
+            $route->get('/admin/works', $this->container->get(Works\IndexRequestHandler::class))->setName('admin.works.index');
             $route->get('/admin/works/create', [WorksController::class, 'create'])->setName('admin.works.create');
             $route->post('/admin/works', [WorksController::class, 'store'])->setName('admin.works.store');
             $route->get('/admin/works/{id}/edit', [WorksController::class, 'edit'])->setName('admin.works.edit');
@@ -88,7 +88,7 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->get('/admin/works/{id}/destroy', [WorksController::class, 'destroy'])->setName('admin.works.destroy');
             $route->get('/admin/works/{id}/images', [WorkImagesController::class, 'index'])->setName('admin.works.images.index');
             $route->post('/admin/works/{id}/images', [WorkImagesController::class, 'store'])->setName('admin.works.images.store');
-            $route->post('/admin/works/{work_id}/images/{image_id}', $this->container->get(RemoveImageRequestHandler::class))->setName('admin.images.destroy');
+            $route->post('/admin/works/{work_id}/images/{image_id}', $this->container->get(Works\RemoveImageRequestHandler::class))->setName('admin.images.destroy');
 
             return $route;
         });

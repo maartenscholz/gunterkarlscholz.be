@@ -26,6 +26,7 @@ class AppServiceProvider extends AbstractServiceProvider
         Admin\DashboardController::class,
         Admin\WorksController::class,
         Admin\WorkImagesController::class,
+        Works\IndexRequestHandler::class,
         Works\RemoveImageRequestHandler::class,
     ];
 
@@ -68,6 +69,13 @@ class AppServiceProvider extends AbstractServiceProvider
 
         $this->container->share(Admin\WorkImagesController::class, function () {
             return new Admin\WorkImagesController(
+                $this->container->get(Engine::class),
+                $this->container->get(WorksRepository::class)
+            );
+        });
+
+        $this->container->share(Works\IndexRequestHandler::class, function () {
+            return new Works\IndexRequestHandler(
                 $this->container->get(Engine::class),
                 $this->container->get(WorksRepository::class)
             );
