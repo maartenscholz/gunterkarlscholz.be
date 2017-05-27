@@ -62,8 +62,6 @@ class AppServiceProvider extends AbstractServiceProvider
 
         $this->container->share(Admin\WorksController::class, function () {
             return new Admin\WorksController(
-                $this->container->get(Engine::class),
-                $this->container->get(WorksRepository::class),
                 $this->container->get(CommandBus::class),
                 $this->container->get(Session::class)->getSegment('validation')
             );

@@ -23,16 +23,6 @@ use Zend\Diactoros\Response\RedirectResponse;
 class WorksController
 {
     /**
-     * @var Engine
-     */
-    private $templates;
-
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
-
-    /**
      * @var CommandBus
      */
     private $commandBus;
@@ -43,22 +33,11 @@ class WorksController
     private $session;
 
     /**
-     * WorksController constructor.
-     *
-     * @param Engine $templates
-     * @param WorksRepository $repository
      * @param CommandBus $commandBus
      * @param Segment $session
      */
-    public function __construct(
-        Engine $templates,
-        WorksRepository $repository,
-        CommandBus $commandBus,
-        Segment $session
-    )
+    public function __construct(CommandBus $commandBus, Segment $session)
     {
-        $this->templates = $templates;
-        $this->repository = $repository;
         $this->commandBus = $commandBus;
         $this->session = $session;
     }
