@@ -94,23 +94,6 @@ class WorksController
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
-     *
-     * @param array $args
-     *
-     * @return ResponseInterface
-     */
-    public function edit(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $work = $this->repository->findById(WorkId::fromString($args['id']));
-
-        $response->getBody()->write($this->templates->render('admin::works/edit', compact('work')));
-
-        return $response;
-    }
-
-    /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @param array $args
      *
      * @return RedirectResponse
