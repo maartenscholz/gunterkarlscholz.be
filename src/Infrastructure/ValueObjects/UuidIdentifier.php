@@ -7,14 +7,14 @@ use Ramsey\Uuid\Uuid;
 abstract class UuidIdentifier
 {
     /**
-     * @var string
+     * @var Uuid
      */
     private $value;
 
     /**
-     * @param string $value
+     * @param Uuid $value
      */
-    protected function __construct(string $value)
+    protected function __construct(Uuid $value)
     {
         $this->value = $value;
     }
@@ -24,7 +24,7 @@ abstract class UuidIdentifier
      */
     public static function generate()
     {
-        return new static(Uuid::uuid4()->toString());
+        return new static(Uuid::uuid4());
     }
 
     /**
@@ -34,13 +34,13 @@ abstract class UuidIdentifier
      */
     public static function fromString(string $string)
     {
-        return new static($string);
+        return new static(Uuid::fromString($string));
     }
 
     /**
-     * @return string
+     * @return Uuid
      */
-    public function getValue(): string
+    public function getValue(): Uuid
     {
         return $this->value;
     }
@@ -50,6 +50,6 @@ abstract class UuidIdentifier
      */
     public function __toString(): string
     {
-        return $this->getValue();
+        return (string) $this->getValue();
     }
 }
