@@ -2,12 +2,13 @@
 
 namespace Gks\Domain\Works;
 
-use Gks\Domain\Works\Handlers\RemoveImage;
-use Gks\Domain\Works\Handlers\UpdateWork;
+use Gks\Application\Repositories\Neo4jImageRepository;
+use Gks\Application\Repositories\Neo4jWorksRepository;
 use Gks\Domain\Works\Handlers\AddWork;
+use Gks\Domain\Works\Handlers\RemoveImage;
 use Gks\Domain\Works\Handlers\RemoveWork;
+use Gks\Domain\Works\Handlers\UpdateWork;
 use Gks\Domain\Works\Images\ImageRepository;
-use Gks\Domain\Works\Images\Neo4jImageRepository;
 use GraphAware\Neo4j\Client\Client;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 

@@ -1,7 +1,9 @@
 <?php
 
-namespace Gks\Domain\Works\Images;
+namespace Gks\Application\Repositories;
 
+use Gks\Domain\Works\Images\ImageId;
+use Gks\Domain\Works\Images\ImageRepository;
 use GraphAware\Neo4j\Client\Client;
 
 class Neo4jImageRepository implements ImageRepository
