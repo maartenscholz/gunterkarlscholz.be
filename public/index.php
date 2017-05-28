@@ -3,6 +3,7 @@
 use Gks\Application\Providers\AppServiceProvider;
 use Gks\Application\Providers\AuthServiceProvider;
 use Gks\Application\Providers\ExceptionServiceProvider;
+use Gks\Application\Providers\FilesystemServiceProvider;
 use Gks\Application\Providers\GlideServiceProvider;
 use Gks\Application\Providers\Neo4jServiceProvider;
 use Gks\Application\Providers\RouteServiceProvider;
@@ -38,6 +39,7 @@ $container->addServiceProvider(Neo4jServiceProvider::class);
 $container->addServiceProvider(CommandBusServiceProvider::class);
 $container->addServiceProvider(WorksServiceProvider::class);
 $container->addServiceProvider(GlideServiceProvider::class);
+$container->addServiceProvider(FilesystemServiceProvider::class);
 
 /** @var RouteCollection $route */
 $route = $container->get(RouteCollection::class);
