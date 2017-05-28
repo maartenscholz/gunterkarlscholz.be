@@ -87,7 +87,7 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->put('/admin/works/{id}', [WorksController::class, 'update'])->setName('admin.works.update');
             $route->get('/admin/works/{id}/destroy', [WorksController::class, 'destroy'])->setName('admin.works.destroy');
             $route->get('/admin/works/{id}/images', [WorkImagesController::class, 'index'])->setName('admin.works.images.index');
-            $route->post('/admin/works/{id}/images', [WorkImagesController::class, 'store'])->setName('admin.works.images.store');
+            $route->post('/admin/works/{id}/images', $this->container->get(Works\StoreImageRequestHandler::class))->setName('admin.works.images.store');
             $route->post('/admin/works/{work_id}/images/{image_id}', $this->container->get(Works\RemoveImageRequestHandler::class))->setName('admin.images.destroy');
 
             return $route;

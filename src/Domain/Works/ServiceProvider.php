@@ -7,6 +7,7 @@ use Gks\Application\Repositories\Neo4jWorksRepository;
 use Gks\Domain\Works\Handlers\AddWork;
 use Gks\Domain\Works\Handlers\RemoveWork;
 use Gks\Domain\Works\Handlers\UpdateWork;
+use Gks\Domain\Works\Images\Handlers\AddImage;
 use Gks\Domain\Works\Images\Handlers\RemoveImage;
 use Gks\Domain\Works\Images\ImageRepository;
 use GraphAware\Neo4j\Client\Client;
@@ -23,6 +24,7 @@ class ServiceProvider extends AbstractServiceProvider
         AddWork::class,
         UpdateWork::class,
         RemoveWork::class,
+        AddImage::class,
         RemoveImage::class,
     ];
 
@@ -53,6 +55,13 @@ class ServiceProvider extends AbstractServiceProvider
 
         $this->container->share(RemoveWork::class, function () {
             return new RemoveWork($this->container->get(WorksRepository::class));
+        });
+
+        $this->container->share(AddImage::class, function () {
+            return new AddImage(
+                $this->container->get(ImageRepository::class),
+                $this->container->get(WorksRepository::class)
+            );
         });
 
         $this->container->share(RemoveImage::class, function () {

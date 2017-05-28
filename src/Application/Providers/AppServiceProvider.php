@@ -9,6 +9,7 @@ use Gks\Application\Http\Controllers\ImagesController;
 use Gks\Application\Http\RequestHandlers\Admin\Works;
 use Gks\Domain\Works\WorksRepository;
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use League\Flysystem\FilesystemInterface;
 use League\Glide\Server;
 use League\Glide\Signatures\Signature;
 use League\Plates\Engine;
@@ -89,6 +90,13 @@ class AppServiceProvider extends AbstractServiceProvider
             return new Works\EditRequestHandler(
                 $this->container->get(Engine::class),
                 $this->container->get(WorksRepository::class)
+            );
+        });
+
+        $this->container->share(Works\StoreImageRequestHandler::class, function () {
+            return new Works\StoreImageRequestHandler(
+                $this->container->get(CommandBus::class),
+                $this->container->get(FilesystemInterface::class)
             );
         });
 
