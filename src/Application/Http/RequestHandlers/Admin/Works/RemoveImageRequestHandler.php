@@ -2,7 +2,7 @@
 
 namespace Gks\Application\Http\RequestHandlers\Admin\Works;
 
-use Gks\Domain\Works\Commands\RemoveImage;
+use Gks\Domain\Works\Images\Commands\RemoveImage;
 use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\WorkId;
 use League\Tactician\CommandBus;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Gks\Domain\Works\Handlers;
+namespace Gks\Domain\Works\Images\Handlers;
 
-use Gks\Domain\Works\Commands\RemoveImage as RemoveImageCommand;
+use Gks\Domain\Works\Images\Commands\RemoveImage as RemoveImageCommand;
 use Gks\Domain\Works\Images\ImageRepository;
 
 class RemoveImage
@@ -26,7 +26,5 @@ class RemoveImage
     public function handle(RemoveImageCommand $command)
     {
         $this->imageRepository->remove($command->getImageId());
-
-//        unlink(__DIR__.'/../../../../storage/images/source')
     }
 }
