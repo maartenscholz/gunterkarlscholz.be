@@ -2,7 +2,8 @@
 
 namespace Gks\Domain\Works;
 
-use Gks\Infrastructure\ValueObjects\Dimension;
+use Gks\Domain\Works\Images\ImageId;
+use Gks\Infrastructure\ValueObjects\Dimensions;
 use Gks\Domain\Works\Images\Image;
 
 class Work
@@ -23,9 +24,9 @@ class Work
     private $title;
 
     /**
-     * @var Dimension
+     * @var Dimensions
      */
-    private $dimension;
+    private $dimensions;
 
     /**
      * @var array
@@ -38,14 +39,14 @@ class Work
      * @param WorkId $workId
      * @param Type $type
      * @param Title $title
-     * @param Dimension $dimension
+     * @param Dimensions $dimensions
      */
-    public function __construct(WorkId $workId, Type $type, Title $title, Dimension $dimension = null)
+    public function __construct(WorkId $workId, Type $type, Title $title, Dimensions $dimensions = null)
     {
         $this->workId = $workId;
         $this->type = $type;
         $this->title = $title;
-        $this->dimension = $dimension;
+        $this->dimensions = $dimensions;
     }
 
     /**
@@ -73,11 +74,11 @@ class Work
     }
 
     /**
-     * @return Dimension
+     * @return Dimensions
      */
-    public function getDimension()
+    public function getDimensions()
     {
-        return $this->dimension;
+        return $this->dimensions;
     }
 
     /**
@@ -85,7 +86,15 @@ class Work
      */
     public function addImage(Image $image)
     {
-        $this->images[] = $image;
+        $this->images[(string) $image->getImageId()] = $image;
+    }
+
+    /**
+     * @param ImageId $imageId
+     */
+    public function removeImage(ImageId $imageId)
+    {
+        unset($this->images[(string) $imageId]);
     }
 
     /**

@@ -136,8 +136,8 @@ class Neo4jWorksRepository implements WorksRepository
 
         $workData = array_merge($workData, $titleData);
 
-        $workData['width'] = $work->getDimension() ? $work->getDimension()->getWidth()->getValue() : null;
-        $workData['height'] = $work->getDimension() ? $work->getDimension()->getHeight()->getValue() : null;
+        $workData['width'] = $work->getDimensions() ? $work->getDimensions()->getWidth()->getValue() : null;
+        $workData['height'] = $work->getDimensions() ? $work->getDimensions()->getHeight()->getValue() : null;
 
         $stack->push(
             'MERGE (work:Work {id:"'.$work->getWorkId()->getValue().'"}) SET work += {work}',

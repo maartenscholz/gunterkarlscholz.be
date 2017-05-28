@@ -42,7 +42,7 @@
                 <div class="form-group <?= array_key_exists('width', $errors) ? 'has-error' : '' ?>">
                     <label for="width">Width</label>
                     <input type="number" name="width" id="width" class="form-control"
-                           value="<?= isset($input['width']) ? $input['width'] : (isset($work) && $work->getDimension() ? $work->getDimension()->getWidth() : '') ?>">
+                           value="<?= isset($input['width']) ? $input['width'] : (isset($work) && $work->getDimensions() ? $work->getDimensions()->getWidth() : '') ?>">
                     <?php if (array_key_exists('width', $errors)): ?>
                         <?php foreach ($errors['width'] as $error): ?>
                             <div class="help-block"><?= $error ?></div>
@@ -55,7 +55,7 @@
                 <div class="form-group <?= array_key_exists('height', $errors) ? 'has-error' : '' ?>">
                     <label for="height">Height</label>
                     <input type="number" name="height" id="height" class="form-control"
-                           value="<?= isset($input['height']) ? $input['height'] : (isset($work) && $work->getDimension() ? $work->getDimension()->getHeight() : '') ?>">
+                           value="<?= isset($input['height']) ? $input['height'] : (isset($work) && $work->getDimensions() ? $work->getDimensions()->getHeight() : '') ?>">
                     <?php if (array_key_exists('height', $errors)): ?>
                         <?php foreach ($errors['height'] as $error): ?>
                             <div class="help-block"><?= $error ?></div>

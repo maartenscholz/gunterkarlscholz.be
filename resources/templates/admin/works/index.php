@@ -27,7 +27,7 @@
                 <tr>
                     <td><?= $work->getTitle()->getValue('en_US') ?> / <?= $work->getTitle()->getValue('nl_BE') ?></td>
                     <td><?= $work->getType()->getValue() ?></td>
-                    <td><?= $work->getDimension() ?></td>
+                    <td><?= $work->getDimensions() ?></td>
                     <td>
                         <a href="/admin/works/<?= $work->getWorkId() ?>/edit">edit</a> -
                         <a href="/admin/works/<?= $work->getWorkId() ?>/images">images</a> -
