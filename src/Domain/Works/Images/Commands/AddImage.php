@@ -5,7 +5,7 @@ namespace Gks\Domain\Works\Images\Commands;
 use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\WorkId;
 
-class AddImageToWork
+class AddImage
 {
     /**
      * @var WorkId

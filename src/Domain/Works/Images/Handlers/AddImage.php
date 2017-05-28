@@ -2,11 +2,11 @@
 
 namespace Gks\Domain\Works\Images\Handlers;
 
-use Gks\Domain\Works\Images\Commands\AddImageToWork as AddImageToWorkCommand;
+use Gks\Domain\Works\Images\Commands\AddImage as AddImageCommand;
 use Gks\Domain\Works\Images\Image;
 use Gks\Domain\Works\WorksRepository;
 
-class AddImageToWork
+class AddImage
 {
     /**
      * @var ImagesRepository
@@ -29,9 +29,9 @@ class AddImageToWork
     }
 
     /**
-     * @param AddImageToWorkCommand $command
+     * @param AddImageCommand $command
      */
-    public function handle(AddImageToWorkCommand $command)
+    public function handle(AddImageCommand $command)
     {
         $work = $this->worksRepository->findById($command->getWorkId());
 
