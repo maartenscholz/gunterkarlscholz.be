@@ -8,3 +8,5 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run: docker-compose -d
+      - run: docker exec -i gks-php ./vendor/bin/phpunit
