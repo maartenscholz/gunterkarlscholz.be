@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-composer-{{ checksum "composer.json" }}
+            - v1-composer-{{ checksum "composer.lock" }}
             - v1-composer
       - restore_cache:
           keys:
@@ -21,7 +21,7 @@ jobs:
       - run: docker exec -i gks-php composer install --prefer-dist --no-suggest
       - run: docker exec -i gks-php ./vendor/bin/phpunit
       - save_cache:
-          key: v1-composer-{{ checksum "composer.json" }}
+          key: v1-composer-{{ checksum "composer.lock" }}
           paths:
             - ./vendor
       - save_cache:
