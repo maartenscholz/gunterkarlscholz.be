@@ -15,7 +15,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-docker
-      - run: if [ -f ./.circleci/cache/gks.tar ]; then docker load -i ./.circleci/cache/gks.tar; fi
+      - run: if [[ -f ./.circleci/cache/gks.tar ]]; then docker load -i ./.circleci/cache/gks.tar; fi
       - run: docker-compose up -d --build
       - run: docker save -o ./.circleci/cache/gks.tar gks/php gks/nginx
       - run: docker exec -i gks-php composer install --prefer-dist --no-suggest
