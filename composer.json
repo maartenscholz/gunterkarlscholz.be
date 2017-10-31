@@ -12,7 +12,6 @@
         "aura/session": "^2.0",
         "filp/whoops": "^2.1",
         "graphaware/neo4j-php-client": "^4.4",
-        "laravel/homestead": "^3.0",
         "league/flysystem": "^1.0",
         "league/glide": "^1.1",
         "league/pipeline": "^0.2.2",
