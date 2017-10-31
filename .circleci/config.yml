@@ -11,11 +11,20 @@ jobs:
       - restore_cache:
           keys:
             - v1-composer-{{ checksum "composer.json" }}
-            - v1-composer-
+            - v1-composer
+      - restore_cache:
+          keys:
+            -v1-docker
+      - run: docker load < ./.docker/cache/gks.tar
       - run: docker-compose up -d
+      - run: docker save gks/php gks/nginx > ./.docker/cache/gks.tar
       - run: docker exec -i gks-php composer install --prefer-dist --no-suggest
       - run: docker exec -i gks-php ./vendor/bin/phpunit
       - save_cache:
+          key: v1-composer-{{ checksum "composer.json" }}
           paths:
             - ./vendor
-          key: v1-composer-{{ checksum "composer.json" }}
+      - save_cache:
+          key: v1-docker
+          paths:
+            - ./.docker/cache
