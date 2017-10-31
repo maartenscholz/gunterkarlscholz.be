@@ -25,6 +25,6 @@ jobs:
           paths:
             - ./vendor
       - save_cache:
-          key: v1-docker
+          key: v1-docker-{{ epoch }}
           paths:
             - ./.circleci/cache
