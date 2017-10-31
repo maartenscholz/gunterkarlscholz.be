@@ -10,4 +10,5 @@ jobs:
       - checkout
       - run: docker-compose up -d
       - run: docker exec -i gks-php pwd
+      - run: docker exec -i gks-php ls -la
       - run: docker exec -i gks-php ./vendor/bin/phpunit
