@@ -8,6 +8,14 @@ jobs:
     machine: true
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-composer-{{ checksum "composer.json" }}
+            - v1-composer-
       - run: docker-compose up -d
-      - run: docker exec -i gks-php composer install
+      - run: docker exec -i gks-php composer install --prefer-dist --no-suggest
       - run: docker exec -i gks-php ./vendor/bin/phpunit
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-composer-{{ checksum "composer.json" }}
