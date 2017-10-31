@@ -1,0 +1,22 @@
+version: '3'
+services:
+  php:
+    build:
+      context: ./.docker/php
+      dockerfile: Dockerfile
+    container_name: gks-php
+    image: gks/php
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+  nginx:
+    build:
+      context: ./.docker/nginx
+      dockerfile: Dockerfile
+    container_name: gks-nginx
+    image: gks/web
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+    ports:
+      - "80:80"
