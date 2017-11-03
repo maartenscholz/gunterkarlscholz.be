@@ -1,7 +1,3 @@
-# PHP CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-php/ for more details
-#
 version: 2
 jobs:
   build:
@@ -12,19 +8,10 @@ jobs:
           keys:
             - v1-composer-{{ checksum "composer.lock" }}
             - v1-composer
-      - restore_cache:
-          keys:
-            - v1-docker
-      - run: if [[ -f ./.circleci/cache/gks.tar ]]; then docker load -i ./.circleci/cache/gks.tar; fi
-      - run: docker-compose up -d --build
-      - run: docker save -o ./.circleci/cache/gks.tar gks/php:latest gks/nginx:latest
+      - run: docker-compose up -d
       - run: docker exec -i gks-php composer install --prefer-dist --no-suggest
       - run: docker exec -i gks-php ./vendor/bin/phpunit
       - save_cache:
           key: v1-composer-{{ checksum "composer.lock" }}
           paths:
             - ./vendor
-      - save_cache:
-          key: v1-docker-{{ epoch }}
-          paths:
-            - ./.circleci/cache
