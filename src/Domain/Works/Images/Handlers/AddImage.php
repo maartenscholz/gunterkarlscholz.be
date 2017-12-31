@@ -38,7 +38,7 @@ class AddImage
     {
         $work = $this->worksRepository->findById($command->getWorkId());
 
-        $image = new Image($command->getImageId(), $command->getImagePath());
+        $image = new Image($command->getImageId(), $command->getImageFilename(), $command->getImagePath());
 
         $work->addImage($image);
 

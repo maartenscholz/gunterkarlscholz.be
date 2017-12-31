@@ -65,7 +65,11 @@ class Neo4jWorksRepository implements WorksRepository
         $work = new Work($workId, $type, $title, $dimension);
 
         foreach ($imageNodes as $imageNode) {
-            $work->addImage(new Image(ImageId::fromString($imageNode->get('id')), $imageNode->get('path')));
+            $work->addImage(new Image(
+                ImageId::fromString($imageNode->get('id')),
+                $imageNode->value('filename', ''),
+                $imageNode->get('path')
+            ));
         }
 
         return $work;
@@ -150,6 +154,7 @@ class Neo4jWorksRepository implements WorksRepository
                     'MERGE (image:Image {id:"'.$image->getImageId().'"}) SET image += {image}',
                     ['image' => [
                         'id' => $image->getImageId()->getValue(),
+                        'filename' => $image->getFilename(),
                         'path' => $image->getPath(),
                     ]]
                 );

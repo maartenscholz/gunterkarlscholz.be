@@ -48,10 +48,11 @@ class StoreImageRequestHandler
         /** @var UploadedFile $image */
         $image = $request->getUploadedFiles()['image'];
 
-        $this->filesystem->writeStream('images/source/'.$imageId.'_'.$image->getClientFilename(), $image->getStream()->detach());
+        $filename = $imageId.'_'.$image->getClientFilename();
+        $this->filesystem->writeStream("images/source/$filename", $image->getStream()->detach());
 
-        $this->commandBus->handle(new AddImage($workId, $imageId, $image->getClientFilename()));
+        $this->commandBus->handle(new AddImage($workId, $imageId, $filename, $image->getClientFilename()));
 
-        return $response->withHeader('Location', '/admin/works/'.$workId.'/images');
+        return $response->withHeader('Location', "/admin/works/$workId/images");
     }
 }

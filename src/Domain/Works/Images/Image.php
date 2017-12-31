@@ -12,15 +12,22 @@ class Image
     /**
      * @var string
      */
+    private $filename;
+
+    /**
+     * @var string
+     */
     private $path;
 
     /**
      * @param ImageId $imageId
+     * @param string $filename
      * @param string $path
      */
-    public function __construct(ImageId $imageId, string $path)
+    public function __construct(ImageId $imageId, string $filename, string $path)
     {
         $this->imageId = $imageId;
+        $this->filename = $filename;
         $this->path = $path;
     }
 
@@ -30,6 +37,14 @@ class Image
     public function getImageId(): ImageId
     {
         return $this->imageId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilename(): string
+    {
+        return $this->filename;
     }
 
     /**

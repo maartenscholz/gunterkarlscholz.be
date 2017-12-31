@@ -20,17 +20,24 @@ class AddImage
     /**
      * @var string
      */
+    private $imageFilename;
+
+    /**
+     * @var string
+     */
     private $imagePath;
 
     /**
      * @param WorkId $workId
      * @param ImageId $imageId
+     * @param string $imageFilename
      * @param string $imagePath
      */
-    public function __construct(WorkId $workId, ImageId $imageId, string $imagePath)
+    public function __construct(WorkId $workId, ImageId $imageId, string $imageFilename, string $imagePath)
     {
         $this->workId = $workId;
         $this->imageId = $imageId;
+        $this->imageFilename = $imageFilename;
         $this->imagePath = $imagePath;
     }
 
@@ -48,6 +55,14 @@ class AddImage
     public function getImageId(): ImageId
     {
         return $this->imageId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageFilename(): string
+    {
+        return $this->imageFilename;
     }
 
     /**
