@@ -161,7 +161,7 @@ class Neo4jWorksRepository implements WorksRepository
 
                 $stack->push(
                     'MATCH (image:Image {id:"'.$image->getImageId().'"}), (work:Work {id:"'.$work->getWorkId().'"})
-                    CREATE UNIQUE (work)-[r:WORK_IMAGE]->(image)'
+                    MERGE (work)-[r:WORK_IMAGE]->(image)'
                 );
             }
         }
