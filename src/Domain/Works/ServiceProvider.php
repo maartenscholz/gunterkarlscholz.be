@@ -12,6 +12,7 @@ use Gks\Domain\Works\Images\Handlers\RemoveImage;
 use Gks\Domain\Works\Images\ImageRepository;
 use GraphAware\Neo4j\Client\Client;
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use League\Flysystem\FilesystemInterface;
 
 class ServiceProvider extends AbstractServiceProvider
 {
@@ -65,7 +66,10 @@ class ServiceProvider extends AbstractServiceProvider
         });
 
         $this->container->share(RemoveImage::class, function () {
-            return new RemoveImage($this->container->get(ImageRepository::class));
+            return new RemoveImage(
+                $this->container->get(ImageRepository::class),
+                $this->container->get(FilesystemInterface::class)
+            );
         });
     }
 }
