@@ -3,8 +3,10 @@
 namespace Gks\Application\Providers;
 
 use Gks\Application\ErrorHandling\ErrorPageHandler;
+use Gks\Application\ErrorHandling\LoggingHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Plates\Engine;
+use Psr\Log\LoggerInterface;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -40,11 +42,17 @@ class ExceptionServiceProvider extends AbstractServiceProvider
                 $whoops->pushHandler($handler);
             }
 
+            $whoops->pushHandler($this->container->get(LoggingHandler::class));
+
             return $whoops;
         });
 
         $this->container->share(ErrorPageHandler::class, function () {
             return new ErrorPageHandler($this->container->get(Engine::class));
+        });
+
+        $this->container->share(LoggingHandler::class, function () {
+            return new LoggingHandler($this->container->get(LoggerInterface::class));
         });
     }
 }

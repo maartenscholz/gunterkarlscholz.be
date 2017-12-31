@@ -5,6 +5,7 @@ use Gks\Application\Providers\AuthServiceProvider;
 use Gks\Application\Providers\ExceptionServiceProvider;
 use Gks\Application\Providers\FilesystemServiceProvider;
 use Gks\Application\Providers\GlideServiceProvider;
+use Gks\Application\Providers\LoggingServiceProvider;
 use Gks\Application\Providers\Neo4jServiceProvider;
 use Gks\Application\Providers\RouteServiceProvider;
 use Gks\Application\Providers\SessionServiceProvider;
@@ -44,6 +45,7 @@ $container->addServiceProvider(CommandBusServiceProvider::class);
 $container->addServiceProvider(WorksServiceProvider::class);
 $container->addServiceProvider(GlideServiceProvider::class);
 $container->addServiceProvider(FilesystemServiceProvider::class);
+$container->addServiceProvider(LoggingServiceProvider::class);
 
 $whoops = $container->get(Run::class);
 $whoops->register();
