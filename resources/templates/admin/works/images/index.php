@@ -25,7 +25,7 @@
                 <div class="thumbnail">
                     <img
                         class="img-responsive"
-                        src="/image<?= $imageUrlBuilder->getUrl($image->getImageId().'_'.$image->getPath(), ['w' => 500, 'h' => 500, 'fit' => 'crop', 'border' => '10,000']) ?>"
+                        src="/image<?= $imageUrlBuilder->getUrl($image->getFilename(), ['w' => 500, 'h' => 500, 'fit' => 'crop', 'border' => '10,000']) ?>"
                         alt=""
                     >
                 </div>
