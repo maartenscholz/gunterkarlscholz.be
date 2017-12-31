@@ -27,11 +27,14 @@ class ExceptionServiceProvider extends AbstractServiceProvider
     {
         $this->container->share(Run::class, function () {
             $whoops = new Run();
-            $handler = new PrettyPageHandler();
 
-            $handler->setPageTitle('Whoops.');
+            if (getenv('APP_ENV') !== 'production') {
+                $handler = new PrettyPageHandler();
 
-            $whoops->pushHandler($handler);
+                $handler->setPageTitle('Whoops.');
+
+                $whoops->pushHandler($handler);
+            }
 
             return $whoops;
         });
