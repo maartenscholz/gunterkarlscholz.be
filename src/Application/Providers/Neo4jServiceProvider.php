@@ -25,11 +25,13 @@ class Neo4jServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->container->share(Client::class, function () {
+            $host = getenv('NEO4J_HOST');
+            $port = getenv('NEO4J_PORT');
             $user = getenv('NEO4J_USER');
             $password = getenv('NEO4J_PASS');
 
             return ClientBuilder::create()
-                ->addConnection('default', "http://$user:$password@localhost:7474")
+                ->addConnection('default', "http://$user:$password@$host:$port")
                 ->build();
         });
     }
