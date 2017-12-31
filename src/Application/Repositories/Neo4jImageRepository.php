@@ -2,8 +2,10 @@
 
 namespace Gks\Application\Repositories;
 
+use Gks\Domain\Works\Images\Image;
 use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\Images\ImageRepository;
+use GraphAware\Common\Type\Node;
 use GraphAware\Neo4j\Client\Client;
 
 class Neo4jImageRepository implements ImageRepository
@@ -19,6 +21,32 @@ class Neo4jImageRepository implements ImageRepository
     public function __construct(Client $db)
     {
         $this->db = $db;
+    }
+
+    /**
+     * @param Node $imageNode
+     *
+     * @return Image
+     */
+    protected function hydrateItem(Node $imageNode)
+    {
+        return new Image(
+            ImageId::fromString($imageNode->get('id')),
+            $imageNode->value('filename', ''),
+            $imageNode->get('path')
+        );
+    }
+
+    /**
+     * @param ImageId $imageId
+     *
+     * @return Image
+     */
+    public function findById(ImageId $imageId)
+    {
+        $result = $this->db->run("MATCH (image:Image {id:'$imageId'}) RETURN image");
+
+        return $this->hydrateItem($result->firstRecord()->nodeValue('image'));
     }
 
     /**
