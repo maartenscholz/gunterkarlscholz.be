@@ -22,6 +22,7 @@ require '../vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__.'/../');
 $dotenv->load();
 $dotenv->required([
+    'APP_ENV',
     'APP_ADMIN_PASSWORD',
     'NEO4J_HOST',
     'NEO4J_PORT',
