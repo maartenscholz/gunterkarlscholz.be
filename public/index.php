@@ -22,6 +22,8 @@ $dotenv = new Dotenv\Dotenv(__DIR__.'/../');
 $dotenv->load();
 $dotenv->required([
     'APP_ADMIN_PASSWORD',
+    'NEO4J_HOST',
+    'NEO4J_PORT',
     'NEO4J_USER',
     'NEO4J_PASS',
     'GLIDE_SIGNATURE_KEY',
