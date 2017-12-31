@@ -7,8 +7,15 @@ use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
-class ExceptionServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
+class ExceptionServiceProvider extends AbstractServiceProvider
 {
+    /**
+     * @var array
+     */
+    protected $provides = [
+        Run::class,
+    ];
+
     /**
      * Use the register method to register items with the container via the
      * protected $this->container property or the `getContainer` method
@@ -18,24 +25,15 @@ class ExceptionServiceProvider extends AbstractServiceProvider implements Bootab
      */
     public function register()
     {
-        //
-    }
+        $this->container->share(Run::class, function () {
+            $whoops = new Run();
+            $handler = new PrettyPageHandler();
 
-    /**
-     * Method will be invoked on registration of a service provider implementing
-     * this interface. Provides ability for eager loading of Service Providers.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $run = new Run();
-        $handler = new PrettyPageHandler();
+            $handler->setPageTitle('Whoops.');
 
-        $handler->setPageTitle('Whoops.');
+            $whoops->pushHandler($handler);
 
-        $run->pushHandler($handler);
-
-        $run->register();
+            return $whoops;
+        });
     }
 }

@@ -14,6 +14,7 @@ use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use League\Route\RouteCollection;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Whoops\Run;
 use Zend\Diactoros\Response\EmitterInterface;
 
 require '../vendor/autoload.php';
@@ -42,6 +43,9 @@ $container->addServiceProvider(CommandBusServiceProvider::class);
 $container->addServiceProvider(WorksServiceProvider::class);
 $container->addServiceProvider(GlideServiceProvider::class);
 $container->addServiceProvider(FilesystemServiceProvider::class);
+
+$whoops = $container->get(Run::class);
+$whoops->register();
 
 /** @var RouteCollection $route */
 $route = $container->get(RouteCollection::class);
