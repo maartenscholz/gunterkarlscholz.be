@@ -14,3 +14,11 @@ services:
       - ./:/var/www/
     ports:
       - "80:80"
+  neo4j:
+    container_name: gks-neo4j
+    build:
+      context: ./.docker/neo4j
+      dockerfile: Dockerfile
+    ports:
+      - "7474:7474"
+      - "7687:7687"
