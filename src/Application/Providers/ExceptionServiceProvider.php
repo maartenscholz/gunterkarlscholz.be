@@ -2,8 +2,9 @@
 
 namespace Gks\Application\Providers;
 
+use Gks\Application\ErrorHandling\ErrorPageHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use League\Container\ServiceProvider\BootableServiceProviderInterface;
+use League\Plates\Engine;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -14,6 +15,7 @@ class ExceptionServiceProvider extends AbstractServiceProvider
      */
     protected $provides = [
         Run::class,
+        ErrorPageHandler::class,
     ];
 
     /**
@@ -28,6 +30,8 @@ class ExceptionServiceProvider extends AbstractServiceProvider
         $this->container->share(Run::class, function () {
             $whoops = new Run();
 
+            $whoops->pushHandler($this->container->get(ErrorPageHandler::class));
+
             if (getenv('APP_ENV') !== 'production') {
                 $handler = new PrettyPageHandler();
 
@@ -37,6 +41,10 @@ class ExceptionServiceProvider extends AbstractServiceProvider
             }
 
             return $whoops;
+        });
+
+        $this->container->share(ErrorPageHandler::class, function () {
+            return new ErrorPageHandler($this->container->get(Engine::class));
         });
     }
 }
