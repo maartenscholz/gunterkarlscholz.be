@@ -21,7 +21,6 @@
         "league/tactician": "^1.0",
         "monolog/monolog": "^1.23",
         "ramsey/uuid": "^3.4",
-        "relay/relay": "^1.1",
         "sentry/sentry": "^1.8",
         "shrikeh/teapot": "^2.1",
         "siriusphp/validation": "^2.1",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "47996b872375365faa5dda2411fe91b4",
+    "content-hash": "4770a69264e95de3ff80a24015742d2f",
     "packages": [
         {
             "name": "aura/session",
@@ -1415,51 +1415,6 @@
                 "uuid"
             ],
             "time": "2016-10-02T15:51:17+00:00"
-        },
-        {
-            "name": "relay/relay",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/relayphp/Relay.Relay.git",
-                "reference": "e835fc45351b7a92a6fdf2a36be7bd59ef56c8ae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/e835fc45351b7a92a6fdf2a36be7bd59ef56c8ae",
-                "reference": "e835fc45351b7a92a6fdf2a36be7bd59ef56c8ae",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0",
-                "psr/http-message": "~1.0"
-            },
-            "require-dev": {
-                "zendframework/zend-diactoros": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Relay\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Relay.Relay Contributors",
-                    "homepage": "https://github.com/relayphp/Relay.Relay/contributors"
-                }
-            ],
-            "description": "A PSR-7 middleware dispatcher.",
-            "homepage": "https://github.com/relayphp/Relay.Relay",
-            "keywords": [
-                "middleware",
-                "psr-7"
-            ],
-            "time": "2015-12-17T18:18:30+00:00"
         },
         {
             "name": "sentry/sentry",
