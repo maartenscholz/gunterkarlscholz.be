@@ -1,5 +1,6 @@
 <?php
 
+use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
 use Gks\Application\Providers\AppServiceProvider;
 use Gks\Application\Providers\AuthServiceProvider;
 use Gks\Application\Providers\ExceptionServiceProvider;
@@ -46,6 +47,7 @@ $container->addServiceProvider(WorksServiceProvider::class);
 $container->addServiceProvider(GlideServiceProvider::class);
 $container->addServiceProvider(FilesystemServiceProvider::class);
 $container->addServiceProvider(LoggingServiceProvider::class);
+$container->addServiceProvider(CommandHandlerServiceProvider::class);
 
 $whoops = $container->get(Run::class);
 $whoops->register();

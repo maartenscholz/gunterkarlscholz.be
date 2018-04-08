@@ -1,8 +1,8 @@
 <?php
 
-namespace Gks\Domain\Works\Handlers;
+namespace Gks\Application\Handlers;
 
-use Gks\Domain\Works\Commands\AddWork as AddWorkCommand;
+use Gks\Application\Commands\AddWork as AddWorkCommand;
 use Gks\Domain\Works\Work;
 use Gks\Domain\Works\WorksRepository;
 

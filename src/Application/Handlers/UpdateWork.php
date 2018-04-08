@@ -1,8 +1,8 @@
 <?php
 
-namespace Gks\Domain\Works\Handlers;
+namespace Gks\Application\Handlers;
 
-use Gks\Domain\Works\Commands\UpdateWork as UpdateWorkCommand;
+use Gks\Application\Commands\UpdateWork as UpdateWorkCommand;
 use Gks\Domain\Works\WorksRepository;
 
 class UpdateWork

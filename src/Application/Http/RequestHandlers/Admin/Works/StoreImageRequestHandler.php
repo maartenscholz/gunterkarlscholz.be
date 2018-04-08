@@ -2,7 +2,7 @@
 
 namespace Gks\Application\Http\RequestHandlers\Admin\Works;
 
-use Gks\Domain\Works\Images\Commands\AddImage;
+use Gks\Application\Commands\AddImage;
 use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\WorkId;
 use League\Flysystem\FilesystemInterface;

@@ -3,14 +3,12 @@
 namespace Gks\Application\Http\Controllers\Admin;
 
 use Aura\Session\Segment;
-use Gks\Domain\Works\Commands\AddWork;
-use Gks\Domain\Works\Commands\RemoveWork;
-use Gks\Domain\Works\Commands\UpdateWork;
+use Gks\Application\Commands\AddWork;
+use Gks\Application\Commands\RemoveWork;
+use Gks\Application\Commands\UpdateWork;
 use Gks\Domain\Works\Type;
 use Gks\Domain\Works\WorkId;
-use Gks\Domain\Works\WorksRepository;
 use Gks\Infrastructure\Validation\MatchNotEmpty;
-use League\Plates\Engine;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

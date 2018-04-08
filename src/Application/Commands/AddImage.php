@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Domain\Works\Images\Commands;
+namespace Gks\Application\Commands;
 
 use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\WorkId;

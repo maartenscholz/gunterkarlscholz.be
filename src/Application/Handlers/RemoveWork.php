@@ -1,8 +1,8 @@
 <?php
 
-namespace Gks\Domain\Works\Handlers;
+namespace Gks\Application\Handlers;
 
-use Gks\Domain\Works\Commands\RemoveWork as RemoveWorkCommand;
+use Gks\Application\Commands\RemoveWork as RemoveWorkCommand;
 use Gks\Domain\Works\WorksRepository;
 
 class RemoveWork

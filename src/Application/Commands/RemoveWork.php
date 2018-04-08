@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Domain\Works\Commands;
+namespace Gks\Application\Commands;
 
 use Gks\Domain\Works\WorkId;
 

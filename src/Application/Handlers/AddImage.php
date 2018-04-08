@@ -1,8 +1,8 @@
 <?php
 
-namespace Gks\Domain\Works\Images\Handlers;
+namespace Gks\Application\Handlers;
 
-use Gks\Domain\Works\Images\Commands\AddImage as AddImageCommand;
+use Gks\Application\Commands\AddImage as AddImageCommand;
 use Gks\Domain\Works\Images\Image;
 use Gks\Domain\Works\Images\ImageRepository;
 use Gks\Domain\Works\WorksRepository;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Gks\Domain\Works\Images\Handlers;
+namespace Gks\Application\Handlers;
 
-use Gks\Domain\Works\Images\Commands\RemoveImage as RemoveImageCommand;
+use Gks\Application\Commands\RemoveImage as RemoveImageCommand;
 use Gks\Domain\Works\Images\ImageRepository;
 use League\Flysystem\FilesystemInterface;
 
