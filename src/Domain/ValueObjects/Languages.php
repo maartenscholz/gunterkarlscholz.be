@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Application\I18n;
+namespace Gks\Domain\ValueObjects;
 
 class Languages
 {

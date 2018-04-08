@@ -2,7 +2,7 @@
 
 namespace Gks\Tests\Unit\Infrastructure\ValueObjects;
 
-use Gks\Infrastructure\ValueObjects\UuidIdentifier;
+use Gks\Domain\ValueObjects\UuidIdentifier;
 use PHPUnit\Framework\TestCase;
 
 class UuidIdentifierTest extends TestCase

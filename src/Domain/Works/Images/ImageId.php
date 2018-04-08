@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\Works\Images;
 
-use Gks\Infrastructure\ValueObjects\UuidIdentifier;
+use Gks\Domain\ValueObjects\UuidIdentifier;
 
 class ImageId extends UuidIdentifier
 {

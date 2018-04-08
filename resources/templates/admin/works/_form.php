@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="row">
-    <?php foreach (\Gks\Application\I18n\Languages::getAll() as $language): ?>
+    <?php foreach (\Gks\Domain\ValueObjects\Languages::getAll() as $language): ?>
         <div class="col s6">
             <div class="input-field">
                 <label for="title_<?= $language ?>">Title (<?= $language ?>)</label>

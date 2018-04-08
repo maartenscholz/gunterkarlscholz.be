@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\ValueObjects;
+namespace Gks\Domain\ValueObjects;
 
 use InvalidArgumentException;
 

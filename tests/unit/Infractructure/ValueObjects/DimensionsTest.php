@@ -2,8 +2,8 @@
 
 namespace Gks\Tests\Unit\Infrastructure\ValueObjects;
 
-use Gks\Infrastructure\ValueObjects\Dimensions;
-use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
+use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
+use Gks\Domain\Works\Dimensions;
 use PHPUnit\Framework\TestCase;
 
 class DimensionsTest extends TestCase

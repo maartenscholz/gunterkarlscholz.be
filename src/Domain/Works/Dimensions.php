@@ -1,6 +1,8 @@
 <?php
 
-namespace Gks\Infrastructure\ValueObjects;
+namespace Gks\Domain\Works;
+
+use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
 
 final class Dimensions
 {

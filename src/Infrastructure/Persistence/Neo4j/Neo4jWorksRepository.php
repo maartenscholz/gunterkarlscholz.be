@@ -2,6 +2,8 @@
 
 namespace Gks\Infrastructure\Persistence\Neo4j;
 
+use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
+use Gks\Domain\Works\Dimensions;
 use Gks\Domain\Works\Images\Image;
 use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\Title;
@@ -9,8 +11,6 @@ use Gks\Domain\Works\Type;
 use Gks\Domain\Works\Work;
 use Gks\Domain\Works\WorkId;
 use Gks\Domain\Works\WorksRepository;
-use Gks\Infrastructure\ValueObjects\Dimensions;
-use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
 use GraphAware\Common\Type\Node;
 use GraphAware\Neo4j\Client\Client;
 use GraphAware\Neo4j\Client\Result\ResultCollection;

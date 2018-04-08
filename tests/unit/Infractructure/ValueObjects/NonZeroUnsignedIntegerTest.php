@@ -2,7 +2,7 @@
 
 namespace Gks\Tests\Unit\Infrastructure\ValueObjects;
 
-use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
+use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

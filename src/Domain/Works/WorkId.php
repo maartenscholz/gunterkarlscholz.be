@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\Works;
 
-use Gks\Infrastructure\ValueObjects\UuidIdentifier;
+use Gks\Domain\ValueObjects\UuidIdentifier;
 
 class WorkId extends UuidIdentifier
 {

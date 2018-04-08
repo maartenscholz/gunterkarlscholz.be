@@ -2,11 +2,11 @@
 
 namespace Gks\Application\Commands;
 
+use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
+use Gks\Domain\Works\Dimensions;
 use Gks\Domain\Works\Title;
 use Gks\Domain\Works\Type;
 use Gks\Domain\Works\WorkId;
-use Gks\Infrastructure\ValueObjects\Dimensions;
-use Gks\Infrastructure\ValueObjects\NonZeroUnsignedInteger;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AddWork

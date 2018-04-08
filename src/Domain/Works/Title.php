@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\Works;
 
-use Gks\Application\I18n\Languages;
+use Gks\Domain\ValueObjects\Languages;
 use InvalidArgumentException;
 
 class Title
