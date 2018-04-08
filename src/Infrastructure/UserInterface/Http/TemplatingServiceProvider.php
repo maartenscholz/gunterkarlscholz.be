@@ -32,7 +32,7 @@ class TemplatingServiceProvider extends AbstractServiceProvider
             /** @var Segment $validationSession */
             $validationSession = $this->container->get(Session::class)->getSegment('validation');
 
-            $engine = new Engine(__DIR__.'/../../../resources/templates');
+            $engine = new Engine(__DIR__.'/../../../../resources/templates');
 
             $engine->addFolder('admin', $engine->getDirectory().DIRECTORY_SEPARATOR.'admin');
 
