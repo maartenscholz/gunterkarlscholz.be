@@ -1,22 +1,20 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/admin">Gunter-Karl Scholz</a>
-        </div>
+<nav class="blue-grey darken-2">
+    <div class="nav-wrapper row">
+        <div class="col s12">
+            <a href="/admin" class="brand-logo">Gunter-Karl Scholz</a>
+            <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul class="right hide-on-med-and-down">
                 <li><a href="/admin/works">Works</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="/logout" class="btn btn-small">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
+<ul class="sidenav" id="sidenav">
+    <li><a href="/admin">Dashboard</a></li>
+    <li><a href="/admin/works">Works</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="/logout" class="btn">Logout</a></li>
+</ul>

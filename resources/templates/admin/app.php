@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-              crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
         <title><?= $title ? $this->e($title).' | ' : '' ?>GKS</title>
     </head>
     <body>
@@ -14,11 +14,27 @@
         <?php endif; ?>
 
         <div class="container">
-            <?= $this->section('content') ?>
+            <div class="row">
+                <div class="col s12">
+                    <?= $this->section('content') ?>
+                </div>
+            </div>
         </div>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-                integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+                $('select').formSelect();
+                $('table .dropdown-trigger').dropdown({
+                    constrainWidth: false,
+                    alignment: 'right',
+                });
+            });
+        </script>
     </body>
 </html>

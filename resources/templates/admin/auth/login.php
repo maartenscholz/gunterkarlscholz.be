@@ -2,34 +2,28 @@
     'title' => 'Login',
 ]) ?>
 
+<br><br><br>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Login
+    <div class="col s6 offset-s3">
+        <?php if ($message): ?>
+            <div class="alert alert-danger">
+                <?= $message ?>
             </div>
-            <div class="panel-body">
-                <?php if ($message): ?>
-                    <div class="alert alert-danger">
-                        <?= $message ?>
-                    </div>
-                <?php endif ?>
+        <?php endif ?>
 
-                <form action="/login" method="post">
-                    <input type="hidden" name="_csrf_token" value="<?= $csrf_token ?>">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" value="<?= isset($input) ? $input['username'] : '' ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-control">
-                    </div>
-
-                    <input type="submit" class="btn btn-primary">
-                </form>
+        <form action="/login" method="post">
+            <input type="hidden" name="_csrf_token" value="<?= $csrf_token ?>">
+            <div class="input-field">
+                <input type="text" name="username" id="username" value="<?= isset($input) ? $input['username'] : '' ?>">
+                <label for="username">Username</label>
             </div>
-        </div>
+            <div class="input-field">
+                <input type="password" name="password" id="password">
+                <label for="password">Password</label>
+            </div>
+            <div class="input-field">
+                <input type="submit" value="Login" class="btn">
+            </div>
+        </form>
     </div>
 </div>

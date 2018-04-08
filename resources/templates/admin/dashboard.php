@@ -2,6 +2,4 @@
     'title' => 'Dashboard',
 ]) ?>
 
-<div class="row">
-    Admin dashboard
-</div>
+<h1>Admin dashboard</h1>
