@@ -1,13 +1,13 @@
 <?php
 
-namespace Gks\Application\Providers;
+namespace Gks\Infrastructure\Filesystem;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemInterface;
 
-class FilesystemServiceProvider extends AbstractServiceProvider
+class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array
