@@ -6,6 +6,9 @@ use Aura\Session\Session;
 use Gks\Application\Http\Controllers\Admin;
 use Gks\Application\Http\Controllers\HomeController;
 use Gks\Application\Http\Controllers\ImagesController;
+use Gks\Application\Http\RequestHandlers\Admin\LoginPageRequestHandler;
+use Gks\Application\Http\RequestHandlers\Admin\LoginRequestHandler;
+use Gks\Application\Http\RequestHandlers\Admin\LogoutRequestHandler;
 use Gks\Application\Http\RequestHandlers\Admin\Works;
 use Gks\Domain\Works\WorksRepository;
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -21,9 +24,11 @@ class AppServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
+        LoginPageRequestHandler::class,
+        LoginRequestHandler::class,
+        LogoutRequestHandler::class,
         HomeController::class,
         ImagesController::class,
-        Admin\SessionController::class,
         Admin\DashboardController::class,
         Admin\WorksController::class,
         Admin\WorkImagesController::class,
@@ -42,19 +47,27 @@ class AppServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
+        $this->container->share(LoginPageRequestHandler::class, function () {
+            return new LoginPageRequestHandler(
+                $this->container->get(Session::class)->getSegment('authentication'),
+                $this->container->get(Engine::class)
+            );
+        });
+
+        $this->container->share(LoginRequestHandler::class, function () {
+            return new LoginRequestHandler($this->container->get(Session::class)->getSegment('authentication'));
+        });
+
+        $this->container->share(LogoutRequestHandler::class, function () {
+            return new LogoutRequestHandler($this->container->get(Session::class)->getSegment('authentication'));
+        });
+
         $this->container->share(HomeController::class, function () {
             return new HomeController($this->container->get(Engine::class));
         });
 
         $this->container->share(ImagesController::class, function () {
             return new ImagesController($this->container->get(Server::class), $this->container->get(Signature::class));
-        });
-
-        $this->container->share(Admin\SessionController::class, function () {
-            return new Admin\SessionController(
-                $this->container->get(Session::class)->getSegment('authentication'),
-                $this->container->get(Engine::class)
-            );
         });
 
         $this->container->share(Admin\DashboardController::class, function () {

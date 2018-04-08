@@ -3,7 +3,6 @@
 namespace Gks\Application\Providers;
 
 use Gks\Application\Http\Controllers\Admin\DashboardController;
-use Gks\Application\Http\Controllers\Admin\SessionController;
 use Gks\Application\Http\Controllers\Admin\WorkImagesController;
 use Gks\Application\Http\Controllers\Admin\WorksController;
 use Gks\Application\Http\Controllers\HomeController;
@@ -11,6 +10,9 @@ use Gks\Application\Http\Controllers\ImagesController;
 use Gks\Application\Http\Middleware\AuthorizationMiddleware;
 use Gks\Application\Http\Middleware\GuestMiddleware;
 use Gks\Application\Http\MiddlewareStrategy;
+use Gks\Application\Http\RequestHandlers\Admin\LoginPageRequestHandler;
+use Gks\Application\Http\RequestHandlers\Admin\LoginRequestHandler;
+use Gks\Application\Http\RequestHandlers\Admin\LogoutRequestHandler;
 use Gks\Application\Http\RequestHandlers\Admin\Works;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteCollection;
@@ -73,9 +75,9 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->setStrategy($this->container->get(MiddlewareStrategy::class));
 
             $route->get('/', [HomeController::class, 'index'])->setName('home');
-            $route->get('/login', [SessionController::class, 'create'])->setName('session.create');
-            $route->post('/login', [SessionController::class, 'store'])->setName('session.store');
-            $route->get('/logout', [SessionController::class, 'destroy'])->setName('session.destroy');
+            $route->get('/login', $this->container->get(LoginPageRequestHandler::class))->setName('session.create');
+            $route->post('/login', $this->container->get(LoginRequestHandler::class))->setName('session.store');
+            $route->get('/logout', $this->container->get(LogoutRequestHandler::class))->setName('session.destroy');
 
             $route->get('image/{path}', [ImagesController::class, 'show'])->setName('images.show');
 
