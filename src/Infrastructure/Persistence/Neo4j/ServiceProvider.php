@@ -1,12 +1,12 @@
 <?php
 
-namespace Gks\Application\Providers;
+namespace Gks\Infrastructure\Persistence\Neo4j;
 
 use GraphAware\Neo4j\Client\Client;
 use GraphAware\Neo4j\Client\ClientBuilder;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
-class Neo4jServiceProvider extends AbstractServiceProvider
+class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array

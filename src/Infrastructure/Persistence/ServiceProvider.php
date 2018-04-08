@@ -1,10 +1,11 @@
 <?php
 
-namespace Gks\Domain\Works;
+namespace Gks\Infrastructure\Persistence;
 
-use Gks\Application\Repositories\Neo4jImageRepository;
-use Gks\Application\Repositories\Neo4jWorksRepository;
 use Gks\Domain\Works\Images\ImageRepository;
+use Gks\Domain\Works\WorksRepository;
+use Gks\Infrastructure\Persistence\Neo4j\Neo4jImageRepository;
+use Gks\Infrastructure\Persistence\Neo4j\Neo4jWorksRepository;
 use GraphAware\Neo4j\Client\Client;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 

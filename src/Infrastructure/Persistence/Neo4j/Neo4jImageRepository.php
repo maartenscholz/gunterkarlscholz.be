@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Application\Repositories;
+namespace Gks\Infrastructure\Persistence\Neo4j;
 
 use Gks\Domain\Works\Images\Image;
 use Gks\Domain\Works\Images\ImageId;
