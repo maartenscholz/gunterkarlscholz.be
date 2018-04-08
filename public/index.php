@@ -1,18 +1,17 @@
 <?php
 
 use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
-use Gks\Application\Providers\AppServiceProvider;
-use Gks\Application\Providers\AuthServiceProvider;
-use Gks\Application\Providers\ExceptionServiceProvider;
 use Gks\Application\Providers\FilesystemServiceProvider;
-use Gks\Application\Providers\GlideServiceProvider;
 use Gks\Application\Providers\LoggingServiceProvider;
-use Gks\Application\Providers\RouteServiceProvider;
-use Gks\Application\Providers\SessionServiceProvider;
-use Gks\Application\Providers\TemplatingServiceProvider;
 use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Infrastructure\Persistence\Neo4j\ServiceProvider as Neo4jServiceProvider;
 use Gks\Infrastructure\Persistence\ServiceProvider as PersistenceServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\ErrorHandling\ServiceProvider as ErrorHandlingServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\GlideServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\ServiceProvider as HTTPUserInterfaceServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\SessionServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\TemplatingServiceProvider;
 use League\Route\RouteCollection;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -35,12 +34,10 @@ $dotenv->required([
 
 $container = new League\Container\Container;
 
-$container->addServiceProvider(ExceptionServiceProvider::class);
-$container->addServiceProvider(AuthServiceProvider::class);
+$container->addServiceProvider(ErrorHandlingServiceProvider::class);
 $container->addServiceProvider(RouteServiceProvider::class);
 $container->addServiceProvider(SessionServiceProvider::class);
 $container->addServiceProvider(TemplatingServiceProvider::class);
-$container->addServiceProvider(AppServiceProvider::class);
 $container->addServiceProvider(Neo4jServiceProvider::class);
 $container->addServiceProvider(CommandBusServiceProvider::class);
 $container->addServiceProvider(PersistenceServiceProvider::class);
@@ -48,6 +45,7 @@ $container->addServiceProvider(GlideServiceProvider::class);
 $container->addServiceProvider(FilesystemServiceProvider::class);
 $container->addServiceProvider(LoggingServiceProvider::class);
 $container->addServiceProvider(CommandHandlerServiceProvider::class);
+$container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 
 $whoops = $container->get(Run::class);
 $whoops->register();

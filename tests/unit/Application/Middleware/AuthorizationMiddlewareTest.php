@@ -3,7 +3,7 @@
 namespace Gks\Tests\Unit\Application\Middleware;
 
 use Aura\Session\Segment;
-use Gks\Application\Http\Middleware\AuthorizationMiddleware;
+use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Http\Message\ResponseInterface;
