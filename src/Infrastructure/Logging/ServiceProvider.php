@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Application\Providers;
+namespace Gks\Infrastructure\Logging;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\NullHandler;
@@ -9,7 +9,7 @@ use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Raven_Client;
 
-class LoggingServiceProvider extends AbstractServiceProvider
+class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array

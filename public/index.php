@@ -1,9 +1,9 @@
 <?php
 
 use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
-use Gks\Application\Providers\LoggingServiceProvider;
 use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Infrastructure\Filesystem\ServiceProvider as FilesystemServiceProvider;
+use Gks\Infrastructure\Logging\ServiceProvider;
 use Gks\Infrastructure\Persistence\Neo4j\ServiceProvider as Neo4jServiceProvider;
 use Gks\Infrastructure\Persistence\ServiceProvider as PersistenceServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\ErrorHandling\ServiceProvider as ErrorHandlingServiceProvider;
@@ -43,7 +43,7 @@ $container->addServiceProvider(CommandBusServiceProvider::class);
 $container->addServiceProvider(PersistenceServiceProvider::class);
 $container->addServiceProvider(GlideServiceProvider::class);
 $container->addServiceProvider(FilesystemServiceProvider::class);
-$container->addServiceProvider(LoggingServiceProvider::class);
+$container->addServiceProvider(ServiceProvider::class);
 $container->addServiceProvider(CommandHandlerServiceProvider::class);
 $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 
