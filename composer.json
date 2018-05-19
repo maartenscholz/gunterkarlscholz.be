@@ -10,6 +10,7 @@
     ],
     "require": {
         "aura/session": "^2.0",
+        "doctrine/orm": "^2.6",
         "filp/whoops": "^2.1",
         "graphaware/neo4j-php-client": "^4.4",
         "league/container": "^2.4",
@@ -39,6 +40,6 @@
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.4.4",
-        "phpunit/phpunit": "^6.1"
+        "phpunit/phpunit": "^7.1"
     }
 }
