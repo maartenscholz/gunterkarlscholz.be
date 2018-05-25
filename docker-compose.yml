@@ -30,6 +30,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: test
       MYSQL_DATABASE: gks
+  redis:
+    container_name: gks-redis
+    image: redis:4.0
   neo4j:
     container_name: gks-neo4j
     build:
