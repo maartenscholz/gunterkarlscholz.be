@@ -3,6 +3,7 @@
 namespace Gks\Domain\ValueObjects;
 
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 abstract class UuidIdentifier
 {
@@ -12,9 +13,9 @@ abstract class UuidIdentifier
     private $value;
 
     /**
-     * @param Uuid $value
+     * @param UuidInterface $value
      */
-    protected function __construct(Uuid $value)
+    protected function __construct(UuidInterface $value)
     {
         $this->value = $value;
     }
