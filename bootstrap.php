@@ -1,6 +1,7 @@
 <?php
 
 use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
+use Gks\Infrastructure\Caching\Redis\ServiceProvider as RedisServiceProvider;
 use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Infrastructure\Filesystem\ServiceProvider as FilesystemServiceProvider;
 use Gks\Infrastructure\Logging\ServiceProvider;
@@ -28,6 +29,7 @@ $dotenv->required([
     'NEO4J_PASS',
     'GLIDE_SIGNATURE_KEY',
     'SENTRY_DSN',
+    'REDIS_HOST',
 ]);
 
 $container = new League\Container\Container;
@@ -44,6 +46,7 @@ $container->addServiceProvider(FilesystemServiceProvider::class);
 $container->addServiceProvider(ServiceProvider::class);
 $container->addServiceProvider(CommandHandlerServiceProvider::class);
 $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
+$container->addServiceProvider(RedisServiceProvider::class);
 
 $whoops = $container->get(Run::class);
 $whoops->register();
