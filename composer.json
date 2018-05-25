@@ -21,6 +21,7 @@
         "league/route": "^3.0",
         "league/tactician": "^1.0",
         "monolog/monolog": "^1.23",
+        "predis/predis": "^1.1",
         "ramsey/uuid": "^3.4",
         "sentry/sentry": "^1.8",
         "shrikeh/teapot": "^2.1",
