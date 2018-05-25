@@ -33,8 +33,6 @@ class Work
     private $images = [];
 
     /**
-     * Work constructor.
-     *
      * @param WorkId $workId
      * @param Type $type
      * @param Title $title
