@@ -30,7 +30,7 @@
                         <td><?= $work->getTitle()->getValue('en_US') ?>
                             / <?= $work->getTitle()->getValue('nl_BE') ?></td>
                         <td><?= $work->getType()->getValue() ?></td>
-                        <td><?= $work->getDimensions() ?></td>
+                        <td><?= $work->getDimensions() ?: '-' ?></td>
                         <td>
                             <a class='dropdown-trigger btn-small' href='#' data-target='dropdown1'><i
                                         class="material-icons">settings</i></a>
