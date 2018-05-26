@@ -2,8 +2,11 @@
 
 namespace Gks\Domain\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Gks\Domain\Model\Works\Image;
 use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
 use Gks\Domain\Works\Dimensions;
+use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\Title;
 use Gks\Domain\Works\Type;
 use Gks\Domain\Works\WorkId;
@@ -72,6 +75,19 @@ class Work
     private $height;
 
     /**
+     * @var Image[]
+     *
+     * @OneToMany(
+     *     targetEntity="Gks\Domain\Model\Works\Image",
+     *     mappedBy="work",
+     *     cascade={"persist"},
+     *     orphanRemoval=true,
+     *     indexBy="id"
+     * )
+     */
+    private $images;
+
+    /**
      * Work constructor.
      *
      * @param WorkId $id
@@ -89,6 +105,7 @@ class Work
         $this->titleDe = $title->getValue('de_DE');
         $this->width = $dimensions->getWidth()->getValue();
         $this->height = $dimensions->getHeight()->getValue();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -105,6 +122,24 @@ class Work
         $this->titleDe = $title->getValue('de_DE');
         $this->width = $dimensions->getWidth()->getValue();
         $this->height = $dimensions->getHeight()->getValue();
+    }
+
+    /**
+     * @param ImageId $imageId
+     * @param string $filename
+     * @param string $path
+     */
+    public function addImage(ImageId $imageId, string $filename, string $path)
+    {
+        $this->images->set((string) $imageId, new Image($this, $imageId, $filename, $path));
+    }
+
+    /**
+     * @param ImageId $imageId
+     */
+    public function removeImage(ImageId $imageId)
+    {
+        $this->images->remove((string) $imageId);
     }
 
     /**
@@ -142,5 +177,23 @@ class Work
     public function getDimensions(): Dimensions
     {
         return new Dimensions(new NonZeroUnsignedInteger($this->width), new NonZeroUnsignedInteger($this->height));
+    }
+
+    /**
+     * @return Image[]
+     */
+    public function getImages(): array
+    {
+        return $this->images->toArray();
+    }
+
+    /**
+     * @param ImageId $imageId
+     *
+     * @return Image
+     */
+    public function getImage(ImageId $imageId)
+    {
+        return $this->images->get((string) $imageId);
     }
 }
