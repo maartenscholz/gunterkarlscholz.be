@@ -4,8 +4,8 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use Aura\Session\Segment;
 use Gks\Application\Commands\UpdateWork;
-use Gks\Domain\Works\Type;
-use Gks\Domain\Works\WorkId;
+use Gks\Domain\Model\Works\Type;
+use Gks\Domain\Model\Works\WorkId;
 use Gks\Infrastructure\UserInterface\Http\Validation\MatchNotEmpty;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;

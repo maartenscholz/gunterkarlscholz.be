@@ -3,7 +3,7 @@
 namespace Gks\Domain\Model\Works;
 
 use Gks\Domain\Model\Work;
-use Gks\Domain\Works\Images\ImageId;
+use Gks\Domain\Model\Works\Images\ImageId;
 
 /**
  * @Entity

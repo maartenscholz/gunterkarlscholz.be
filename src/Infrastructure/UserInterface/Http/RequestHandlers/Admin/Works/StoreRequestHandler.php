@@ -4,7 +4,7 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use Aura\Session\Segment;
 use Gks\Application\Commands\AddWork;
-use Gks\Domain\Works\Type;
+use Gks\Domain\Model\Works\Type;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ServerRequestInterface;
 use Sirius\Validation\Rule\InList;

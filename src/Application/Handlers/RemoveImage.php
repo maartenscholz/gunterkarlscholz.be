@@ -3,7 +3,7 @@
 namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\RemoveImage as RemoveImageCommand;
-use Gks\Domain\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorksRepository;
 use League\Flysystem\FilesystemInterface;
 
 class RemoveImage

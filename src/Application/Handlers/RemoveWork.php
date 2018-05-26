@@ -3,7 +3,7 @@
 namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\RemoveWork as RemoveWorkCommand;
-use Gks\Domain\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorksRepository;
 
 class RemoveWork
 {

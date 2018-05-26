@@ -4,7 +4,7 @@ namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\AddWork as AddWorkCommand;
 use Gks\Domain\Model\Work;
-use Gks\Domain\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorksRepository;
 
 class AddWork
 {

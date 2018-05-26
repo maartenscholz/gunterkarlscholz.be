@@ -3,8 +3,8 @@
 namespace Gks\Infrastructure\Persistence;
 
 use Doctrine\ORM\EntityManager;
+use Gks\Domain\Model\Works\WorksRepository;
 use Gks\Domain\Works\Images\ImageRepository;
-use Gks\Domain\Works\WorksRepository;
 use Gks\Infrastructure\Persistence\MySQL\WorkRepository;
 use Gks\Infrastructure\Persistence\Neo4j\Neo4jImageRepository;
 use GraphAware\Neo4j\Client\Client;

@@ -3,7 +3,7 @@
 namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\AddImage as AddImageCommand;
-use Gks\Domain\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorksRepository;
 
 class AddImage
 {

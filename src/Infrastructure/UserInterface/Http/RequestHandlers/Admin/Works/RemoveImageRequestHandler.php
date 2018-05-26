@@ -3,8 +3,8 @@
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use Gks\Application\Commands\RemoveImage;
-use Gks\Domain\Works\Images\ImageId;
-use Gks\Domain\Works\WorkId;
+use Gks\Domain\Model\Works\Images\ImageId;
+use Gks\Domain\Model\Works\WorkId;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

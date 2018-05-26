@@ -2,7 +2,7 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
-use Gks\Domain\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorksRepository;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

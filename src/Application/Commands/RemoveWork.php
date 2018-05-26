@@ -2,7 +2,7 @@
 
 namespace Gks\Application\Commands;
 
-use Gks\Domain\Works\WorkId;
+use Gks\Domain\Model\Works\WorkId;
 
 class RemoveWork
 {

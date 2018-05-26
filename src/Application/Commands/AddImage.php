@@ -2,8 +2,8 @@
 
 namespace Gks\Application\Commands;
 
-use Gks\Domain\Works\Images\ImageId;
-use Gks\Domain\Works\WorkId;
+use Gks\Domain\Model\Works\Images\ImageId;
+use Gks\Domain\Model\Works\WorkId;
 
 class AddImage
 {

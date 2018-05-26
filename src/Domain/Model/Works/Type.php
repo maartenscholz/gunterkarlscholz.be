@@ -1,10 +1,10 @@
 <?php
 
-namespace Gks\Domain\Works;
+namespace Gks\Domain\Model\Works;
 
 use InvalidArgumentException;
 
-class Type
+final class Type
 {
     CONST PAINTING = 'painting';
     CONST DRAWING = 'drawing';

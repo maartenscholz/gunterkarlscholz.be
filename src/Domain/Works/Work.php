@@ -2,8 +2,12 @@
 
 namespace Gks\Domain\Works;
 
+use Gks\Domain\Model\Works\Dimensions;
+use Gks\Domain\Model\Works\Images\ImageId;
+use Gks\Domain\Model\Works\Title;
+use Gks\Domain\Model\Works\Type;
+use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\Works\Images\Image;
-use Gks\Domain\Works\Images\ImageId;
 
 class Work
 {

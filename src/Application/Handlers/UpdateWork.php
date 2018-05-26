@@ -3,7 +3,7 @@
 namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\UpdateWork as UpdateWorkCommand;
-use Gks\Domain\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorksRepository;
 
 class UpdateWork
 {

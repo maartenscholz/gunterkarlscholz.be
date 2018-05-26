@@ -2,8 +2,8 @@
 
 namespace Gks\Infrastructure\Persistence\Neo4j;
 
+use Gks\Domain\Model\Works\Images\ImageId;
 use Gks\Domain\Works\Images\Image;
-use Gks\Domain\Works\Images\ImageId;
 use Gks\Domain\Works\Images\ImageRepository;
 use GraphAware\Common\Type\Node;
 use GraphAware\Neo4j\Client\Client;

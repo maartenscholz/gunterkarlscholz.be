@@ -1,11 +1,11 @@
 <?php
 
-namespace Gks\Domain\Works;
+namespace Gks\Domain\Model\Works;
 
 use Gks\Domain\ValueObjects\Languages;
 use InvalidArgumentException;
 
-class Title
+final class Title
 {
     /**
      * @var array|string[]

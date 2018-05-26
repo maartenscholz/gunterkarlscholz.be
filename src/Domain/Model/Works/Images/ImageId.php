@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Domain\Works\Images;
+namespace Gks\Domain\Model\Works\Images;
 
 use Gks\Domain\ValueObjects\UuidIdentifier;
 

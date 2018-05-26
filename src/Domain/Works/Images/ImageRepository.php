@@ -2,6 +2,8 @@
 
 namespace Gks\Domain\Works\Images;
 
+use Gks\Domain\Model\Works\Images\ImageId;
+
 interface ImageRepository
 {
     /**
