@@ -6,23 +6,44 @@ use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
 use Gks\Domain\Works\Dimensions;
 use Gks\Domain\Works\Title;
 use Gks\Domain\Works\Type;
-use Gks\Domain\Works\Work;
+use Gks\Domain\Model\Work;
 use Gks\Domain\Works\WorkId;
 use Psr\Http\Message\ServerRequestInterface;
 
 class UpdateWork
 {
     /**
-     * @var Work
+     * @var WorkId
      */
-    private $work;
+    private $workId;
 
     /**
-     * @param Work $work
+     * @var Type
      */
-    protected function __construct(Work $work)
+    private $type;
+
+    /**
+     * @var Title
+     */
+    private $title;
+
+    /**
+     * @var Dimensions
+     */
+    private $dimension;
+
+    /**
+     * @param WorkId $workId
+     * @param Type $type
+     * @param Title $title
+     * @param Dimensions $dimension
+     */
+    public function __construct(WorkId $workId, Type $type, Title $title, Dimensions $dimension = null)
     {
-        $this->work = $work;
+        $this->workId = $workId;
+        $this->type = $type;
+        $this->title = $title;
+        $this->dimension = $dimension;
     }
 
     /**
@@ -46,14 +67,38 @@ class UpdateWork
             );
         }
 
-        return new static(new Work($workId, $type, $title, $dimension));
+        return new static($workId, $type, $title, $dimension);
     }
 
     /**
-     * @return Work
+     * @return WorkId
      */
-    public function getWork(): Work
+    public function getWorkId(): WorkId
     {
-        return $this->work;
+        return $this->workId;
+    }
+
+    /**
+     * @return Type
+     */
+    public function getType(): Type
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return Title
+     */
+    public function getTitle(): Title
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return Dimensions
+     */
+    public function getDimension(): Dimensions
+    {
+        return $this->dimension;
     }
 }

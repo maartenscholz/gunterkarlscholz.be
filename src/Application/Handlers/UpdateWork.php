@@ -27,6 +27,10 @@ class UpdateWork
      */
     public function handle(UpdateWorkCommand $command)
     {
-        $this->repository->add($command->getWork());
+        $work = $this->repository->findById($command->getWorkId());
+
+        $work->update($command->getType(), $command->getTitle(), $command->getDimension());
+
+        $this->repository->add($work);
     }
 }
