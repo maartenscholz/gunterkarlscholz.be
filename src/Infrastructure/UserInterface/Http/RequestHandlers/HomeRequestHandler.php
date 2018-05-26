@@ -1,12 +1,12 @@
 <?php
 
-namespace Gks\Infrastructure\UserInterface\Http\Controllers;
+namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class HomeController
+class HomeRequestHandler
 {
     /**
      * @var Engine
@@ -14,8 +14,6 @@ class HomeController
     private $templates;
 
     /**
-     * DashboardController constructor.
-     *
      * @param Engine $templates
      */
     public function __construct(Engine $templates)
@@ -29,7 +27,7 @@ class HomeController
      *
      * @return ResponseInterface
      */
-    public function index(ServerRequestInterface $request, ResponseInterface $response)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         $response->getBody()->write($this->templates->render('app'));
 

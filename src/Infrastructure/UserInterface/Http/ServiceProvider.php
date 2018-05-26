@@ -7,7 +7,6 @@ use Gks\Domain\Works\WorksRepository;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\DashboardController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorkImagesController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorksController;
-use Gks\Infrastructure\UserInterface\Http\Controllers\HomeController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\ImagesController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
@@ -20,6 +19,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\EditReques
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\IndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\RemoveImageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreImageRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\HomeRequestHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\FilesystemInterface;
 use League\Glide\Server;
@@ -36,7 +36,7 @@ class ServiceProvider extends AbstractServiceProvider
         LoginPageRequestHandler::class,
         LoginRequestHandler::class,
         LogoutRequestHandler::class,
-        HomeController::class,
+        HomeRequestHandler::class,
         ImagesController::class,
         DashboardController::class,
         WorksController::class,
@@ -65,8 +65,8 @@ class ServiceProvider extends AbstractServiceProvider
      */
     private function registerControllers()
     {
-        $this->container->share(HomeController::class, function () {
-            return new HomeController($this->container->get(Engine::class));
+        $this->container->share(HomeRequestHandler::class, function () {
+            return new HomeRequestHandler($this->container->get(Engine::class));
         });
 
         $this->container->share(ImagesController::class, function () {
