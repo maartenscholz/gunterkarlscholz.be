@@ -19,6 +19,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\ImagesInde
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\IndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\RemoveImageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreImageRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\HomeRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\ServeImageRequestHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -43,6 +44,7 @@ class ServiceProvider extends AbstractServiceProvider
         WorksController::class,
         IndexRequestHandler::class,
         AddRequestHandler::class,
+        StoreRequestHandler::class,
         EditRequestHandler::class,
         ImagesIndexRequestHandler::class,
         StoreImageRequestHandler::class,
@@ -153,6 +155,13 @@ class ServiceProvider extends AbstractServiceProvider
 
         $this->container->share(AddRequestHandler::class, function () {
             return new AddRequestHandler($this->container->get(Engine::class));
+        });
+
+        $this->container->share(StoreRequestHandler::class, function () {
+            return new StoreRequestHandler(
+                $this->container->get(Session::class)->getSegment('validation'),
+                $this->container->get(CommandBus::class)
+            );
         });
 
         $this->container->share(EditRequestHandler::class, function () {
