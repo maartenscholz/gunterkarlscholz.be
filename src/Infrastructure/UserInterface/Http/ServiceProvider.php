@@ -5,7 +5,6 @@ namespace Gks\Infrastructure\UserInterface\Http;
 use Aura\Session\Session;
 use Gks\Domain\Works\WorksRepository;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorkImagesController;
-use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorksController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
@@ -43,7 +42,6 @@ class ServiceProvider extends AbstractServiceProvider
         HomeRequestHandler::class,
         ServeImageRequestHandler::class,
         DashboardRequestHandler::class,
-        WorksController::class,
         IndexRequestHandler::class,
         AddRequestHandler::class,
         StoreRequestHandler::class,
@@ -63,44 +61,8 @@ class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->registerControllers();
         $this->registerMiddleware();
         $this->registerRequestHandlers();
-    }
-
-    /**
-     * @return void
-     */
-    private function registerControllers()
-    {
-        $this->container->share(HomeRequestHandler::class, function () {
-            return new HomeRequestHandler($this->container->get(Engine::class));
-        });
-
-        $this->container->share(ServeImageRequestHandler::class, function () {
-            return new ServeImageRequestHandler(
-                $this->container->get(Server::class),
-                $this->container->get(Signature::class)
-            );
-        });
-
-        $this->container->share(DashboardRequestHandler::class, function () {
-            return new DashboardRequestHandler($this->container->get(Engine::class));
-        });
-
-        $this->container->share(WorksController::class, function () {
-            return new WorksController(
-                $this->container->get(CommandBus::class),
-                $this->container->get(Session::class)->getSegment('validation')
-            );
-        });
-
-        $this->container->share(ImagesIndexRequestHandler::class, function () {
-            return new ImagesIndexRequestHandler(
-                $this->container->get(Engine::class),
-                $this->container->get(WorksRepository::class)
-            );
-        });
     }
 
     /**
@@ -135,6 +97,17 @@ class ServiceProvider extends AbstractServiceProvider
      */
     private function registerRequestHandlers()
     {
+        $this->container->share(HomeRequestHandler::class, function () {
+            return new HomeRequestHandler($this->container->get(Engine::class));
+        });
+
+        $this->container->share(ServeImageRequestHandler::class, function () {
+            return new ServeImageRequestHandler(
+                $this->container->get(Server::class),
+                $this->container->get(Signature::class)
+            );
+        });
+
         $this->container->share(LoginPageRequestHandler::class, function () {
             return new LoginPageRequestHandler(
                 $this->container->get(Session::class)->getSegment('authentication'),
@@ -148,6 +121,10 @@ class ServiceProvider extends AbstractServiceProvider
 
         $this->container->share(LogoutRequestHandler::class, function () {
             return new LogoutRequestHandler($this->container->get(Session::class)->getSegment('authentication'));
+        });
+
+        $this->container->share(DashboardRequestHandler::class, function () {
+            return new DashboardRequestHandler($this->container->get(Engine::class));
         });
 
         $this->container->share(IndexRequestHandler::class, function () {
@@ -184,6 +161,13 @@ class ServiceProvider extends AbstractServiceProvider
 
         $this->container->share(DestroyRequestHandler::class, function () {
             return new DestroyRequestHandler($this->container->get(CommandBus::class));
+        });
+
+        $this->container->share(ImagesIndexRequestHandler::class, function () {
+            return new ImagesIndexRequestHandler(
+                $this->container->get(Engine::class),
+                $this->container->get(WorksRepository::class)
+            );
         });
 
         $this->container->share(StoreImageRequestHandler::class, function () {
