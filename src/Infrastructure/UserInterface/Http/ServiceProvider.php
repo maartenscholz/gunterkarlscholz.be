@@ -4,7 +4,6 @@ namespace Gks\Infrastructure\UserInterface\Http;
 
 use Aura\Session\Session;
 use Gks\Domain\Works\WorksRepository;
-use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorkImagesController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
