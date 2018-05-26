@@ -4,6 +4,6 @@ namespace Gks\Domain\Model\Works;
 
 use Gks\Domain\ValueObjects\UuidIdentifier;
 
-class WorkId extends UuidIdentifier
+final class WorkId extends UuidIdentifier
 {
 }
