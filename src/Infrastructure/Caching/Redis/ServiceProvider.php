@@ -22,7 +22,7 @@ class ServiceProvider extends AbstractServiceProvider
     {
         $this->container->share(ClientInterface::class, function () {
             return new Client([
-                'host' => getenv('PREDIS_HOST'),
+                'host' => getenv('REDIS_HOST'),
             ]);
         });
     }
