@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\UserInterface\Http\Controllers;
+namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 
 use League\Glide\Server;
 use League\Glide\Signatures\Signature;
@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Teapot\StatusCode;
 
-class ImagesController
+class ServeImageRequestHandler
 {
     /**
      * @var Server
@@ -34,11 +34,10 @@ class ImagesController
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
-     * @param array $args
      *
      * @return ResponseInterface
      */
-    public function show(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         try {
             $this->glideSignature->validateRequest($args['path'], $request->getQueryParams());

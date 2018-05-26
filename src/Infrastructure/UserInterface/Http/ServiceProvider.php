@@ -7,7 +7,6 @@ use Gks\Domain\Works\WorksRepository;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\DashboardController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorkImagesController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorksController;
-use Gks\Infrastructure\UserInterface\Http\Controllers\ImagesController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
@@ -20,6 +19,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\IndexReque
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\RemoveImageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreImageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\HomeRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\ServeImageRequestHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\FilesystemInterface;
 use League\Glide\Server;
@@ -37,7 +37,7 @@ class ServiceProvider extends AbstractServiceProvider
         LoginRequestHandler::class,
         LogoutRequestHandler::class,
         HomeRequestHandler::class,
-        ImagesController::class,
+        ServeImageRequestHandler::class,
         DashboardController::class,
         WorksController::class,
         WorkImagesController::class,
@@ -69,8 +69,11 @@ class ServiceProvider extends AbstractServiceProvider
             return new HomeRequestHandler($this->container->get(Engine::class));
         });
 
-        $this->container->share(ImagesController::class, function () {
-            return new ImagesController($this->container->get(Server::class), $this->container->get(Signature::class));
+        $this->container->share(ServeImageRequestHandler::class, function () {
+            return new ServeImageRequestHandler(
+                $this->container->get(Server::class),
+                $this->container->get(Signature::class)
+            );
         });
 
         $this->container->share(DashboardController::class, function () {

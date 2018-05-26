@@ -13,6 +13,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginPageRequest
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\HomeRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\ServeImageRequestHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteCollection;
 use League\Route\RouteGroup;
@@ -64,7 +65,7 @@ class RouteServiceProvider extends AbstractServiceProvider
 
             $route->middleware($this->container->get(CsrfMiddleware::class));
 
-            $route->get('/', $this->container->get(HomeRequestHandler::class))->setName('home');
+            $route->get('/', $this->container->get(HomeRequestHandler::class));
 
             $route->get('/login', $this->container->get(LoginPageRequestHandler::class))
                 ->middleware($this->container->get(GuestMiddleware::class));
@@ -73,7 +74,7 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->get('/logout', $this->container->get(LogoutRequestHandler::class))
                 ->middleware($this->container->get(AuthorizationMiddleware::class));
 
-            $route->get('/image/{path}', [ImagesController::class, 'show'])->setName('images.show');
+            $route->get('/image/{path}', $this->container->get(ServeImageRequestHandler::class));
 
             $route->group('/admin', function (RouteGroup $route) {
                 $route->get('/', [DashboardController::class, 'index']);
