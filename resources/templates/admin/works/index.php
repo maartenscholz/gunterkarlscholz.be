@@ -1,4 +1,4 @@
-<?php /** @var \Gks\Domain\Works\Work[] $works */ ?>
+<?php /** @var \Gks\Domain\Model\Work[] $works */ ?>
 
 <?php $this->layout('admin/app', [
     'title' => 'Works',
@@ -35,11 +35,11 @@
                             <a class='dropdown-trigger btn-small' href='#' data-target='dropdown1'><i
                                         class="material-icons">settings</i></a>
                             <ul id='dropdown1' class='dropdown-content'>
-                                <li><a href="/admin/works/<?= $work->getWorkId() ?>/images"><i
+                                <li><a href="/admin/works/<?= $work->getId() ?>/images"><i
                                                 class="material-icons left">images</i> Images</a></li>
-                                <li><a href="/admin/works/<?= $work->getWorkId() ?>/edit"><i
+                                <li><a href="/admin/works/<?= $work->getId() ?>/edit"><i
                                                 class="material-icons">edit</i> Edit</a></li>
-                                <li><a href="/admin/works/<?= $work->getWorkId() ?>/destroy"><i class="material-icons">delete</i>
+                                <li><a href="/admin/works/<?= $work->getId() ?>/destroy"><i class="material-icons">delete</i>
                                         Delete</a></li>
                             </ul>
                         </td>
