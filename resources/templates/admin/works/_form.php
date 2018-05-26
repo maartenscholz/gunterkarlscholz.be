@@ -1,4 +1,4 @@
-<?php /** @var \Gks\Domain\Works\Work $work */ ?>
+<?php /** @var \Gks\Domain\Model\Work $work */ ?>
 <?php /** @var \Sirius\Validation\ErrorMessage $error */ ?>
 
 <input type="hidden" name="_csrf_token" value="<?= $csrf_token ?>">
