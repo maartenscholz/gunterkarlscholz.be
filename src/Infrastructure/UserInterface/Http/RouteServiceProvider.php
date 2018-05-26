@@ -4,7 +4,6 @@ namespace Gks\Infrastructure\UserInterface\Http;
 
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\DashboardController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorkImagesController;
-use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorksController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\ImagesController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
@@ -13,6 +12,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\DashboardRequest
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginPageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\DestroyRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\ImagesIndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\UpdateRequestHandler;
@@ -87,7 +87,7 @@ class RouteServiceProvider extends AbstractServiceProvider
                 $route->post('/works', $this->container->get(StoreRequestHandler::class));
                 $route->get('/works/{id}/edit', $this->container->get(RequestHandlers\Admin\Works\EditRequestHandler::class));
                 $route->put('/works/{id}', $this->container->get(UpdateRequestHandler::class));
-                $route->get('/works/{id}/destroy', [WorksController::class, 'destroy']);
+                $route->get('/works/{id}/destroy', $this->container->get(DestroyRequestHandler::class));
                 $route->get('/works/{id}/images', $this->container->get(ImagesIndexRequestHandler::class));
                 $route->post('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\StoreImageRequestHandler::class));
                 $route->post('/works/{work_id}/images/{image_id}', $this->container->get(RequestHandlers\Admin\Works\RemoveImageRequestHandler::class));

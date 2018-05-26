@@ -14,6 +14,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginPageRequest
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\AddRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\DestroyRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\EditRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\ImagesIndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\IndexRequestHandler;
@@ -48,6 +49,7 @@ class ServiceProvider extends AbstractServiceProvider
         StoreRequestHandler::class,
         EditRequestHandler::class,
         UpdateRequestHandler::class,
+        DestroyRequestHandler::class,
         ImagesIndexRequestHandler::class,
         StoreImageRequestHandler::class,
         RemoveImageRequestHandler::class,
@@ -178,6 +180,10 @@ class ServiceProvider extends AbstractServiceProvider
                 $this->container->get(Session::class)->getSegment('validation'),
                 $this->container->get(CommandBus::class)
             );
+        });
+
+        $this->container->share(DestroyRequestHandler::class, function () {
+            return new DestroyRequestHandler($this->container->get(CommandBus::class));
         });
 
         $this->container->share(StoreImageRequestHandler::class, function () {
