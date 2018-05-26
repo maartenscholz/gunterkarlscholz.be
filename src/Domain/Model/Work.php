@@ -95,7 +95,7 @@ class Work
      * @param Title $title
      * @param Dimensions $dimensions
      */
-    public function __construct(WorkId $id, Type $type, Title $title, Dimensions $dimensions)
+    public function __construct(WorkId $id, Type $type, Title $title, Dimensions $dimensions = null)
     {
         $this->id = $id->getValue()->toString();
         $this->type = $type->getValue();
@@ -103,8 +103,8 @@ class Work
         $this->titleEn = $title->getValue('en_US');
         $this->titleFr = $title->getValue('fr_FR');
         $this->titleDe = $title->getValue('de_DE');
-        $this->width = $dimensions->getWidth()->getValue();
-        $this->height = $dimensions->getHeight()->getValue();
+        $this->width = $dimensions ? $dimensions->getWidth()->getValue() : null;
+        $this->height = $dimensions ? $dimensions->getHeight()->getValue() : null;
         $this->images = new ArrayCollection();
     }
 
@@ -113,15 +113,15 @@ class Work
      * @param Title $title
      * @param Dimensions $dimensions
      */
-    public function update(Type $type, Title $title, Dimensions $dimensions)
+    public function update(Type $type, Title $title, Dimensions $dimensions = null)
     {
         $this->type = $type->getValue();
         $this->titleNl = $title->getValue('nl_BE');
         $this->titleEn = $title->getValue('en_US');
         $this->titleFr = $title->getValue('fr_FR');
         $this->titleDe = $title->getValue('de_DE');
-        $this->width = $dimensions->getWidth()->getValue();
-        $this->height = $dimensions->getHeight()->getValue();
+        $this->width = $dimensions ? $dimensions->getWidth()->getValue() : null;
+        $this->height = $dimensions ? $dimensions->getHeight()->getValue() : null;
     }
 
     /**
@@ -172,11 +172,15 @@ class Work
     }
 
     /**
-     * @return Dimensions
+     * @return Dimensions|null
      */
-    public function getDimensions(): Dimensions
+    public function getDimensions(): ?Dimensions
     {
-        return new Dimensions(new NonZeroUnsignedInteger($this->width), new NonZeroUnsignedInteger($this->height));
+        if ($this->width && $this->height) {
+            return new Dimensions(new NonZeroUnsignedInteger($this->width), new NonZeroUnsignedInteger($this->height));
+        }
+
+        return null;
     }
 
     /**

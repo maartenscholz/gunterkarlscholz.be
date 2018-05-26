@@ -94,9 +94,9 @@ class UpdateWork
     }
 
     /**
-     * @return Dimensions
+     * @return Dimensions|null
      */
-    public function getDimension(): Dimensions
+    public function getDimension(): ?Dimensions
     {
         return $this->dimension;
     }
