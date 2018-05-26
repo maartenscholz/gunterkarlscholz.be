@@ -35,8 +35,8 @@ class GlideServiceProvider extends AbstractServiceProvider
     {
         $this->container->share(Server::class, function () {
             return ServerFactory::create([
-                'source' => __DIR__.'/../../../storage/images/source',
-                'cache' => __DIR__.'/../../../storage/images/cache',
+                'source' => __DIR__.'/../../../../storage/images/source',
+                'cache' => __DIR__.'/../../../../storage/images/cache',
                 'response' => new PsrResponseFactory(
                     $this->container->get(ResponseInterface::class),
                     function ($stuff) {
