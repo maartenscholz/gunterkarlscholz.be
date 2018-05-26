@@ -4,12 +4,12 @@ namespace Gks\Infrastructure\UserInterface\Http;
 
 use Aura\Session\Session;
 use Gks\Domain\Works\WorksRepository;
-use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\DashboardController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorkImagesController;
 use Gks\Infrastructure\UserInterface\Http\Controllers\Admin\WorksController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\DashboardRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginPageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
@@ -38,7 +38,7 @@ class ServiceProvider extends AbstractServiceProvider
         LogoutRequestHandler::class,
         HomeRequestHandler::class,
         ServeImageRequestHandler::class,
-        DashboardController::class,
+        DashboardRequestHandler::class,
         WorksController::class,
         WorkImagesController::class,
         IndexRequestHandler::class,
@@ -76,8 +76,8 @@ class ServiceProvider extends AbstractServiceProvider
             );
         });
 
-        $this->container->share(DashboardController::class, function () {
-            return new DashboardController($this->container->get(Engine::class));
+        $this->container->share(DashboardRequestHandler::class, function () {
+            return new DashboardRequestHandler($this->container->get(Engine::class));
         });
 
         $this->container->share(WorksController::class, function () {

@@ -9,6 +9,7 @@ use Gks\Infrastructure\UserInterface\Http\Controllers\ImagesController;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
 use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\DashboardRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginPageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
@@ -77,7 +78,7 @@ class RouteServiceProvider extends AbstractServiceProvider
             $route->get('/image/{path}', $this->container->get(ServeImageRequestHandler::class));
 
             $route->group('/admin', function (RouteGroup $route) {
-                $route->get('/', [DashboardController::class, 'index']);
+                $route->get('/', $this->container->get(DashboardRequestHandler::class));
                 $route->get('/works', $this->container->get(RequestHandlers\Admin\Works\IndexRequestHandler::class));
                 $route->get('/works/create', $this->container->get(RequestHandlers\Admin\Works\AddRequestHandler::class));
                 $route->post('/works', [WorksController::class, 'store'])->setName('admin.works.store');
