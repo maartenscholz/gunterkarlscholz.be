@@ -3,15 +3,15 @@
 namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\RemoveImage as RemoveImageCommand;
-use Gks\Domain\Works\Images\ImageRepository;
+use Gks\Domain\Works\WorksRepository;
 use League\Flysystem\FilesystemInterface;
 
 class RemoveImage
 {
     /**
-     * @var ImageRepository
+     * @var WorksRepository
      */
-    private $imageRepository;
+    private $worksRepository;
 
     /**
      * @var FilesystemInterface
@@ -19,12 +19,12 @@ class RemoveImage
     private $filesystem;
 
     /**
-     * @param ImageRepository $imageRepository
+     * @param WorksRepository $worksRepository
      * @param FilesystemInterface $filesystem
      */
-    public function __construct(ImageRepository $imageRepository, FilesystemInterface $filesystem)
+    public function __construct(WorksRepository $worksRepository, FilesystemInterface $filesystem)
     {
-        $this->imageRepository = $imageRepository;
+        $this->worksRepository = $worksRepository;
         $this->filesystem = $filesystem;
     }
 
@@ -33,9 +33,13 @@ class RemoveImage
      */
     public function handle(RemoveImageCommand $command)
     {
-        $image = $this->imageRepository->findById($command->getImageId());
+        $work = $this->worksRepository->findById($command->getWorkId());
 
-        $this->imageRepository->remove($image->getImageId());
+        $image = $work->getImage($command->getImageId());
+
+        $work->removeImage($command->getImageId());
+
+        $this->worksRepository->add($work);
 
         $this->filesystem->delete("/images/source/{$image->getFilename()}");
         $this->filesystem->deleteDir("/images/cache/{$image->getFilename()}");

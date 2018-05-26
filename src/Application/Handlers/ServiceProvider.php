@@ -2,7 +2,6 @@
 
 namespace Gks\Application\Handlers;
 
-use Gks\Domain\Works\Images\ImageRepository;
 use Gks\Domain\Works\WorksRepository;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\FilesystemInterface;
@@ -42,15 +41,12 @@ class ServiceProvider extends AbstractServiceProvider
         });
 
         $this->container->share(AddImage::class, function () {
-            return new AddImage(
-                $this->container->get(ImageRepository::class),
-                $this->container->get(WorksRepository::class)
-            );
+            return new AddImage($this->container->get(WorksRepository::class));
         });
 
         $this->container->share(RemoveImage::class, function () {
             return new RemoveImage(
-                $this->container->get(ImageRepository::class),
+                $this->container->get(WorksRepository::class),
                 $this->container->get(FilesystemInterface::class)
             );
         });

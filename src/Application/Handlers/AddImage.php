@@ -3,31 +3,20 @@
 namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\AddImage as AddImageCommand;
-use Gks\Domain\Works\Images\Image;
-use Gks\Domain\Works\Images\ImageRepository;
 use Gks\Domain\Works\WorksRepository;
 
 class AddImage
 {
-    /**
-     * @var ImageRepository
-     */
-    private $imagesRepository;
-
     /**
      * @var WorksRepository
      */
     private $worksRepository;
 
     /**
-     * @param ImageRepository $imagesRepository
      * @param WorksRepository $worksRepository
      */
-    public function __construct(
-        ImageRepository $imagesRepository,
-        WorksRepository $worksRepository
-    ) {
-        $this->imagesRepository = $imagesRepository;
+    public function __construct(WorksRepository $worksRepository)
+    {
         $this->worksRepository = $worksRepository;
     }
 
@@ -38,9 +27,7 @@ class AddImage
     {
         $work = $this->worksRepository->findById($command->getWorkId());
 
-        $image = new Image($command->getImageId(), $command->getImageFilename(), $command->getImagePath());
-
-        $work->addImage($image);
+        $work->addImage($command->getImageId(), $command->getImageFilename(), $command->getImageFilename());
 
         $this->worksRepository->add($work);
     }

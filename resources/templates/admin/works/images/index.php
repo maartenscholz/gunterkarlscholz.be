@@ -1,4 +1,4 @@
-<?php /** @var \Gks\Domain\Works\Work $work */ ?>
+<?php /** @var \Gks\Domain\Model\Work $work */ ?>
 <?php /** @var \League\Glide\Urls\UrlBuilder $imageUrlBuilder */ ?>
 
 <?php $this->layout('admin/app', [
@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col s12">
         <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
-        <form action="/admin/works/<?= $work->getWorkId() ?>/images" method="post" enctype="multipart/form-data">
+        <form action="/admin/works/<?= $work->getId() ?>/images" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_csrf_token" value="<?= $csrf_token ?>">
             <div class="input-field file-field">
                 <div class="btn-small">
@@ -37,7 +37,7 @@
                             >
                         </div>
                         <div class="card-action">
-                            <form action="/admin/works/<?= $work->getWorkId() ?>/images/<?= $image->getImageId() ?>"
+                            <form action="/admin/works/<?= $work->getId() ?>/images/<?= $image->getId() ?>"
                                   method="post">
                                 <input type="hidden" name="_csrf_token" value="<?= $csrf_token ?>">
                                 <button type="submit" class="btn-flat">Remove</button>
