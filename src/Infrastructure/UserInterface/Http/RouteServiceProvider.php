@@ -2,19 +2,8 @@
 
 namespace Gks\Infrastructure\UserInterface\Http;
 
-use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
-use Gks\Infrastructure\UserInterface\Http\Middleware\CsrfMiddleware;
-use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\DashboardRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginPageRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\DestroyRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\ImagesIndexRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\UpdateRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\HomeRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RequestHandlers\ServeImageRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\Middleware;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteCollection;
 use League\Route\RouteGroup;
@@ -64,31 +53,31 @@ class RouteServiceProvider extends AbstractServiceProvider
         $this->container->share(RouteCollection::class, function () {
             $route = new RouteCollection($this->container);
 
-            $route->middleware($this->container->get(CsrfMiddleware::class));
+            $route->middleware($this->container->get(Middleware\CsrfMiddleware::class));
 
-            $route->get('/', $this->container->get(HomeRequestHandler::class));
+            $route->get('/', $this->container->get(RequestHandlers\HomeRequestHandler::class));
 
-            $route->get('/login', $this->container->get(LoginPageRequestHandler::class))
-                ->middleware($this->container->get(GuestMiddleware::class));
-            $route->post('/login', $this->container->get(LoginRequestHandler::class))
-                ->middleware($this->container->get(GuestMiddleware::class));
-            $route->get('/logout', $this->container->get(LogoutRequestHandler::class))
-                ->middleware($this->container->get(AuthorizationMiddleware::class));
+            $route->get('/login', $this->container->get(RequestHandlers\Admin\LoginPageRequestHandler::class))
+                ->middleware($this->container->get(Middleware\GuestMiddleware::class));
+            $route->post('/login', $this->container->get(RequestHandlers\Admin\LoginRequestHandler::class))
+                ->middleware($this->container->get(Middleware\GuestMiddleware::class));
+            $route->get('/logout', $this->container->get(RequestHandlers\Admin\LogoutRequestHandler::class))
+                ->middleware($this->container->get(Middleware\AuthorizationMiddleware::class));
 
-            $route->get('/image/{path}', $this->container->get(ServeImageRequestHandler::class));
+            $route->get('/image/{path}', $this->container->get(RequestHandlers\ServeImageRequestHandler::class));
 
             $route->group('/admin', function (RouteGroup $route) {
-                $route->get('/', $this->container->get(DashboardRequestHandler::class));
+                $route->get('/', $this->container->get(RequestHandlers\Admin\DashboardRequestHandler::class));
                 $route->get('/works', $this->container->get(RequestHandlers\Admin\Works\IndexRequestHandler::class));
                 $route->get('/works/create', $this->container->get(RequestHandlers\Admin\Works\AddRequestHandler::class));
-                $route->post('/works', $this->container->get(StoreRequestHandler::class));
+                $route->post('/works', $this->container->get(RequestHandlers\Admin\Works\StoreRequestHandler::class));
                 $route->get('/works/{id}/edit', $this->container->get(RequestHandlers\Admin\Works\EditRequestHandler::class));
-                $route->put('/works/{id}', $this->container->get(UpdateRequestHandler::class));
-                $route->get('/works/{id}/destroy', $this->container->get(DestroyRequestHandler::class));
-                $route->get('/works/{id}/images', $this->container->get(ImagesIndexRequestHandler::class));
+                $route->put('/works/{id}', $this->container->get(RequestHandlers\Admin\Works\UpdateRequestHandler::class));
+                $route->get('/works/{id}/destroy', $this->container->get(RequestHandlers\Admin\Works\DestroyRequestHandler::class));
+                $route->get('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\ImagesIndexRequestHandler::class));
                 $route->post('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\StoreImageRequestHandler::class));
                 $route->post('/works/{work_id}/images/{image_id}', $this->container->get(RequestHandlers\Admin\Works\RemoveImageRequestHandler::class));
-            })->middleware($this->container->get(AuthorizationMiddleware::class));
+            })->middleware($this->container->get(Middleware\AuthorizationMiddleware::class));
 
             return $route;
         });
