@@ -31,9 +31,9 @@ class ServiceProvider extends AbstractServiceProvider
         RequestHandlers\Admin\Works\EditRequestHandler::class,
         RequestHandlers\Admin\Works\UpdateRequestHandler::class,
         RequestHandlers\Admin\Works\DestroyRequestHandler::class,
-        RequestHandlers\Admin\Works\ImagesIndexRequestHandler::class,
-        RequestHandlers\Admin\Works\StoreImageRequestHandler::class,
-        RequestHandlers\Admin\Works\RemoveImageRequestHandler::class,
+        RequestHandlers\Admin\Works\Images\IndexRequestHandler::class,
+        RequestHandlers\Admin\Works\Images\StoreRequestHandler::class,
+        RequestHandlers\Admin\Works\Images\RemoveRequestHandler::class,
         Middleware\CsrfMiddleware::class,
         Middleware\AuthorizationMiddleware::class,
         Middleware\GuestMiddleware::class,
@@ -150,22 +150,22 @@ class ServiceProvider extends AbstractServiceProvider
             return new RequestHandlers\Admin\Works\DestroyRequestHandler($this->container->get(CommandBus::class));
         });
 
-        $this->container->share(RequestHandlers\Admin\Works\ImagesIndexRequestHandler::class, function () {
-            return new RequestHandlers\Admin\Works\ImagesIndexRequestHandler(
+        $this->container->share(RequestHandlers\Admin\Works\Images\IndexRequestHandler::class, function () {
+            return new RequestHandlers\Admin\Works\Images\IndexRequestHandler(
                 $this->container->get(Engine::class),
                 $this->container->get(WorksRepository::class)
             );
         });
 
-        $this->container->share(RequestHandlers\Admin\Works\StoreImageRequestHandler::class, function () {
-            return new RequestHandlers\Admin\Works\StoreImageRequestHandler(
+        $this->container->share(RequestHandlers\Admin\Works\Images\StoreRequestHandler::class, function () {
+            return new RequestHandlers\Admin\Works\Images\StoreRequestHandler(
                 $this->container->get(CommandBus::class),
                 $this->container->get(FilesystemInterface::class)
             );
         });
 
-        $this->container->share(RequestHandlers\Admin\Works\RemoveImageRequestHandler::class, function () {
-            return new RequestHandlers\Admin\Works\RemoveImageRequestHandler($this->container->get(CommandBus::class));
+        $this->container->share(RequestHandlers\Admin\Works\Images\RemoveRequestHandler::class, function () {
+            return new RequestHandlers\Admin\Works\Images\RemoveRequestHandler($this->container->get(CommandBus::class));
         });
     }
 }

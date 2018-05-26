@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
+namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\Images;
 
 use Gks\Application\Commands\RemoveImage;
 use Gks\Domain\Model\Works\Images\ImageId;
@@ -9,7 +9,7 @@ use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class RemoveImageRequestHandler
+class RemoveRequestHandler
 {
     /**
      * @var CommandBus

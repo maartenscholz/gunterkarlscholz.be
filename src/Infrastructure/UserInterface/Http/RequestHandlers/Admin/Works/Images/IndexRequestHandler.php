@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
+namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\Images;
 
 use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\Model\Works\WorksRepository;
@@ -8,7 +8,7 @@ use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class ImagesIndexRequestHandler
+class IndexRequestHandler
 {
     /**
      * @var Engine

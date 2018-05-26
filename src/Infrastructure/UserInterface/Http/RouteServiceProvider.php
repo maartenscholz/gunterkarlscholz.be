@@ -74,9 +74,9 @@ class RouteServiceProvider extends AbstractServiceProvider
                 $route->get('/works/{id}/edit', $this->container->get(RequestHandlers\Admin\Works\EditRequestHandler::class));
                 $route->put('/works/{id}', $this->container->get(RequestHandlers\Admin\Works\UpdateRequestHandler::class));
                 $route->get('/works/{id}/destroy', $this->container->get(RequestHandlers\Admin\Works\DestroyRequestHandler::class));
-                $route->get('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\ImagesIndexRequestHandler::class));
-                $route->post('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\StoreImageRequestHandler::class));
-                $route->post('/works/{work_id}/images/{image_id}', $this->container->get(RequestHandlers\Admin\Works\RemoveImageRequestHandler::class));
+                $route->get('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\Images\IndexRequestHandler::class));
+                $route->post('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\Images\StoreRequestHandler::class));
+                $route->post('/works/{work_id}/images/{image_id}', $this->container->get(RequestHandlers\Admin\Works\Images\RemoveRequestHandler::class));
             })->middleware($this->container->get(Middleware\AuthorizationMiddleware::class));
 
             return $route;

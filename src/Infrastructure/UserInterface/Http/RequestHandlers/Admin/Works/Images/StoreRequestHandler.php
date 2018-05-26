@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
+namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\Images;
 
 use Gks\Application\Commands\AddImage;
 use Gks\Domain\Model\Works\Images\ImageId;
@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\UploadedFile;
 
-class StoreImageRequestHandler
+class StoreRequestHandler
 {
     /**
      * @var CommandBus
