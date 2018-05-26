@@ -47,6 +47,7 @@ $container->addServiceProvider(ServiceProvider::class);
 $container->addServiceProvider(CommandHandlerServiceProvider::class);
 $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 $container->addServiceProvider(RedisServiceProvider::class);
+$container->addServiceProvider(MySQLServiceProvider::class);
 
 $whoops = $container->get(Run::class);
 $whoops->register();
