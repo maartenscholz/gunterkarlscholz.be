@@ -15,6 +15,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHand
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\ImagesIndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\UpdateRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\HomeRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\ServeImageRequestHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -85,7 +86,7 @@ class RouteServiceProvider extends AbstractServiceProvider
                 $route->get('/works/create', $this->container->get(RequestHandlers\Admin\Works\AddRequestHandler::class));
                 $route->post('/works', $this->container->get(StoreRequestHandler::class));
                 $route->get('/works/{id}/edit', $this->container->get(RequestHandlers\Admin\Works\EditRequestHandler::class));
-                $route->put('/works/{id}', [WorksController::class, 'update']);
+                $route->put('/works/{id}', $this->container->get(UpdateRequestHandler::class));
                 $route->get('/works/{id}/destroy', [WorksController::class, 'destroy']);
                 $route->get('/works/{id}/images', $this->container->get(ImagesIndexRequestHandler::class));
                 $route->post('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\StoreImageRequestHandler::class));
