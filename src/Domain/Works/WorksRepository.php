@@ -2,6 +2,8 @@
 
 namespace Gks\Domain\Works;
 
+use Gks\Domain\Model\Work;
+
 interface WorksRepository
 {
     /**
