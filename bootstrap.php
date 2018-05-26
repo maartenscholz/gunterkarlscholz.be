@@ -14,6 +14,8 @@ use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\ServiceProvider as HTTPUserInterfaceServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\SessionServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\TemplatingServiceProvider;
+use Predis\ClientInterface;
+use Predis\Session\Handler;
 use Whoops\Run;
 
 require __DIR__.'/vendor/autoload.php';
@@ -48,6 +50,9 @@ $container->addServiceProvider(CommandHandlerServiceProvider::class);
 $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 $container->addServiceProvider(RedisServiceProvider::class);
 $container->addServiceProvider(MySQLServiceProvider::class);
+
+$redisSessionHandler = $container->get(Handler::class);
+$redisSessionHandler->register();
 
 $whoops = $container->get(Run::class);
 $whoops->register();
