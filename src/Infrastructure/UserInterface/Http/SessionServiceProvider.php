@@ -27,7 +27,14 @@ class SessionServiceProvider extends AbstractServiceProvider
         $this->container->share(Session::class, function () {
             $sessionFactory = new SessionFactory();
 
-            return $sessionFactory->newInstance($_COOKIE);
+            $session = $sessionFactory->newInstance($_COOKIE);
+
+            $session->setCookieParams([
+                'secure' => getenv('APP_ENV') !== 'dev',
+                'httponly' => true,
+            ]);
+
+            return $session;
         });
     }
 }
