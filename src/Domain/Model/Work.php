@@ -92,6 +92,22 @@ class Work
     }
 
     /**
+     * @param Type $type
+     * @param Title $title
+     * @param Dimensions $dimensions
+     */
+    public function update(Type $type, Title $title, Dimensions $dimensions)
+    {
+        $this->type = $type->getValue();
+        $this->titleNl = $title->getValue('nl_BE');
+        $this->titleEn = $title->getValue('en_US');
+        $this->titleFr = $title->getValue('fr_FR');
+        $this->titleDe = $title->getValue('de_DE');
+        $this->width = $dimensions->getWidth()->getValue();
+        $this->height = $dimensions->getHeight()->getValue();
+    }
+
+    /**
      * @return WorkId
      */
     public function getId(): WorkId
