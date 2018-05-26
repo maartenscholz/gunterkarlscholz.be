@@ -34,10 +34,11 @@ class ServeImageRequestHandler
     /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
+     * @param array $args
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         try {
             $this->glideSignature->validateRequest($args['path'], $request->getQueryParams());
