@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\UserInterface\Http\Controllers\Admin;
+namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use Gks\Domain\Works\WorkId;
 use Gks\Domain\Works\WorksRepository;
@@ -8,7 +8,7 @@ use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class WorkImagesController
+class ImagesIndexRequestHandler
 {
     /**
      * @var Engine
@@ -37,7 +37,7 @@ class WorkImagesController
      *
      * @return ResponseInterface
      */
-    public function index(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $work = $this->worksRepository->findById(WorkId::fromString($args['id']));
 

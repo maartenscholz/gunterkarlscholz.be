@@ -15,6 +15,7 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LoginRequestHand
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\LogoutRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\AddRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\EditRequestHandler;
+use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\ImagesIndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\IndexRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\RemoveImageRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\StoreImageRequestHandler;
@@ -40,10 +41,11 @@ class ServiceProvider extends AbstractServiceProvider
         ServeImageRequestHandler::class,
         DashboardRequestHandler::class,
         WorksController::class,
-        WorkImagesController::class,
         IndexRequestHandler::class,
         AddRequestHandler::class,
         EditRequestHandler::class,
+        ImagesIndexRequestHandler::class,
+        StoreImageRequestHandler::class,
         RemoveImageRequestHandler::class,
         CsrfMiddleware::class,
         AuthorizationMiddleware::class,
@@ -87,8 +89,8 @@ class ServiceProvider extends AbstractServiceProvider
             );
         });
 
-        $this->container->share(WorkImagesController::class, function () {
-            return new WorkImagesController(
+        $this->container->share(ImagesIndexRequestHandler::class, function () {
+            return new ImagesIndexRequestHandler(
                 $this->container->get(Engine::class),
                 $this->container->get(WorksRepository::class)
             );
