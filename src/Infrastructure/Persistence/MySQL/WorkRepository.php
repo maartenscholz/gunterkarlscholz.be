@@ -2,7 +2,7 @@
 
 namespace Gks\Infrastructure\Persistence\MySQL;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Gks\Domain\Model\Work;
 use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\Model\Works\WorksRepository;
@@ -10,14 +10,14 @@ use Gks\Domain\Model\Works\WorksRepository;
 class WorkRepository implements WorksRepository
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
     /**
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
