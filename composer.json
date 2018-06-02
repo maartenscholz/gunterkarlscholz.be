@@ -12,7 +12,6 @@
         "aura/session": "^2.0",
         "doctrine/orm": "^2.6",
         "filp/whoops": "^2.1",
-        "kriswallsmith/assetic": "^1.4",
         "league/container": "^2.4",
         "league/flysystem": "^1.0",
         "league/glide": "^1.1",
@@ -20,7 +19,6 @@
         "league/plates": "^3.1",
         "league/route": "^3.0",
         "league/tactician": "^1.0",
-        "maximebf/debugbar": "^1.15",
         "monolog/monolog": "^1.23",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.4",
@@ -42,6 +40,8 @@
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.4.4",
+        "kriswallsmith/assetic": "^1.4",
+        "maximebf/debugbar": "^1.15",
         "phpunit/phpunit": "^7.1"
     }
 }
