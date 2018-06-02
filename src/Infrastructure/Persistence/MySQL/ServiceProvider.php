@@ -4,6 +4,7 @@ namespace Gks\Infrastructure\Persistence\MySQL;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\PredisCache;
+use Doctrine\DBAL\Logging\DebugStack;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,6 +40,10 @@ class ServiceProvider extends AbstractServiceProvider
                 $config->setMetadataCacheImpl(new ArrayCache());
             } else {
                 $config->setMetadataCacheImpl(new PredisCache($this->container->get(ClientInterface::class)));
+            }
+
+            if (getenv('APP_ENV') === 'dev') {
+                $config->setSQLLogger(new DebugStack());
             }
 
             $connectionConfig = [
