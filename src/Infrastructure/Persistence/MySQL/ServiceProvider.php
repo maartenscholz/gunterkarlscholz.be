@@ -6,6 +6,7 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\PredisCache;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Predis\ClientInterface;
 
@@ -15,7 +16,7 @@ class ServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
-        EntityManager::class,
+        EntityManagerInterface::class,
     ];
 
     /**
@@ -23,7 +24,7 @@ class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->container->share(EntityManager::class, function () {
+        $this->container->share(EntityManagerInterface::class, function () {
             $config = new Configuration();
 
             $config->setProxyDir(__DIR__.'/../../../../storage/doctrine/proxies');
