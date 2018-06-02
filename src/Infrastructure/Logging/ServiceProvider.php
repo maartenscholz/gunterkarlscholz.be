@@ -2,6 +2,13 @@
 
 namespace Gks\Infrastructure\Logging;
 
+use DebugBar\Bridge\DoctrineCollector;
+use DebugBar\DataCollector\MemoryCollector;
+use DebugBar\DataCollector\PhpInfoCollector;
+use DebugBar\DataCollector\TimeDataCollector;
+use DebugBar\DebugBar;
+use DebugBar\StandardDebugBar;
+use Doctrine\ORM\EntityManagerInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\RavenHandler;
@@ -17,6 +24,7 @@ class ServiceProvider extends AbstractServiceProvider
     protected $provides = [
         LoggerInterface::class,
         Raven_Client::class,
+        DebugBar::class,
     ];
 
     /**
@@ -44,6 +52,16 @@ class ServiceProvider extends AbstractServiceProvider
             return new Raven_Client(getenv('SENTRY_DSN'), [
                 'environment' => getenv('APP_ENV'),
             ]);
+        });
+
+        $this->container->share(DebugBar::class, function () {
+            $debugBar = new DebugBar();
+
+            $debugBar->addCollector(new PhpInfoCollector());
+            $debugBar->addCollector(new MemoryCollector());
+            $debugBar->addCollector(new DoctrineCollector($this->container->get(EntityManagerInterface::class)));
+
+            return $debugBar;
         });
     }
 }
