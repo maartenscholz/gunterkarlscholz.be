@@ -40,7 +40,7 @@ class WorkRepository implements WorksRepository
      */
     public function remove(WorkId $workId)
     {
-        $workReference = $this->entityManager->getReference(Work::class, $workId);
+        $workReference = $this->entityManager->getReference(Work::class, $workId->getValue());
 
         $this->entityManager->remove($workReference);
         $this->entityManager->flush();
@@ -53,7 +53,7 @@ class WorkRepository implements WorksRepository
      */
     public function findById(WorkId $workId)
     {
-        return $this->entityManager->getRepository(Work::class)->find($workId);
+        return $this->entityManager->getRepository(Work::class)->find($workId->getValue());
     }
 
     /**
