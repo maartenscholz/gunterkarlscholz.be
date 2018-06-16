@@ -4,17 +4,15 @@ use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
 use Gks\Infrastructure\Caching\Redis\ServiceProvider as RedisServiceProvider;
 use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Infrastructure\Filesystem\ServiceProvider as FilesystemServiceProvider;
+use Gks\Infrastructure\Http\ServiceProvider as HttpServiceProvider;
 use Gks\Infrastructure\Logging\ServiceProvider;
 use Gks\Infrastructure\Persistence\MySQL\ServiceProvider as MySQLServiceProvider;
 use Gks\Infrastructure\Persistence\ServiceProvider as PersistenceServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\ErrorHandling\ServiceProvider as ErrorHandlingServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\GlideServiceProvider;
-use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\ServiceProvider as HTTPUserInterfaceServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\SessionServiceProvider;
 use Gks\Infrastructure\UserInterface\Http\TemplatingServiceProvider;
-use Predis\Session\Handler;
-use Whoops\Run;
 
 require __DIR__.'/vendor/autoload.php';
 
@@ -31,7 +29,6 @@ $dotenv->required([
 $container = new League\Container\Container;
 
 $container->addServiceProvider(ErrorHandlingServiceProvider::class);
-$container->addServiceProvider(RouteServiceProvider::class);
 $container->addServiceProvider(SessionServiceProvider::class);
 $container->addServiceProvider(TemplatingServiceProvider::class);
 $container->addServiceProvider(CommandBusServiceProvider::class);
@@ -43,9 +40,4 @@ $container->addServiceProvider(CommandHandlerServiceProvider::class);
 $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 $container->addServiceProvider(RedisServiceProvider::class);
 $container->addServiceProvider(MySQLServiceProvider::class);
-
-$redisSessionHandler = $container->get(Handler::class);
-$redisSessionHandler->register();
-
-$whoops = $container->get(Run::class);
-$whoops->register();
+$container->addServiceProvider(HttpServiceProvider::class);
