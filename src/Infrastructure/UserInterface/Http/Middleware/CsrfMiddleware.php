@@ -2,6 +2,7 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\Middleware;
 
+use Aura\Session\CsrfToken;
 use Aura\Session\Session;
 use InvalidArgumentException;
 use League\Plates\Engine;
@@ -47,9 +48,9 @@ class CsrfMiddleware
         $csrfToken = $this->session->getCsrfToken();
         $this->templates->addData(['csrf_token' => $csrfToken->getValue()]);
 
-        if (in_array($request->getMethod(), ['POST', 'PUT', 'PATCH', 'DELETE'])) {
-            if (array_key_exists('_csrf_token', $request->getParsedBody())) {
-                if (!$csrfToken->isValid($request->getParsedBody()['_csrf_token'])) {
+        if ($this->requestNeedsToBeValidated($request)) {
+            if ($this->requestHasCsrfToken($request)) {
+                if (!$this->csrfTokenIsValid($csrfToken, $request->getParsedBody()['_csrf_token'])) {
                     throw new InvalidArgumentException('Invalid csrf token.');
                 }
             } else {
@@ -58,5 +59,36 @@ class CsrfMiddleware
         }
 
         return $next($request, $response);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return bool
+     */
+    private function requestNeedsToBeValidated(ServerRequestInterface $request): bool
+    {
+        return in_array($request->getMethod(), ['POST', 'PUT', 'PATCH', 'DELETE'], true);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return bool
+     */
+    private function requestHasCsrfToken(ServerRequestInterface $request): bool
+    {
+        return array_key_exists('_csrf_token', $request->getParsedBody());
+    }
+
+    /**
+     * @param CsrfToken $csrfToken
+     * @param string $requestToken
+     *
+     * @return bool
+     */
+    private function csrfTokenIsValid(CsrfToken $csrfToken, string $requestToken): bool
+    {
+        return $csrfToken->isValid($requestToken);
     }
 }
