@@ -27,7 +27,7 @@ class UpdateWork
     private $title;
 
     /**
-     * @var Dimensions
+     * @var Dimensions|null
      */
     private $dimension;
 
@@ -35,7 +35,7 @@ class UpdateWork
      * @param WorkId $workId
      * @param Type $type
      * @param Title $title
-     * @param Dimensions $dimension
+     * @param Dimensions|null $dimension
      */
     public function __construct(WorkId $workId, Type $type, Title $title, Dimensions $dimension = null)
     {

@@ -94,7 +94,7 @@ class Work
      * @param WorkId $id
      * @param Type $type
      * @param Title $title
-     * @param Dimensions $dimensions
+     * @param Dimensions|null $dimensions
      */
     public function __construct(WorkId $id, Type $type, Title $title, Dimensions $dimensions = null)
     {
@@ -112,7 +112,7 @@ class Work
     /**
      * @param Type $type
      * @param Title $title
-     * @param Dimensions $dimensions
+     * @param Dimensions|null $dimensions
      */
     public function update(Type $type, Title $title, Dimensions $dimensions = null)
     {
