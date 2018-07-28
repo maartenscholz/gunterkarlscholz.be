@@ -1,0 +1,6 @@
+plugins:
+  phan:
+    enabled: true
+    config:
+      file_extensions: "php"
+      ignore-undeclared: true
