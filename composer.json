@@ -39,7 +39,6 @@
         "sort-packages": true
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "^0.4.4",
         "kriswallsmith/assetic": "^1.4",
         "maximebf/debugbar": "^1.15",
         "phpunit/phpunit": "^7.1"
