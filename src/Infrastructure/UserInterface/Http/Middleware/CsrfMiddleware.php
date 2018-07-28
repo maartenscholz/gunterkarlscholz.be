@@ -39,8 +39,11 @@ class CsrfMiddleware
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
-    {
+    public function __invoke(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ): ResponseInterface {
         $csrfToken = $this->session->getCsrfToken();
         $this->templates->addData(['csrf_token' => $csrfToken->getValue()]);
 

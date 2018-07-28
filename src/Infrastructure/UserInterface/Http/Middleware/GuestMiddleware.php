@@ -38,8 +38,11 @@ class GuestMiddleware
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
-    {
+    public function __invoke(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ): ResponseInterface {
         if (!$this->session->get('authenticated', false)) {
             return $next($request, $response);
         }
