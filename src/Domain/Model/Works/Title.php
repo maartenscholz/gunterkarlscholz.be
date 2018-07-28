@@ -37,16 +37,6 @@ final class Title
     }
 
     /**
-     * @param array $values
-     *
-     * @return Title
-     */
-    public static function createFromArray(array $values)
-    {
-        return new self($values['nl_BE'], $values['en_US']);
-    }
-
-    /**
      * @return array
      */
     public function getValues()
