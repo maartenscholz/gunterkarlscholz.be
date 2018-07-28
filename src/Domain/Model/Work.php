@@ -3,6 +3,7 @@
 namespace Gks\Domain\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Gks\Domain\Model\Works\Dimensions;
 use Gks\Domain\Model\Works\Image;
 use Gks\Domain\Model\Works\Images\ImageId;
@@ -75,7 +76,7 @@ class Work
     private $height;
 
     /**
-     * @var Image[]
+     * @var Image[]|Collection
      *
      * @OneToMany(
      *     targetEntity="Gks\Domain\Model\Works\Image",
