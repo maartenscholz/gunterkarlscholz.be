@@ -32,8 +32,6 @@ class AddWork
     private $dimension;
 
     /**
-     * CreateWork constructor.
-     *
      * @param WorkId $workId
      * @param Type $type
      * @param Title $title
@@ -73,7 +71,7 @@ class AddWork
     /**
      * @return WorkId
      */
-    public function getWorkId()
+    public function getWorkId(): WorkId
     {
         return $this->workId;
     }
@@ -81,7 +79,7 @@ class AddWork
     /**
      * @return Type
      */
-    public function getType()
+    public function getType(): Type
     {
         return $this->type;
     }
@@ -89,15 +87,15 @@ class AddWork
     /**
      * @return Title
      */
-    public function getTitle()
+    public function getTitle(): Title
     {
         return $this->title;
     }
 
     /**
-     * @return Dimensions
+     * @return Dimensions|null
      */
-    public function getDimension()
+    public function getDimension(): ?Dimensions
     {
         return $this->dimension;
     }
