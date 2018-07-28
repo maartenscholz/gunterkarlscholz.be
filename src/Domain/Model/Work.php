@@ -33,28 +33,28 @@ class Work
     private $type;
 
     /**
-     * @var Title
+     * @var string
      *
      * @Column(name="title_nl_be")
      */
     private $titleNl;
 
     /**
-     * @var Title
+     * @var string
      *
      * @Column(name="title_en_us")
      */
     private $titleEn;
 
     /**
-     * @var Title
+     * @var string
      *
      * @Column(name="title_de_de")
      */
     private $titleDe;
 
     /**
-     * @var Title
+     * @var string
      *
      * @Column(name="title_fr_fr")
      */
