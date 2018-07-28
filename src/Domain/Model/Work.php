@@ -18,7 +18,7 @@ use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
 class Work
 {
     /**
-     * @var int
+     * @var string
      *
      * @Id
      * @Column
