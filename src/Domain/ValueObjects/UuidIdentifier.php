@@ -8,7 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 abstract class UuidIdentifier
 {
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $value;
 
@@ -29,7 +29,7 @@ abstract class UuidIdentifier
     }
 
     /**
-     * @param $string
+     * @param string $string
      *
      * @return static
      */
@@ -39,9 +39,9 @@ abstract class UuidIdentifier
     }
 
     /**
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function getValue(): Uuid
+    public function getValue(): UuidInterface
     {
         return $this->value;
     }
@@ -51,6 +51,6 @@ abstract class UuidIdentifier
      */
     public function __toString(): string
     {
-        return (string) $this->getValue();
+        return $this->value->toString();
     }
 }
