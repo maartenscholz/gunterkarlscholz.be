@@ -8,6 +8,8 @@ use InvalidArgumentException;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
+use Zend\Diactoros\ServerRequest;
 
 class CsrfMiddleware
 {
