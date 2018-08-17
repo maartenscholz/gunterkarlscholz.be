@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0dc0cf01a5e2567e6e06486be9d8e55",
+    "content-hash": "afbe9c2dd490aa8f239d63bc1ad3191c",
     "packages": [
         {
             "name": "aura/session",
@@ -1359,53 +1359,6 @@
                 "processing"
             ],
             "time": "2018-02-12T23:28:25+00:00"
-        },
-        {
-            "name": "league/pipeline",
-            "version": "0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/pipeline.git",
-                "reference": "c79ce70462364cb98ecae4d9b74554483a82d706"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/pipeline/zipball/c79ce70462364cb98ecae4d9b74554483a82d706",
-                "reference": "c79ce70462364cb98ecae4d9b74554483a82d706",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "henrikbjorn/phpspec-code-coverage": "^1.0",
-                "phpspec/phpspec": "^2.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "League\\Pipeline\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Frank de Jonge",
-                    "email": "info@frenky.net"
-                }
-            ],
-            "description": "A plug and play pipeline implementation.",
-            "keywords": [
-                "composition",
-                "design pattern",
-                "pattern",
-                "pipeline",
-                "sequential"
-            ],
-            "time": "2016-03-23T13:41:04+00:00"
         },
         {
             "name": "league/plates",
