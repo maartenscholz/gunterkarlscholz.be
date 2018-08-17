@@ -41,6 +41,7 @@
     "require-dev": {
         "kriswallsmith/assetic": "^1.4",
         "maximebf/debugbar": "^1.15",
+        "phpstan/phpstan": "^0.10.2",
         "phpunit/phpunit": "^7.1"
     }
 }
