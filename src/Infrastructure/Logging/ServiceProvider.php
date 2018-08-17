@@ -7,7 +7,6 @@ use DebugBar\DataCollector\MemoryCollector;
 use DebugBar\DataCollector\PhpInfoCollector;
 use DebugBar\DataCollector\TimeDataCollector;
 use DebugBar\DebugBar;
-use DebugBar\StandardDebugBar;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\NullHandler;
@@ -59,6 +58,7 @@ class ServiceProvider extends AbstractServiceProvider
 
             $debugBar->addCollector(new PhpInfoCollector());
             $debugBar->addCollector(new MemoryCollector());
+            $debugBar->addCollector(new TimeDataCollector());
             $debugBar->addCollector(new DoctrineCollector($this->container->get(EntityManagerInterface::class)));
 
             return $debugBar;

@@ -2,6 +2,7 @@
 
 namespace Gks\Infrastructure\UserInterface\Http;
 
+use DebugBar\DebugBar;
 use Gks\Infrastructure\UserInterface\Http\Middleware;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -56,6 +57,25 @@ class RouteServiceProvider extends AbstractServiceProvider
                 $route->post('/works/{id}/images', $this->container->get(RequestHandlers\Admin\Works\Images\StoreRequestHandler::class));
                 $route->post('/works/{work_id}/images/{image_id}', $this->container->get(RequestHandlers\Admin\Works\Images\RemoveRequestHandler::class));
             })->middleware($this->container->get(Middleware\AuthorizationMiddleware::class));
+
+            if (getenv('APP_ENV') === 'dev') {
+                $route->get('/debugbar/css', function (ServerRequestInterface $request, ResponseInterface $response) {
+                    $debugBar = $this->container->get(DebugBar::class);
+
+                    $response->getBody()->write($debugBar->getJavascriptRenderer()->getAsseticCollection('css')->dump());
+
+                    return $response->withHeader('Content-Type', 'text/css');
+                });
+                $route->get('/debugbar/js', function (ServerRequestInterface $request, ResponseInterface $response) {
+                    $debugBar = $this->container->get(DebugBar::class);
+
+                    $javascriptRenderer = $debugBar->getJavascriptRenderer();
+
+                    $response->getBody()->write($javascriptRenderer->getAsseticCollection('js')->dump());
+
+                    return $response->withHeader('Content-Type', 'text/javascript');
+                });
+            }
 
             return $route;
         });
