@@ -26,12 +26,11 @@ class DestroyRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @param array $args
      *
      * @return RedirectResponse
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args)
     {
         $this->commandBus->handle(new RemoveWork(WorkId::fromString($args['id'])));
 

@@ -5,6 +5,8 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
+use Zend\Diactoros\Stream;
 
 class DashboardRequestHandler
 {
@@ -23,12 +25,13 @@ class DashboardRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
+    public function __invoke(ServerRequestInterface $request)
     {
+        $response = new Response();
+
         $response->getBody()->write($this->templates->render('admin::dashboard'));
 
         return $response;

@@ -8,10 +8,10 @@ use InvalidArgumentException;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
-use Zend\Diactoros\ServerRequest;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class CsrfMiddleware
+class CsrfMiddleware implements MiddlewareInterface
 {
     /**
      * @var Session
@@ -37,16 +37,12 @@ class CsrfMiddleware
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param callable $next
+     * @param RequestHandlerInterface $handler
      *
      * @return ResponseInterface
      */
-    public function __invoke(
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        callable $next
-    ): ResponseInterface {
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
         $csrfToken = $this->session->getCsrfToken();
         $this->templates->addData(['csrf_token' => $csrfToken->getValue()]);
 
@@ -60,7 +56,7 @@ class CsrfMiddleware
             }
         }
 
-        return $next($request, $response);
+        return $handler->handle($request);
     }
 
     /**

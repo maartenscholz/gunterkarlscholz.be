@@ -1,9 +1,8 @@
 <?php
 
 use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
-use League\Route\RouteCollection;
+use League\Route\Router;
 use Predis\Session\Handler;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Whoops\Run;
 use Zend\Diactoros\Response\EmitterInterface;
@@ -18,9 +17,9 @@ $redisSessionHandler->register();
 $whoops = $container->get(Run::class);
 $whoops->register();
 
-/** @var RouteCollection $route */
-$route = $container->get(RouteCollection::class);
+/** @var Router $route */
+$route = $container->get(Router::class);
 
-$response = $route->dispatch($container->get(ServerRequestInterface::class), $container->get(ResponseInterface::class));
+$response = $route->dispatch($container->get(ServerRequestInterface::class));
 
 $container->get(EmitterInterface::class)->emit($response);

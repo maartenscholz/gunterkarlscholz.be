@@ -40,12 +40,11 @@ class UpdateRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @param array $args
      *
      * @return RedirectResponse
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args)
     {
         $validator = new Validator();
 

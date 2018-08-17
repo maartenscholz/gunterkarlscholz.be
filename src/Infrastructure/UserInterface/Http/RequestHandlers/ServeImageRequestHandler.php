@@ -8,6 +8,7 @@ use League\Glide\Signatures\SignatureException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Teapot\StatusCode;
+use Zend\Diactoros\Response;
 
 class ServeImageRequestHandler
 {
@@ -33,16 +34,17 @@ class ServeImageRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @param array $args
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args)
     {
         try {
             $this->glideSignature->validateRequest($args['path'], $request->getQueryParams());
         } catch (SignatureException $e) {
+            $response = new Response();
+
             $response->getBody()->write('Nice try.');
 
             return $response->withStatus(StatusCode::FORBIDDEN);

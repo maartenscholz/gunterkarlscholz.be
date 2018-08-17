@@ -6,6 +6,7 @@ use Aura\Session\Segment;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
 
 class LoginPageRequestHandler
 {
@@ -31,12 +32,13 @@ class LoginPageRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
+    public function __invoke(ServerRequestInterface $request)
     {
+        $response = new Response();
+
         $response->getBody()->write($this->templates->render('admin::auth/login', [
             'message' => $this->session->getFlash('message'),
             'input' => $this->session->getFlash('input'),

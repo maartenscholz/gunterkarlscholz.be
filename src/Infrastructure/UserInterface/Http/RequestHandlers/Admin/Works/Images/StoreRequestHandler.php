@@ -9,6 +9,7 @@ use League\Flysystem\FilesystemInterface;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Diactoros\UploadedFile;
 
 class StoreRequestHandler
@@ -35,12 +36,11 @@ class StoreRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @param array $args
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args)
     {
         $workId = WorkId::fromString($args['id']);
         $imageId = ImageId::generate();
@@ -53,6 +53,6 @@ class StoreRequestHandler
 
         $this->commandBus->handle(new AddImage($workId, $imageId, $filename, $image->getClientFilename()));
 
-        return $response->withHeader('Location', "/admin/works/$workId/images");
+        return new RedirectResponse("/admin/works/$workId/images");
     }
 }

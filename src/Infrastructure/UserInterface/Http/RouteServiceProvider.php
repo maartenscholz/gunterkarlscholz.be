@@ -8,8 +8,10 @@ use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteCollection;
 use League\Route\RouteGroup;
+use League\Route\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
 
 class RouteServiceProvider extends AbstractServiceProvider
 {
@@ -17,7 +19,7 @@ class RouteServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
-        RouteCollection::class,
+        Router::class,
     ];
 
     /**
@@ -29,8 +31,8 @@ class RouteServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->container->share(RouteCollection::class, function () {
-            $route = new RouteCollection($this->container);
+        $this->container->share(Router::class, function () {
+            $route = new Router();
 
             $route->middleware($this->container->get(Middleware\CsrfMiddleware::class));
 
@@ -59,14 +61,17 @@ class RouteServiceProvider extends AbstractServiceProvider
             })->middleware($this->container->get(Middleware\AuthorizationMiddleware::class));
 
             if (getenv('APP_ENV') === 'dev') {
-                $route->get('/debugbar/css', function (ServerRequestInterface $request, ResponseInterface $response) {
+                $route->get('/debugbar/css', function () {
+                    $response = new Response();
+
                     $debugBar = $this->container->get(DebugBar::class);
 
                     $response->getBody()->write($debugBar->getJavascriptRenderer()->getAsseticCollection('css')->dump());
 
                     return $response->withHeader('Content-Type', 'text/css');
                 });
-                $route->get('/debugbar/js', function (ServerRequestInterface $request, ResponseInterface $response) {
+                $route->get('/debugbar/js', function () {
+                    $response = new Response();
                     $debugBar = $this->container->get(DebugBar::class);
 
                     $javascriptRenderer = $debugBar->getJavascriptRenderer();

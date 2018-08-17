@@ -8,6 +8,7 @@ use Gks\Domain\Model\Works\WorkId;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\RedirectResponse;
 
 class RemoveRequestHandler
 {
@@ -26,12 +27,11 @@ class RemoveRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @param array $args
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args)
     {
         $workId = WorkId::fromString($args['work_id']);
 
@@ -40,6 +40,6 @@ class RemoveRequestHandler
             ImageId::fromString($args['image_id'])
         ));
 
-        return $response->withHeader('Location', "/admin/works/$workId/images");
+        return new RedirectResponse("/admin/works/$workId/images");
     }
 }

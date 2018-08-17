@@ -5,9 +5,11 @@ namespace Gks\Infrastructure\UserInterface\Http\Middleware;
 use Aura\Session\Segment;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 
-class AuthorizationMiddleware
+class AuthorizationMiddleware implements MiddlewareInterface
 {
     /**
      * @var Segment
@@ -33,18 +35,14 @@ class AuthorizationMiddleware
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param callable $next
+     * @param RequestHandlerInterface $handler
      *
      * @return ResponseInterface
      */
-    public function __invoke(
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        callable $next
-    ): ResponseInterface {
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
         if ($this->session->get('authenticated', false)) {
-            return $next($request, $response);
+            return $handler->handle($request);
         }
 
         return new RedirectResponse($this->redirectUri);

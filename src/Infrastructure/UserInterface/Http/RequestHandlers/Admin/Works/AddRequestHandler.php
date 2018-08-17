@@ -5,6 +5,7 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
 
 class AddRequestHandler
 {
@@ -23,12 +24,13 @@ class AddRequestHandler
 
     /**
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      *
      * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
+    public function __invoke(ServerRequestInterface $request)
     {
+        $response = new Response();
+
         $response->getBody()->write($this->templates->render('admin::works/create'));
 
         return $response;
