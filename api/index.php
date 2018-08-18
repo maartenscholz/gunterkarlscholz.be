@@ -1,17 +1,19 @@
 <?php
 
 use Gks\Infrastructure\Api\Http\RoutingServiceProvider;
-use League\Route\Router;
-use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\EmitterInterface;
+use Gks\Infrastructure\Http\ApplicationRequestHandler;
+use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
+use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 require_once __DIR__.'/../bootstrap.php';
 
 $container->addServiceProvider(RoutingServiceProvider::class);
 
-/** @var Router $route */
-$route = $container->get(Router::class);
+$runner = new RequestHandlerRunner(
+    $container->get(ApplicationRequestHandler::class),
+    $container->get(EmitterInterface::class),
+    $container->get('ServerRequestFactory'),
+    $container->get('ServerRequestErrorResponseGenerator')
+);
 
-$response = $route->dispatch($container->get(ServerRequestInterface::class));
-
-$container->get(EmitterInterface::class)->emit($response);
+$runner->run();

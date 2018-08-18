@@ -1,11 +1,11 @@
 <?php
 
+use Gks\Infrastructure\Http\ApplicationRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
-use League\Route\Router;
 use Predis\Session\Handler;
-use Psr\Http\Message\ServerRequestInterface;
 use Whoops\Run;
-use Zend\Diactoros\Response\EmitterInterface;
+use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
+use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 require_once __DIR__.'/../bootstrap.php';
 
@@ -17,9 +17,11 @@ $redisSessionHandler->register();
 $whoops = $container->get(Run::class);
 $whoops->register();
 
-/** @var Router $route */
-$route = $container->get(Router::class);
+$runner = new RequestHandlerRunner(
+    $container->get(ApplicationRequestHandler::class),
+    $container->get(EmitterInterface::class),
+    $container->get('ServerRequestFactory'),
+    $container->get('ServerRequestErrorResponseGenerator')
+);
 
-$response = $route->dispatch($container->get(ServerRequestInterface::class));
-
-$container->get(EmitterInterface::class)->emit($response);
+$runner->run();
