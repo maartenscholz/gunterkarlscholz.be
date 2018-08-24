@@ -14,7 +14,7 @@ class RootRequestHandler
     {
         return new JsonResponse([
             'data' => [
-                'name' => 'gunterkarlschoz.be public API',
+                'name' => 'gunterkarlscholz.be public API',
             ],
         ]);
     }
