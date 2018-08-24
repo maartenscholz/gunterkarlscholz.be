@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\RavenHandler;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Raven_Client;
@@ -38,10 +39,10 @@ class ServiceProvider extends AbstractServiceProvider
         $this->container->share(LoggerInterface::class, function () {
             $log = new Logger('main');
 
+            $log->pushHandler(new RotatingFileHandler(realpath(__DIR__.'/../../../storage/logs').'/error.log', 5));
+
             if (getenv('APP_ENV') === 'production') {
                 $log->pushHandler(new RavenHandler($this->container->get(Raven_Client::class)));
-            } else {
-                $log->pushHandler(new NullHandler());
             }
 
             return $log;
