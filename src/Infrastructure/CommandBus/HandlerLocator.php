@@ -2,9 +2,9 @@
 
 namespace Gks\Infrastructure\CommandBus;
 
-use League\Container\ContainerInterface;
 use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator as HandlerLocatorContract;
+use Psr\Container\ContainerInterface;
 
 class HandlerLocator implements HandlerLocatorContract
 {
