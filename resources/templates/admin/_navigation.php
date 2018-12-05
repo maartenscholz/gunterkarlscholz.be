@@ -5,7 +5,7 @@
             <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
             <ul class="right hide-on-med-and-down">
-                <li><a href="/admin/works">Works</a></li>
+                <li><a href="/admin/works">Works of art</a></li>
                 <li><a href="/logout" class="btn btn-small">Logout</a></li>
             </ul>
         </div>

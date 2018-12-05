@@ -1,13 +1,13 @@
 <?php /** @var \Gks\Domain\Model\Work[] $works */ ?>
 
 <?php $this->layout('admin/app', [
-    'title' => 'Works',
+    'title' => 'Works of art',
 ]) ?>
 
 <div class="row">
     <div class="col s12">
-        <h1>Works</h1>
-        <a href="/admin/works/create" class="btn btn-primary">Add work</a>
+        <h1>Works of art</h1>
+        <a href="/admin/works/create" class="btn btn-primary">Add work of art</a>
 
         <br><br>
 
@@ -22,7 +22,7 @@
             </thead>
             <?php if (empty($works)): ?>
                 <tr>
-                    <td colspan="9999"> No works found.</td>
+                    <td colspan="9999"> No works of art found.</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($works as $work): ?>

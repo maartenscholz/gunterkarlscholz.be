@@ -1,7 +1,7 @@
 <?php /** @var \Gks\Domain\Model\Work $work */ ?>
 
 <?php $this->layout('admin/app', [
-    'title' => 'Edit work',
+    'title' => 'Edit work of art',
 ]) ?>
 
 <h1>Edit <?= $work->getTitle()->getValue('en_US') ?></h1>

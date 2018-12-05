@@ -1,5 +1,5 @@
 <?php $this->layout('admin/app', [
-    'title' => 'Add work',
+    'title' => 'Add work of art',
 ]) ?>
 
 <h1>Add work</h1>
