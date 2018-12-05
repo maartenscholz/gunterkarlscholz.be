@@ -32,9 +32,9 @@
                         <td><?= $work->getType()->getValue() ?></td>
                         <td><?= $work->getDimensions() ?: '-' ?></td>
                         <td>
-                            <a class='dropdown-trigger btn-small' href='#' data-target='dropdown1'><i
+                            <a class='dropdown-trigger btn-small' href='#' data-target='dropdown-<?= $work->getId() ?>'><i
                                         class="material-icons">settings</i></a>
-                            <ul id='dropdown1' class='dropdown-content'>
+                            <ul id='dropdown-<?= $work->getId() ?>' class='dropdown-content'>
                                 <li><a href="/admin/works/<?= $work->getId() ?>/images"><i
                                                 class="material-icons left">images</i> Images</a></li>
                                 <li><a href="/admin/works/<?= $work->getId() ?>/edit"><i
