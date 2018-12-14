@@ -47,6 +47,6 @@ final class Dimensions
      */
     public function __toString(): string
     {
-        return $this->width.'x'.$this->height;
+        return $this->width.'×'.$this->height;
     }
 }
