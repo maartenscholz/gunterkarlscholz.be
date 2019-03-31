@@ -4,6 +4,7 @@ namespace Gks\Domain\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gks\Domain\Model\Works\Description;
 use Gks\Domain\Model\Works\Dimensions;
 use Gks\Domain\Model\Works\Image;
 use Gks\Domain\Model\Works\Images\ImageId;
@@ -62,6 +63,34 @@ class Work
     private $titleFr;
 
     /**
+     * @var string
+     *
+     * @Column(name="description_nl_be")
+     */
+    private $descriptionNl;
+
+    /**
+     * @var string
+     *
+     * @Column(name="description_en_us")
+     */
+    private $descriptionEn;
+
+    /**
+     * @var string
+     *
+     * @Column(name="description_de_de")
+     */
+    private $descriptionDe;
+
+    /**
+     * @var string
+     *
+     * @Column(name="description_fr_fr")
+     */
+    private $descriptionFr;
+
+    /**
      * @var int
      *
      * @Column(type="integer")
@@ -88,33 +117,29 @@ class Work
      */
     private $images;
 
-    /**
-     * Work constructor.
-     *
-     * @param WorkId $id
-     * @param Type $type
-     * @param Title $title
-     * @param Dimensions|null $dimensions
-     */
-    public function __construct(WorkId $id, Type $type, Title $title, Dimensions $dimensions = null)
-    {
+    public function __construct(
+        WorkId $id,
+        Type $type,
+        Title $title,
+        Description $description,
+        Dimensions $dimensions = null
+    ) {
         $this->id = $id->getValue()->toString();
         $this->type = $type->getValue();
         $this->titleNl = $title->getValue('nl_BE');
         $this->titleEn = $title->getValue('en_US');
         $this->titleFr = $title->getValue('fr_FR');
         $this->titleDe = $title->getValue('de_DE');
+        $this->descriptionNl = $description->getValue('nl_BE');
+        $this->descriptionEn = $description->getValue('en_EN');
+        $this->descriptionFr = $description->getValue('fr_FR');
+        $this->descriptionDe = $description->getValue('de_DE');
         $this->width = $dimensions ? $dimensions->getWidth()->getValue() : null;
         $this->height = $dimensions ? $dimensions->getHeight()->getValue() : null;
         $this->images = new ArrayCollection();
     }
 
-    /**
-     * @param Type $type
-     * @param Title $title
-     * @param Dimensions|null $dimensions
-     */
-    public function update(Type $type, Title $title, Dimensions $dimensions = null)
+    public function update(Type $type, Title $title, Dimensions $dimensions = null): void 
     {
         $this->type = $type->getValue();
         $this->titleNl = $title->getValue('nl_BE');
@@ -125,56 +150,38 @@ class Work
         $this->height = $dimensions ? $dimensions->getHeight()->getValue() : null;
     }
 
-    /**
-     * @param ImageId $imageId
-     * @param string $filename
-     * @param string $path
-     */
-    public function addImage(ImageId $imageId, string $filename, string $path)
+    public function addImage(ImageId $imageId, string $filename, string $path): void
     {
         $this->images->set((string) $imageId, new Image($this, $imageId, $filename, $path));
     }
 
-    /**
-     * @param ImageId $imageId
-     */
     public function removeImage(ImageId $imageId)
     {
         $this->images->remove((string) $imageId);
     }
 
-    /**
-     * @return WorkId
-     */
     public function getId(): WorkId
     {
         return WorkId::fromString($this->id);
     }
 
-    /**
-     * @return Type
-     */
     public function getType(): Type
     {
         return new Type($this->type);
     }
 
-    /**
-     * @return Title
-     */
     public function getTitle(): Title
     {
-        return new Title([
-            'nl_BE' => $this->titleNl,
-            'en_US' => $this->titleEn,
-            'fr_FR' => $this->titleFr,
-            'de_DE' => $this->titleDe,
-        ]);
+        return new Title(
+            [
+                'nl_BE' => $this->titleNl,
+                'en_US' => $this->titleEn,
+                'fr_FR' => $this->titleFr,
+                'de_DE' => $this->titleDe,
+            ]
+        );
     }
 
-    /**
-     * @return Dimensions|null
-     */
     public function getDimensions(): ?Dimensions
     {
         if ($this->width && $this->height) {
@@ -192,12 +199,7 @@ class Work
         return $this->images->toArray();
     }
 
-    /**
-     * @param ImageId $imageId
-     *
-     * @return Image
-     */
-    public function getImage(ImageId $imageId)
+    public function getImage(ImageId $imageId): Image
     {
         return $this->images->get((string) $imageId);
     }
