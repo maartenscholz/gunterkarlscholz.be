@@ -6,13 +6,14 @@ use Aura\Session\Segment;
 use Gks\Application\Commands\AddWork;
 use Gks\Domain\Model\Works\Type;
 use League\Tactician\CommandBus;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Sirius\Validation\Rule\InList;
 use Sirius\Validation\Rule\Required;
 use Sirius\Validation\Validator;
 use Zend\Diactoros\Response\RedirectResponse;
 
-class StoreRequestHandler
+final class StoreRequestHandler
 {
     /**
      * @var Segment
@@ -24,22 +25,13 @@ class StoreRequestHandler
      */
     private $commandBus;
 
-    /**
-     * @param Segment $session
-     * @param CommandBus $commandBus
-     */
     public function __construct(Segment $session, CommandBus $commandBus)
     {
         $this->session = $session;
         $this->commandBus = $commandBus;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return RedirectResponse
-     */
-    public function __invoke(ServerRequestInterface $request)
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $validator = $this->getValidator();
 
