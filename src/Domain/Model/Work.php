@@ -182,6 +182,18 @@ class Work
         );
     }
 
+    public function getDescription(): Description
+    {
+        return new Description(
+            [
+                'nl_BE' => $this->descriptionNl,
+                'en_US' => $this->descriptionEn,
+                'fr_FR' => $this->descriptionFr,
+                'de_DE' => $this->descriptionDe,
+            ]
+        );
+    }
+
     public function getDimensions(): ?Dimensions
     {
         if ($this->width && $this->height) {
