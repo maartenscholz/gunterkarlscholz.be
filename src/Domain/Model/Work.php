@@ -131,7 +131,7 @@ class Work
         $this->titleFr = $title->getValue('fr_FR');
         $this->titleDe = $title->getValue('de_DE');
         $this->descriptionNl = $description->getValue('nl_BE');
-        $this->descriptionEn = $description->getValue('en_EN');
+        $this->descriptionEn = $description->getValue('en_US');
         $this->descriptionFr = $description->getValue('fr_FR');
         $this->descriptionDe = $description->getValue('de_DE');
         $this->width = $dimensions ? $dimensions->getWidth()->getValue() : null;
