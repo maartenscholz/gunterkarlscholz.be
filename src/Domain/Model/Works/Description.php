@@ -42,6 +42,6 @@ final class Description
             throw new InvalidArgumentException("Language $language not supported");
         }
 
-        return $this->values[$language];
+        return $this->values[$language] ?: '';
     }
 }
