@@ -62,6 +62,22 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <?php foreach (\Gks\Domain\ValueObjects\Languages::getAll() as $language): ?>
+        <div class="col s6">
+            <div class="input-field">
+                <label for="description_<?= $language ?>">Description (<?= $language ?>)</label>
+                <textarea name="description[<?= $language ?>]" id="description_<?= $language ?>"
+                       class="materialize-textarea <?= array_key_exists("description[$language]", $errors) ? 'invalid' : '' ?>"><?= isset($input['description'][$language]) ? $input['description'][$language] : (isset($work) ? $this->e($work->getDescription()->getValue($language)) : '') ?></textarea>
+                <?php if (array_key_exists("description[$language]", $errors)): ?>
+                    <?php foreach ($errors["description[$language]"] as $error): ?>
+                        <span class="helper-text"><?= $error ?></span>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
 <div class="input-field row">
     <div class="col s12">
         <button type="submit" class="btn"><?= isset($work) ? 'Edit' : 'Add' ?></button>
