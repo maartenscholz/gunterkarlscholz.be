@@ -2,6 +2,7 @@
 
 namespace Gks\Application\Commands;
 
+use Gks\Domain\Model\Works\Description;
 use Gks\Domain\Model\Works\Dimensions;
 use Gks\Domain\Model\Works\Title;
 use Gks\Domain\Model\Works\Type;
@@ -27,35 +28,36 @@ class AddWork
     private $title;
 
     /**
+     * @var Description
+     */
+    private $description;
+
+    /**
      * @var Dimensions|null
      */
     private $dimension;
 
-    /**
-     * @param WorkId $workId
-     * @param Type $type
-     * @param Title $title
-     * @param Dimensions|null $dimension
-     */
-    public function __construct(WorkId $workId, Type $type, Title $title, Dimensions $dimension = null)
-    {
+    public function __construct(
+        WorkId $workId,
+        Type $type,
+        Title $title,
+        Description $description,
+        Dimensions $dimension = null
+    ) {
         $this->workId = $workId;
         $this->type = $type;
         $this->title = $title;
+        $this->description = $description;
         $this->dimension = $dimension;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return AddWork
-     */
-    public static function fromRequest(ServerRequestInterface $request)
+    public static function fromRequest(ServerRequestInterface $request): self
     {
         $parsedBody = $request->getParsedBody();
 
         $type = new Type($parsedBody['type']);
         $title = new Title($parsedBody['title']);
+        $description = new Description($parsedBody['description']);
         $dimension = null;
 
         if ($parsedBody['width'] && $parsedBody['height']) {
@@ -65,36 +67,29 @@ class AddWork
             );
         }
 
-        return new static(WorkId::generate(), $type, $title, $dimension);
+        return new static(WorkId::generate(), $type, $title, $description, $dimension);
     }
 
-    /**
-     * @return WorkId
-     */
     public function getWorkId(): WorkId
     {
         return $this->workId;
     }
 
-    /**
-     * @return Type
-     */
     public function getType(): Type
     {
         return $this->type;
     }
 
-    /**
-     * @return Title
-     */
     public function getTitle(): Title
     {
         return $this->title;
     }
 
-    /**
-     * @return Dimensions|null
-     */
+    public function getDescription(): Description
+    {
+        return $this->description;
+    }
+
     public function getDimension(): ?Dimensions
     {
         return $this->dimension;

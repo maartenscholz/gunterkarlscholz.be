@@ -13,24 +13,20 @@ class AddWork
      */
     private $repository;
 
-    /**
-     * AddWork constructor.
-     *
-     * @param WorksRepository $repository
-     */
     public function __construct(WorksRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param AddWorkCommand $command
-     *
-     * @return Work
-     */
-    public function handle(AddWorkCommand $command)
+    public function handle(AddWorkCommand $command): Work
     {
-        $work = new Work($command->getWorkId(), $command->getType(), $command->getTitle(), $command->getDimension());
+        $work = new Work(
+            $command->getWorkId(),
+            $command->getType(),
+            $command->getTitle(),
+            $command->getDescription(),
+            $command->getDimension()
+        );
 
         $this->repository->add($work);
 

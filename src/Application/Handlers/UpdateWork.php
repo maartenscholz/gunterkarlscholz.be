@@ -12,24 +12,16 @@ class UpdateWork
      */
     private $repository;
 
-    /**
-     * UpdateWork constructor.
-     *
-     * @param WorksRepository $repository
-     */
     public function __construct(WorksRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param UpdateWorkCommand $command
-     */
-    public function handle(UpdateWorkCommand $command)
+    public function handle(UpdateWorkCommand $command): void
     {
         $work = $this->repository->findById($command->getWorkId());
 
-        $work->update($command->getType(), $command->getTitle(), $command->getDimension());
+        $work->update($command->getType(), $command->getTitle(), $command->getDescription(), $command->getDimension());
 
         $this->repository->add($work);
     }
