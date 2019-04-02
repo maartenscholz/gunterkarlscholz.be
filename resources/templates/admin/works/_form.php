@@ -25,7 +25,7 @@
                 <label for="title_<?= $language ?>">Title (<?= $language ?>)</label>
                 <input type="text" name="title[<?= $language ?>]" id="title_<?= $language ?>"
                        class="<?= array_key_exists("title[$language]", $errors) ? 'invalid' : '' ?>""
-                value="<?= isset($input['title'][$language]) ? $input['title'][$language] : (isset($work) ? $work->getTitle()->getValue($language) : '') ?>">
+                value="<?= isset($input['title'][$language]) ? $input['title'][$language] : (isset($work) ? $this->e($work->getTitle()->getValue($language)) : '') ?>">
                 <?php if (array_key_exists("title[$language]", $errors)): ?>
                     <?php foreach ($errors["title[$language]"] as $error): ?>
                         <span class="helper-text"><?= $error ?></span>
