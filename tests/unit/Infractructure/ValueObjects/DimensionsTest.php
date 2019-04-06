@@ -29,6 +29,6 @@ class DimensionsTest extends TestCase
     {
         $dimensions = new Dimensions(new NonZeroUnsignedInteger(100), new NonZeroUnsignedInteger(75));
 
-        $this->assertEquals('100x75', (string) $dimensions);
+        $this->assertEquals('100×75', (string) $dimensions);
     }
 }

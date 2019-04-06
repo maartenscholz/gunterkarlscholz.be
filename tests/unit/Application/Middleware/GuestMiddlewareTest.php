@@ -4,16 +4,17 @@ namespace Gks\Tests\Unit\Application\Middleware;
 
 use Aura\Session\Segment;
 use Gks\Infrastructure\UserInterface\Http\Middleware\GuestMiddleware;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 
 class GuestMiddlewareTest extends TestCase
 {
     /**
-     * @var Segment|PHPUnit_Framework_MockObject_MockObject
+     * @var Segment|MockObject
      */
     private $session;
 
@@ -23,19 +24,19 @@ class GuestMiddlewareTest extends TestCase
     private $redirectUri;
 
     /**
-     * @var ServerRequestInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var ServerRequestInterface|MockObject
      */
     private $request;
 
     /**
-     * @var ResponseInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var ResponseInterface|MockObject
      */
     private $response;
 
     /**
-     * @var callable
+     * @var RequestHandlerInterface|MockObject
      */
-    private $next;
+    private $requestHandler;
 
     /**
      * @return void
@@ -46,7 +47,7 @@ class GuestMiddlewareTest extends TestCase
         $this->redirectUri = 'redirect_uri';
         $this->request = $this->createMock(ServerRequestInterface::class);
         $this->response = $this->createMock(ResponseInterface::class);
-        $this->next = function () { return 'response'; };
+        $this->requestHandler = $this->createMock(RequestHandlerInterface::class);
     }
 
     /**
@@ -55,12 +56,13 @@ class GuestMiddlewareTest extends TestCase
     public function it_returns_the_callable_result_when_not_authenticated()
     {
         $this->session->method('get')->with('authenticated')->willReturn(false);
+        $this->requestHandler->method('handle')->with($this->request)->willReturn($this->response);
 
         $middleware = new GuestMiddleware($this->session, $this->redirectUri);
 
-        $result = $middleware($this->request, $this->response, $this->next);
+        $result = $middleware->process($this->request, $this->requestHandler);
 
-        $this->assertEquals('response', $result);
+        $this->assertEquals($this->response, $result);
     }
 
     /**
@@ -72,7 +74,7 @@ class GuestMiddlewareTest extends TestCase
 
         $middleware = new GuestMiddleware($this->session, $this->redirectUri);
 
-        $result = $middleware($this->request, $this->response, $this->next);
+        $result = $middleware->process($this->request, $this->requestHandler);
 
         $this->assertInstanceOf(RedirectResponse::class, $result);
         $this->assertEquals($result->getHeader('Location'), ['redirect_uri']);
