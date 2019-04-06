@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Gks\Infrastructure\Api\Http\RoutingServiceProvider;
 use Gks\Infrastructure\Http\ApplicationRequestHandler;
 use Zend\HttpHandlerRunner\Emitter\EmitterInterface;

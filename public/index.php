@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Gks\Infrastructure\Http\ApplicationRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
 use Predis\Session\Handler;
