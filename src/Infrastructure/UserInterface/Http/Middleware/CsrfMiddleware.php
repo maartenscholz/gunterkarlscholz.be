@@ -23,24 +23,12 @@ class CsrfMiddleware implements MiddlewareInterface
      */
     private $templates;
 
-    /**
-     * CsrfMiddleware constructor.
-     *
-     * @param Session $session
-     * @param Engine $templates
-     */
     public function __construct(Session $session, Engine $templates)
     {
         $this->session = $session;
         $this->templates = $templates;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     *
-     * @return ResponseInterface
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $csrfToken = $this->session->getCsrfToken();
@@ -59,32 +47,16 @@ class CsrfMiddleware implements MiddlewareInterface
         return $handler->handle($request);
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return bool
-     */
     private function requestNeedsToBeValidated(ServerRequestInterface $request): bool
     {
         return in_array($request->getMethod(), ['POST', 'PUT', 'PATCH', 'DELETE'], true);
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return bool
-     */
     private function requestHasCsrfToken(ServerRequestInterface $request): bool
     {
         return array_key_exists('_csrf_token', $request->getParsedBody());
     }
 
-    /**
-     * @param CsrfToken $csrfToken
-     * @param string $requestToken
-     *
-     * @return bool
-     */
     private function csrfTokenIsValid(CsrfToken $csrfToken, string $requestToken): bool
     {
         return $csrfToken->isValid($requestToken);

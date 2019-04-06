@@ -21,23 +21,13 @@ class IndexRequestHandler
      */
     private $worksRepository;
 
-    /**
-     * @param Engine $templates
-     * @param WorksRepository $worksRepository
-     */
     public function __construct(Engine $templates, WorksRepository $worksRepository)
     {
         $this->templates = $templates;
         $this->worksRepository = $worksRepository;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param array $args
-     *
-     * @return ResponseInterface
-     */
-    public function __invoke(ServerRequestInterface $request, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
         $response = new Response();
         $work = $this->worksRepository->findById(WorkId::fromString($args['id']));

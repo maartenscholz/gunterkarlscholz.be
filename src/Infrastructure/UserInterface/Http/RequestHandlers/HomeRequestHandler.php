@@ -14,20 +14,12 @@ class HomeRequestHandler
      */
     private $templates;
 
-    /**
-     * @param Engine $templates
-     */
     public function __construct(Engine $templates)
     {
         $this->templates = $templates;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return ResponseInterface
-     */
-    public function __invoke(ServerRequestInterface $request)
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $response = new Response();
 

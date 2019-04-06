@@ -24,23 +24,13 @@ class StoreRequestHandler
      */
     private $filesystem;
 
-    /**
-     * @param CommandBus $commandBus
-     * @param FilesystemInterface $filesystem
-     */
     public function __construct(CommandBus $commandBus, FilesystemInterface $filesystem)
     {
         $this->commandBus = $commandBus;
         $this->filesystem = $filesystem;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param array $args
-     *
-     * @return ResponseInterface
-     */
-    public function __invoke(ServerRequestInterface $request, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
         $workId = WorkId::fromString($args['id']);
         $imageId = ImageId::generate();

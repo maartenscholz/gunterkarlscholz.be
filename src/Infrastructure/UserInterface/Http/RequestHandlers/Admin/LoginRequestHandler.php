@@ -3,6 +3,7 @@
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin;
 
 use Aura\Session\Segment;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 
@@ -13,20 +14,12 @@ class LoginRequestHandler
      */
     private $session;
 
-    /**
-     * @param Segment $session
-     */
     public function __construct(Segment $session)
     {
         $this->session = $session;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return RedirectResponse
-     */
-    public function __invoke(ServerRequestInterface $request)
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $credentials = $request->getParsedBody();
 

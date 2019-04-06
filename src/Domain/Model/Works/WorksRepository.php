@@ -6,29 +6,14 @@ use Gks\Domain\Model\Work;
 
 interface WorksRepository
 {
-    /**
-     * @param Work $work
-     *
-     * @return void
-     */
-    public function add(Work $work);
+    public function add(Work $work): void;
+
+    public function remove(WorkId $workId): void;
+
+    public function findById(WorkId $workId): Work;
 
     /**
-     * @param WorkId $workId
-     *
-     * @return void
+     * @return Work[]
      */
-    public function remove(WorkId $workId);
-
-    /**
-     * @param WorkId $workId
-     *
-     * @return Work
-     */
-    public function findById(WorkId $workId);
-
-    /**
-     * @return array|Work[]
-     */
-    public function all();
+    public function all(): array;
 }

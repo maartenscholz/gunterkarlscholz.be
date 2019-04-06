@@ -22,23 +22,13 @@ class ServeImageRequestHandler
      */
     private $glideSignature;
 
-    /**
-     * @param Server $glide
-     * @param Signature $glideSignature
-     */
     public function __construct(Server $glide, Signature $glideSignature)
     {
         $this->glide = $glide;
         $this->glideSignature = $glideSignature;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param array $args
-     *
-     * @return ResponseInterface
-     */
-    public function __invoke(ServerRequestInterface $request, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
         try {
             $this->glideSignature->validateRequest($args['path'], $request->getQueryParams());

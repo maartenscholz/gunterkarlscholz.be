@@ -21,24 +21,12 @@ class GuestMiddleware implements MiddlewareInterface
      */
     private $redirectUri;
 
-    /**
-     * AuthorizationMiddleware constructor.
-     *
-     * @param Segment $session
-     * @param string $redirectUri
-     */
     public function __construct(Segment $session, $redirectUri)
     {
         $this->session = $session;
         $this->redirectUri = $redirectUri;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     *
-     * @return ResponseInterface
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if (!$this->session->get('authenticated', false)) {

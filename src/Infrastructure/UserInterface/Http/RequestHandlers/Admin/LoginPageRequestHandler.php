@@ -20,29 +20,25 @@ class LoginPageRequestHandler
      */
     private $templates;
 
-    /**
-     * @param Segment $session
-     * @param Engine $templates
-     */
     public function __construct(Segment $session, Engine $templates)
     {
         $this->session = $session;
         $this->templates = $templates;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return ResponseInterface
-     */
-    public function __invoke(ServerRequestInterface $request)
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $response = new Response();
 
-        $response->getBody()->write($this->templates->render('admin::auth/login', [
-            'message' => $this->session->getFlash('message'),
-            'input' => $this->session->getFlash('input'),
-        ]));
+        $response->getBody()->write(
+            $this->templates->render(
+                'admin::auth/login',
+                [
+                    'message' => $this->session->getFlash('message'),
+                    'input' => $this->session->getFlash('input'),
+                ]
+            )
+        );
 
         return $response;
     }

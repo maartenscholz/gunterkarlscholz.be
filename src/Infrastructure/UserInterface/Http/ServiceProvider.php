@@ -6,6 +6,7 @@ use Aura\Session\Session;
 use Gks\Domain\Model\Works\WorksRepository;
 use Gks\Infrastructure\UserInterface\Http\Middleware;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
+use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\FilesystemInterface;
 use League\Glide\Server;
@@ -16,8 +17,10 @@ use League\Tactician\CommandBus;
 class ServiceProvider extends AbstractServiceProvider
 {
     /**
-     * @var array
+     * @var Container
      */
+    protected $container;
+
     protected $provides = [
         RequestHandlers\HomeRequestHandler::class,
         RequestHandlers\ServeImageRequestHandler::class,
@@ -39,19 +42,13 @@ class ServiceProvider extends AbstractServiceProvider
         Middleware\GuestMiddleware::class,
     ];
 
-    /**
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->registerMiddleware();
         $this->registerRequestHandlers();
     }
 
-    /**
-     * @return void
-     */
-    private function registerMiddleware()
+    private function registerMiddleware(): void
     {
         $this->container->share(Middleware\AuthorizationMiddleware::class, function () {
             return new Middleware\AuthorizationMiddleware(
@@ -75,10 +72,7 @@ class ServiceProvider extends AbstractServiceProvider
         });
     }
 
-    /**
-     * @return void
-     */
-    private function registerRequestHandlers()
+    private function registerRequestHandlers(): void
     {
         $this->container->share(RequestHandlers\HomeRequestHandler::class, function () {
             return new RequestHandlers\HomeRequestHandler($this->container->get(Engine::class));

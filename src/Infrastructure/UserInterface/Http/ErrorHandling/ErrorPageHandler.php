@@ -12,18 +12,12 @@ class ErrorPageHandler extends Handler
      */
     private $templates;
 
-    /**
-     * @param Engine $templates
-     */
     public function __construct(Engine $templates)
     {
         $this->templates = $templates;
     }
 
-    /**
-     * @return int|null A handler may return nothing, or a Handler::HANDLE_* constant
-     */
-    public function handle()
+    public function handle(): ?int
     {
         echo $this->templates->render('admin::error');
 

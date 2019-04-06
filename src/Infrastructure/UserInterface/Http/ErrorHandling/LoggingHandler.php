@@ -12,18 +12,12 @@ class LoggingHandler extends Handler
      */
     private $log;
 
-    /**
-     * @param LoggerInterface $log
-     */
     public function __construct(LoggerInterface $log)
     {
         $this->log = $log;
     }
 
-    /**
-     * @return int|null A handler may return nothing, or a Handler::HANDLE_* constant
-     */
-    public function handle()
+    public function handle(): ?int
     {
         $this->log->error($this->getException()->getMessage(), [
             'exception' => $this->getException(),

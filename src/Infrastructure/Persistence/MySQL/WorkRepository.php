@@ -14,31 +14,18 @@ class WorkRepository implements WorksRepository
      */
     private $entityManager;
 
-    /**
-     * @param EntityManagerInterface $entityManager
-     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
 
-    /**
-     * @param Work $work
-     *
-     * @return void
-     */
-    public function add(Work $work)
+    public function add(Work $work): void
     {
         $this->entityManager->persist($work);
         $this->entityManager->flush();
     }
 
-    /**
-     * @param WorkId $workId
-     *
-     * @return void
-     */
-    public function remove(WorkId $workId)
+    public function remove(WorkId $workId): void
     {
         $workReference = $this->entityManager->getReference(Work::class, $workId->getValue());
 
@@ -46,20 +33,15 @@ class WorkRepository implements WorksRepository
         $this->entityManager->flush();
     }
 
-    /**
-     * @param WorkId $workId
-     *
-     * @return Work
-     */
-    public function findById(WorkId $workId)
+    public function findById(WorkId $workId): Work
     {
         return $this->entityManager->getRepository(Work::class)->find($workId->getValue());
     }
 
     /**
-     * @return array|Work[]
+     * @return Work[]
      */
-    public function all()
+    public function all(): array
     {
         return $this->entityManager->getRepository(Work::class)->findAll();
     }

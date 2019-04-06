@@ -21,23 +21,13 @@ class EditRequestHandler
      */
     private $repository;
 
-    /**
-     * @param Engine $templates
-     * @param WorksRepository $repository
-     */
     public function __construct(Engine $templates, WorksRepository $repository)
     {
         $this->templates = $templates;
         $this->repository = $repository;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param array $args
-     *
-     * @return ResponseInterface
-     */
-    public function __invoke(ServerRequestInterface $request, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
         $response = new Response();
 

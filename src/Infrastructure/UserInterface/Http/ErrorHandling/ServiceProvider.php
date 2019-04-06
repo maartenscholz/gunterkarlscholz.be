@@ -2,6 +2,7 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\ErrorHandling;
 
+use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Plates\Engine;
 use Psr\Log\LoggerInterface;
@@ -11,46 +12,50 @@ use Whoops\Run;
 class ServiceProvider extends AbstractServiceProvider
 {
     /**
-     * @var array
+     * @var Container
      */
+    protected $container;
+
     protected $provides = [
         Run::class,
         ErrorPageHandler::class,
     ];
 
-    /**
-     * Use the register method to register items with the container via the
-     * protected $this->container property or the `getContainer` method
-     * from the ContainerAwareTrait.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        $this->container->share(Run::class, function () {
-            $whoops = new Run();
+        $this->container->share(
+            Run::class,
+            function () {
+                $whoops = new Run();
 
-            $whoops->pushHandler($this->container->get(ErrorPageHandler::class));
+                $whoops->pushHandler($this->container->get(ErrorPageHandler::class));
 
-            if (getenv('APP_ENV') !== 'production') {
-                $handler = new PrettyPageHandler();
+                if (getenv('APP_ENV') !== 'production') {
+                    $handler = new PrettyPageHandler();
 
-                $handler->setPageTitle('Whoops.');
+                    $handler->setPageTitle('Whoops.');
 
-                $whoops->pushHandler($handler);
+                    $whoops->pushHandler($handler);
+                }
+
+                $whoops->pushHandler($this->container->get(LoggingHandler::class));
+
+                return $whoops;
             }
+        );
 
-            $whoops->pushHandler($this->container->get(LoggingHandler::class));
+        $this->container->share(
+            ErrorPageHandler::class,
+            function () {
+                return new ErrorPageHandler($this->container->get(Engine::class));
+            }
+        );
 
-            return $whoops;
-        });
-
-        $this->container->share(ErrorPageHandler::class, function () {
-            return new ErrorPageHandler($this->container->get(Engine::class));
-        });
-
-        $this->container->share(LoggingHandler::class, function () {
-            return new LoggingHandler($this->container->get(LoggerInterface::class));
-        });
+        $this->container->share(
+            LoggingHandler::class,
+            function () {
+                return new LoggingHandler($this->container->get(LoggerInterface::class));
+            }
+        );
     }
 }
