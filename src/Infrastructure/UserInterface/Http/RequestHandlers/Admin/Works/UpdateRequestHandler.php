@@ -28,23 +28,29 @@ class UpdateRequestHandler
      */
     private $commandBus;
 
-    /**
-     * @param Segment $session
-     * @param CommandBus $commandBus
-     */
     public function __construct(Segment $session, CommandBus $commandBus)
     {
         $this->session = $session;
         $this->commandBus = $commandBus;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param array $args
-     *
-     * @return RedirectResponse
-     */
-    public function __invoke(ServerRequestInterface $request, array $args)
+    public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
+    {
+        $validator = $this->getValidator();
+
+        if (!$validator->validate($request->getParsedBody())) {
+            $this->session->setFlash('errors', $validator->getMessages());
+            $this->session->setFlash('input', $request->getParsedBody());
+
+            return new RedirectResponse('/admin/works/'.$args['id'].'/edit');
+        }
+
+        $this->commandBus->handle(UpdateWork::fromRequest(WorkId::fromString($args['id']), $request));
+
+        return new RedirectResponse('/admin/works');
+    }
+
+    private function getValidator(): Validator
     {
         $validator = new Validator();
 
@@ -59,15 +65,6 @@ class UpdateRequestHandler
         $validator->add('width', MatchNotEmpty::class, [MatchNotEmpty::OPTION_ITEM => 'height']);
         $validator->add('height', MatchNotEmpty::class, [MatchNotEmpty::OPTION_ITEM => 'width']);
 
-        if (!$validator->validate($request->getParsedBody())) {
-            $this->session->setFlash('errors', $validator->getMessages());
-            $this->session->setFlash('input', $request->getParsedBody());
-
-            return new RedirectResponse('/admin/works/'.$args['id'].'/edit');
-        }
-
-        $this->commandBus->handle(UpdateWork::fromRequest(WorkId::fromString($args['id']), $request));
-
-        return new RedirectResponse('/admin/works');
+        return $validator;
     }
 }
