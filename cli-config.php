@@ -1,11 +1,11 @@
 <?php
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 require_once __DIR__.'/bootstrap.php';
 
-/** @var EntityManager $entityManager */
-$entityManager = $container->get(EntityManager::class);
+/** @var EntityManagerInterface $entityManager */
+$entityManager = $container->get(EntityManagerInterface::class);
 
 return ConsoleRunner::createHelperSet($entityManager);
