@@ -38,7 +38,7 @@ class StoreRequestHandler
         /** @var UploadedFile $image */
         $image = $request->getUploadedFiles()['image'];
 
-        $filename = $imageId.'_'.$image->getClientFilename();
+        $filename = $imageId.'_'.str_replace(' ', '_',$image->getClientFilename());
         $this->filesystem->writeStream("images/source/$filename", $image->getStream()->detach());
 
         $this->commandBus->handle(new AddImage($workId, $imageId, $filename, $image->getClientFilename()));
