@@ -38,10 +38,7 @@ class AuthorizationMiddlewareTest extends TestCase
      */
     private $requestHandler;
 
-    /**
-     * @return void
-     */
-    public function setUp()
+    public function setUp(): void
     {
         $this->session = $this->createMock(Segment::class);
         $this->redirectUri = 'redirect_uri';

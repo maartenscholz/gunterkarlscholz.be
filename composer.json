@@ -19,9 +19,10 @@
         "league/route": "^4.0",
         "league/tactician": "^1.0",
         "monolog/monolog": "^1.23",
+        "php-http/curl-client": "^2.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.4",
-        "sentry/sentry": "^1.8",
+        "sentry/sentry": "^2.0",
         "shrikeh/teapot": "^2.1",
         "siriusphp/validation": "^2.1",
         "symfony/var-dumper": "^4.1",
@@ -41,7 +42,7 @@
     "require-dev": {
         "kriswallsmith/assetic": "^1.4",
         "maximebf/debugbar": "^1.15",
-        "phpstan/phpstan": "^0.10.2",
-        "phpunit/phpunit": "^7.1"
+        "phpstan/phpstan": "^0.11.5",
+        "phpunit/phpunit": "^8.1"
     }
 }
