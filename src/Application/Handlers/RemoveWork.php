@@ -2,10 +2,11 @@
 
 namespace Gks\Application\Handlers;
 
+use BigName\EventDispatcher\Dispatcher;
 use Gks\Application\Commands\RemoveWork as RemoveWorkCommand;
 use Gks\Domain\Model\Works\WorksRepository;
 
-class RemoveWork
+final class RemoveWork
 {
     /**
      * @var WorksRepository
@@ -13,13 +14,14 @@ class RemoveWork
     private $repository;
 
     /**
-     * RemoveWork constructor.
-     *
-     * @param WorksRepository $repository
+     * @var Dispatcher
      */
-    public function __construct(WorksRepository $repository)
+    private $eventDispatcher;
+
+    public function __construct(WorksRepository $repository, Dispatcher $eventDispatcher)
     {
         $this->repository = $repository;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -27,6 +29,12 @@ class RemoveWork
      */
     public function handle(RemoveWorkCommand $command)
     {
+        $work = $this->repository->findById($command->getWorkId());
+
+        $work->removeAllImages();
+
         $this->repository->remove($command->getWorkId());
+
+        $this->eventDispatcher->dispatch($work->releaseEvents());
     }
 }

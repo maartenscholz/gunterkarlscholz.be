@@ -2,12 +2,18 @@
 
 namespace Gks\Application\Handlers;
 
+use BigName\EventDispatcher\Dispatcher;
 use Gks\Domain\Model\Works\WorksRepository;
+use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use League\Flysystem\FilesystemInterface;
 
 class ServiceProvider extends AbstractServiceProvider
 {
+    /**
+     * @var Container
+     */
+    protected $container;
+
     /**
      * @var array
      */
@@ -19,14 +25,7 @@ class ServiceProvider extends AbstractServiceProvider
         RemoveImage::class,
     ];
 
-    /**
-     * Use the register method to register items with the container via the
-     * protected $this->container property or the `getContainer` method
-     * from the ContainerAwareTrait.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->container->share(AddWork::class, function () {
             return new AddWork($this->container->get(WorksRepository::class));
@@ -37,7 +36,10 @@ class ServiceProvider extends AbstractServiceProvider
         });
 
         $this->container->share(RemoveWork::class, function () {
-            return new RemoveWork($this->container->get(WorksRepository::class));
+            return new RemoveWork(
+                $this->container->get(WorksRepository::class),
+                $this->container->get(Dispatcher::class)
+            );
         });
 
         $this->container->share(AddImage::class, function () {
@@ -47,7 +49,7 @@ class ServiceProvider extends AbstractServiceProvider
         $this->container->share(RemoveImage::class, function () {
             return new RemoveImage(
                 $this->container->get(WorksRepository::class),
-                $this->container->get(FilesystemInterface::class)
+                $this->container->get(Dispatcher::class)
             );
         });
     }

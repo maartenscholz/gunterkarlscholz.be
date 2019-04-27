@@ -55,11 +55,11 @@ class Image
     }
 
     /**
-     * @return string
+     * @return ImageId
      */
-    public function getId(): string
+    public function getId(): ImageId
     {
-        return $this->id;
+        return ImageId::fromString($this->id);
     }
 
     /**

@@ -2,9 +2,9 @@
 
 namespace Gks\Application\Handlers;
 
+use BigName\EventDispatcher\Dispatcher;
 use Gks\Application\Commands\RemoveImage as RemoveImageCommand;
 use Gks\Domain\Model\Works\WorksRepository;
-use League\Flysystem\FilesystemInterface;
 
 class RemoveImage
 {
@@ -14,34 +14,24 @@ class RemoveImage
     private $worksRepository;
 
     /**
-     * @var FilesystemInterface
+     * @var Dispatcher
      */
-    private $filesystem;
+    private $eventDispatcher;
 
-    /**
-     * @param WorksRepository $worksRepository
-     * @param FilesystemInterface $filesystem
-     */
-    public function __construct(WorksRepository $worksRepository, FilesystemInterface $filesystem)
+    public function __construct(WorksRepository $worksRepository, Dispatcher $eventDispatcher)
     {
         $this->worksRepository = $worksRepository;
-        $this->filesystem = $filesystem;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
-    /**
-     * @param RemoveImageCommand $command
-     */
-    public function handle(RemoveImageCommand $command)
+    public function handle(RemoveImageCommand $command): void
     {
         $work = $this->worksRepository->findById($command->getWorkId());
-
-        $image = $work->getImage($command->getImageId());
 
         $work->removeImage($command->getImageId());
 
         $this->worksRepository->add($work);
 
-        $this->filesystem->delete("/images/source/{$image->getFilename()}");
-        $this->filesystem->deleteDir("/images/cache/{$image->getFilename()}");
+        $this->eventDispatcher->dispatch($work->releaseEvents());
     }
 }
