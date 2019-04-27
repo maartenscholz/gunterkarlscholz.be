@@ -1,6 +1,8 @@
 <?php
 
+use Gks\Application;
 use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
+use Gks\Infrastructure;
 use Gks\Infrastructure\Caching\Redis\ServiceProvider as RedisServiceProvider;
 use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Infrastructure\Filesystem\ServiceProvider as FilesystemServiceProvider;
@@ -41,3 +43,5 @@ $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 $container->addServiceProvider(RedisServiceProvider::class);
 $container->addServiceProvider(MySQLServiceProvider::class);
 $container->addServiceProvider(HttpServiceProvider::class);
+$container->addServiceProvider(Application\Listeners\ServiceProvider::class);
+$container->addServiceProvider(Infrastructure\Events\ServiceProvider::class);
