@@ -17,8 +17,7 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
             <exclude>
-                <directory>./src/Application/Providers</directory>
-                <file>./src/Infrastructure/CommandBus/ServiceProvider.php</file>
+                <directory suffix="ServiceProvider.php">./src</directory>
             </exclude>
         </whitelist>
     </filter>
