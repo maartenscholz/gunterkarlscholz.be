@@ -7,26 +7,48 @@ use Gks\Application\Listeners\RemoveImageFiles;
 use Gks\Domain\Events\ImageWasRemoved;
 use Gks\Domain\Model\Works\Images\ImageId;
 use League\Flysystem\FilesystemInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class RemoveImageFilesTest extends TestCase
 {
     /**
+     * @var FilesystemInterface|MockObject
+     */
+    private $filesystem;
+
+    /**
+     * @var Event|MockObject
+     */
+    private $mockEvent;
+
+    /**
+     * @var RemoveImageFiles
+     */
+    private $listener;
+
+    public function setUp(): void
+    {
+        $this->filesystem = $this->createMock(FilesystemInterface::class);
+        $this->mockEvent = $this->createMock(Event::class);
+
+        $this->listener = new RemoveImageFiles($this->filesystem);
+    }
+
+    /**
      * @test
      */
     public function it_remove_the_files_from_the_filesystem(): void
     {
-        $filesystem = $this->createMock(FilesystemInterface::class);
-
-        $filesystem->expects($this->once())
+        $this->filesystem->expects($this->once())
             ->method('delete')
             ->with('/images/source/test.jpg');
 
-        $filesystem->expects($this->once())
+        $this->filesystem->expects($this->once())
             ->method('deleteDir')
             ->with('/images/cache/test.jpg');
 
-        (new RemoveImageFiles($filesystem))->handle(new ImageWasRemoved(ImageId::generate(), 'test.jpg'));
+        $this->listener->handle(new ImageWasRemoved(ImageId::generate(), 'test.jpg'));
     }
 
     /**
@@ -34,15 +56,12 @@ final class RemoveImageFilesTest extends TestCase
      */
     public function it_does_nothing_when_another_event_is_passed(): void
     {
-        $event = $this->createMock(Event::class);
-        $filesystem = $this->createMock(FilesystemInterface::class);
-
-        $filesystem->expects($this->never())
+        $this->filesystem->expects($this->never())
             ->method('delete');
 
-        $filesystem->expects($this->never())
+        $this->filesystem->expects($this->never())
             ->method('deleteDir');
 
-        (new RemoveImageFiles($filesystem))->handle($event);
+        $this->listener->handle($this->mockEvent);
     }
 }
