@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "adecb93725bdc6b055d7a21a4bd13fce",
+    "content-hash": "06deabffd804611d0ab806315014f9ae",
     "packages": [
         {
             "name": "aura/session",
@@ -1113,6 +1113,95 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
+        },
+        {
+            "name": "heybigname/event-dispatcher",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heybigname/domain-event-dispatcher.git",
+                "reference": "5166449caf6fd80c57cb3474c68430cbddf096dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heybigname/domain-event-dispatcher/zipball/5166449caf6fd80c57cb3474c68430cbddf096dd",
+                "reference": "5166449caf6fd80c57cb3474c68430cbddf096dd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "~4.2",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "1.0.*",
+                "laravel/framework": "~4.2",
+                "phpspec/phpspec": "~2.0",
+                "satooshi/php-coveralls": "~0.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BigName\\EventDispatcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mitchell van Wijngaarden",
+                    "email": "mitchell@kooding.nl"
+                }
+            ],
+            "description": "Event Dispatcher with a focus on Domain Events",
+            "time": "2014-06-20T11:54:36+00:00"
+        },
+        {
+            "name": "illuminate/container",
+            "version": "v4.2.17",
+            "target-dir": "Illuminate/Container",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/container.git",
+                "reference": "bf0be54be5f10cfa66deba5666db68922452d587"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/bf0be54be5f10cfa66deba5666db68922452d587",
+                "reference": "bf0be54be5f10cfa66deba5666db68922452d587",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Illuminate\\Container": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "time": "2015-01-29T16:04:27+00:00"
         },
         {
             "name": "intervention/image",
