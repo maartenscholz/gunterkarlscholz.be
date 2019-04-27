@@ -4,6 +4,7 @@ namespace Gks\Domain\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gks\Domain\Events\ImageWasRemoved;
 use Gks\Domain\Model\Works\Description;
 use Gks\Domain\Model\Works\Dimensions;
 use Gks\Domain\Model\Works\Image;
@@ -12,6 +13,7 @@ use Gks\Domain\Model\Works\Title;
 use Gks\Domain\Model\Works\Type;
 use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
+use Gks\Infrastructure\Events\BigName\HasEvents;
 
 /**
  * @Entity
@@ -19,6 +21,8 @@ use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
  */
 class Work
 {
+    use HasEvents;
+
     /**
      * @var string
      *
@@ -161,7 +165,18 @@ class Work
 
     public function removeImage(ImageId $imageId)
     {
+        $image = $this->getImage($imageId);
+
         $this->images->remove((string) $imageId);
+
+        $this->recordEvent(new ImageWasRemoved($imageId, $image->getFilename()));
+    }
+
+    public function removeAllImages(): void
+    {
+        foreach ($this->images as $image) {
+            $this->removeImage($image->getId());
+        }
     }
 
     public function getId(): WorkId
