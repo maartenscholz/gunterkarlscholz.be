@@ -129,18 +129,9 @@ class Work
         Dimensions $dimensions = null
     ) {
         $this->id = $id->getValue()->toString();
-        $this->type = $type->getValue();
-        $this->titleNl = $title->getValue('nl_BE');
-        $this->titleEn = $title->getValue('en_US');
-        $this->titleFr = $title->getValue('fr_FR');
-        $this->titleDe = $title->getValue('de_DE');
-        $this->descriptionNl = $description->getValue('nl_BE');
-        $this->descriptionEn = $description->getValue('en_US');
-        $this->descriptionFr = $description->getValue('fr_FR');
-        $this->descriptionDe = $description->getValue('de_DE');
-        $this->width = $dimensions ? $dimensions->getWidth()->getValue() : null;
-        $this->height = $dimensions ? $dimensions->getHeight()->getValue() : null;
         $this->images = new ArrayCollection();
+
+        $this->update($type, $title, $description, $dimensions);
     }
 
     public function update(Type $type, Title $title, Description $description, Dimensions $dimensions = null): void
