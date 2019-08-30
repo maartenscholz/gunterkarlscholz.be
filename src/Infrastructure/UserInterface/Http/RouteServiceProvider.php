@@ -7,7 +7,6 @@ use Gks\Infrastructure\UserInterface\Http\Middleware;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use League\Route\RouteCollection;
 use League\Route\RouteGroup;
 use League\Route\Router;
 use Zend\Diactoros\Response;

@@ -5,7 +5,6 @@ namespace Gks\Infrastructure\Api\Http;
 use Gks\Infrastructure\Api\Http\RequestHandlers\RootRequestHandler;
 use Gks\Infrastructure\Http\ResponseFactory;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use League\Glide\Responses\PsrResponseFactory;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
 
@@ -23,14 +22,17 @@ class RoutingServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->container->share(Router::class, function () {
-            $router = new Router();
+        $this->container->share(
+            Router::class,
+            function () {
+                $router = new Router();
 
-            $router->setStrategy(new JsonStrategy(new ResponseFactory()));
+                $router->setStrategy(new JsonStrategy(new ResponseFactory()));
 
-            $router->get('/', new RootRequestHandler());
+                $router->get('/', new RootRequestHandler());
 
-            return $router;
-        });
+                return $router;
+            }
+        );
     }
 }
