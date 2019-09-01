@@ -23,7 +23,7 @@ class HomeRequestHandler
     {
         $response = new Response();
 
-        $response->getBody()->write($this->templates->render('app'));
+        $response->getBody()->write($this->templates->render('splash'));
 
         return $response;
     }
