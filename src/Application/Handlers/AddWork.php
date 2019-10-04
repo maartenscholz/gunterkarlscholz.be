@@ -18,7 +18,7 @@ class AddWork
         $this->repository = $repository;
     }
 
-    public function handle(AddWorkCommand $command): Work
+    public function handle(AddWorkCommand $command): void
     {
         $work = new Work(
             $command->getWorkId(),
@@ -29,7 +29,5 @@ class AddWork
         );
 
         $this->repository->add($work);
-
-        return $work;
     }
 }
