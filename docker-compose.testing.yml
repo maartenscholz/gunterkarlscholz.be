@@ -1,0 +1,37 @@
+version: '2'
+
+volumes:
+  dbdata:
+    driver: local
+
+services:
+  php:
+    container_name: gks-php
+    image: maartenscholz/gks-php:latest
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+  nginx:
+    container_name: gks-nginx
+    image: maartenscholz/gks-nginx:latest
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+    ports:
+      - "80:80"
+  mysql:
+    container_name: gks-mysql
+    build:
+      context: ./.docker/mysql
+      dockerfile: Dockerfile
+    working_dir: /var/www
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: gks
+  redis:
+    container_name: gks-redis
+    image: redis:4.0
