@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Test
-        run: echo 'test'
-      - name: Test2
+      - name: Create .env file
+        run: cp .env.ci .env
+      - name: Start docker environment
         run: docker-compose -f docker-compose.testing.yml up -d
+      - name: Run tests
+        run: make tests
