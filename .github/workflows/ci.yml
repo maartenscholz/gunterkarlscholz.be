@@ -16,4 +16,4 @@ jobs:
       - name: Start docker environment
         run: docker-compose -f docker-compose.testing.yml up -d
       - name: Run tests
-        run: make tests
+        run: docker-compose exec -T php vendor/bin/phpunit
