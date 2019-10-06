@@ -15,5 +15,7 @@ jobs:
         run: cp .env.ci .env
       - name: Start docker environment
         run: docker-compose -f docker-compose.testing.yml up -d
+      - name: Run composer install
+        run: docker-compose exec -T php composer install
       - name: Run tests
         run: docker-compose exec -T php vendor/bin/phpunit
