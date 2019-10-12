@@ -218,7 +218,7 @@ class Work
      */
     public function getImages(): array
     {
-        return $this->images->toArray();
+        return array_values($this->images->toArray());
     }
 
     public function getImage(ImageId $imageId): Image
