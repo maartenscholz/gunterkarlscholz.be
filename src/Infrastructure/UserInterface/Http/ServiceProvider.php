@@ -24,6 +24,7 @@ class ServiceProvider extends AbstractServiceProvider
     protected $provides = [
         RequestHandlers\HomeRequestHandler::class,
         RequestHandlers\ServeImageRequestHandler::class,
+        RequestHandlers\Works\Index::class,
         RequestHandlers\Admin\LoginPageRequestHandler::class,
         RequestHandlers\Admin\LoginRequestHandler::class,
         RequestHandlers\Admin\LogoutRequestHandler::class,
@@ -82,6 +83,13 @@ class ServiceProvider extends AbstractServiceProvider
             return new RequestHandlers\ServeImageRequestHandler(
                 $this->container->get(Server::class),
                 $this->container->get(Signature::class)
+            );
+        });
+
+        $this->container->share(RequestHandlers\Works\Index::class, function () {
+            return new RequestHandlers\Works\Index(
+                $this->container->get(Engine::class),
+                $this->container->get(WorksRepository::class)
             );
         });
 

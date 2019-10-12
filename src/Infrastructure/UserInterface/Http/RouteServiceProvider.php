@@ -42,6 +42,8 @@ class RouteServiceProvider extends AbstractServiceProvider
 
                 $route->get('/image/{path}', $this->container->get(RequestHandlers\ServeImageRequestHandler::class));
 
+                $route->get('/portfolio', $this->container->get(RequestHandlers\Works\Index::class));
+
                 $route->group(
                     '/admin',
                     function (RouteGroup $route) {
