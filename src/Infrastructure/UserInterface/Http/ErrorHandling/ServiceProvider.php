@@ -9,7 +9,7 @@ use Psr\Log\LoggerInterface;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
-class ServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var Container
@@ -18,7 +18,6 @@ class ServiceProvider extends AbstractServiceProvider
 
     protected $provides = [
         Run::class,
-        ErrorPageHandler::class,
     ];
 
     public function register(): void
@@ -28,33 +27,19 @@ class ServiceProvider extends AbstractServiceProvider
             function () {
                 $whoops = new Run();
 
-                $whoops->pushHandler($this->container->get(ErrorPageHandler::class));
+                $whoops->appendHandler(new ErrorPageHandler($this->container->get(Engine::class)));
 
                 if (getenv('APP_ENV') !== 'production') {
                     $handler = new PrettyPageHandler();
 
                     $handler->setPageTitle('Whoops.');
 
-                    $whoops->pushHandler($handler);
+                    $whoops->appendHandler($handler);
                 }
 
-                $whoops->pushHandler($this->container->get(LoggingHandler::class));
+                $whoops->appendHandler(new LoggingHandler($this->container->get(LoggerInterface::class)));
 
                 return $whoops;
-            }
-        );
-
-        $this->container->share(
-            ErrorPageHandler::class,
-            function () {
-                return new ErrorPageHandler($this->container->get(Engine::class));
-            }
-        );
-
-        $this->container->share(
-            LoggingHandler::class,
-            function () {
-                return new LoggingHandler($this->container->get(LoggerInterface::class));
             }
         );
     }
