@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Gks\Infrastructure\Http\ApplicationRequestHandler;
-use Gks\Infrastructure\UserInterface\Http\RouteServiceProvider;
+use Gks\Infrastructure\UserInterface\Http\RoutingServiceProvider;
 use Predis\Session\Handler;
 use Whoops\Run;
 use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
@@ -11,7 +11,7 @@ use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 require_once __DIR__.'/../bootstrap.php';
 
-$container->addServiceProvider(RouteServiceProvider::class);
+$container->addServiceProvider(RoutingServiceProvider::class);
 
 $redisSessionHandler = $container->get(Handler::class);
 $redisSessionHandler->register();
