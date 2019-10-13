@@ -11,9 +11,13 @@
     <body>
         <div class="container">
             <aside>
-                <ul>
-                    <li><a href="/portfolio">Portfolio</a></li>
-                </ul>
+                <h1>Günter-Karl<br>Scholz</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </nav>
             </aside>
             <main>
                 <?= $this->section('content') ?>

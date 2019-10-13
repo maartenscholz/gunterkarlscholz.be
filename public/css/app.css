@@ -14,6 +14,39 @@ body {
     background: #333;
 }
 
+.container aside h1 {
+    color: #ccc;
+    margin: 0;
+    padding: 25px 15px;
+}
+
+.container aside nav {
+    padding: 0;
+    margin: 0;
+}
+
+.container aside nav ul {
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #444;
+}
+
+.container aside nav ul li {
+    list-style-type: none;
+    border-bottom: 1px solid #444;
+}
+
+.container aside nav ul li a {
+    display: block;
+    color: #eee;
+    text-decoration: none;
+    padding: 8px 15px;
+}
+
+.container aside nav ul li a:hover {
+    background-color: #444;
+}
+
 .container main {
     grid-column: 2;
     grid-row: 1;
