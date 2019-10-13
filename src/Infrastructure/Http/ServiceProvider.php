@@ -12,7 +12,7 @@ use Zend\Diactoros\ServerRequestFactory;
 use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
-class ServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array
@@ -20,6 +20,7 @@ class ServiceProvider extends AbstractServiceProvider
     protected $provides = [
         EmitterInterface::class,
         ServerRequestInterface::class,
+        ResponseInterface::class,
         ApplicationRequestHandler::class,
         'ServerRequestFactory',
         'ServerRequestErrorResponseGenerator',
@@ -32,35 +33,50 @@ class ServiceProvider extends AbstractServiceProvider
     {
         $this->container->share(EmitterInterface::class, SapiEmitter::class);
 
-        $this->container->share(ServerRequestInterface::class, function () {
-            $request = ServerRequestFactory::fromGlobals();
-            $path = $request->getUri()->getPath();
-            $parsedBody = $request->getParsedBody();
+        $this->container->share(
+            ServerRequestInterface::class,
+            function () {
+                $request = ServerRequestFactory::fromGlobals();
+                $path = $request->getUri()->getPath();
+                $parsedBody = $request->getParsedBody();
 
-            if ($request->getMethod() === 'POST' && array_key_exists('_method', $parsedBody)) {
-                $request = $request->withMethod(strtoupper($parsedBody['_method']));
+                if ($request->getMethod() === 'POST' && array_key_exists('_method', $parsedBody)) {
+                    $request = $request->withMethod(strtoupper($parsedBody['_method']));
+                }
+
+                return $path === '/' ? $request : $request->withUri($request->getUri()->withPath(rtrim($path, '/')));
             }
-
-            return $path === '/' ? $request : $request->withUri($request->getUri()->withPath(rtrim($path, '/')));
-        });
+        );
 
         $this->container->share(ResponseInterface::class, Response::class);
 
-        $this->container->share(ApplicationRequestHandler::class, function () {
-            return new ApplicationRequestHandler($this->container->get(Router::class));
-        });
+        $this->container->share(
+            ApplicationRequestHandler::class,
+            function () {
+                return new ApplicationRequestHandler($this->container->get(Router::class));
+            }
+        );
 
+        $this->container->share(
+            'ServerRequestFactory',
+            function () {
+                return Closure::fromCallable(
+                    function () {
+                        return $this->container->get(ServerRequestInterface::class);
+                    }
+                );
+            }
+        );
 
-        $this->container->share('ServerRequestFactory', function () {
-            return Closure::fromCallable(function () {
-                return $this->container->get(ServerRequestInterface::class);
-            });
-        });
-
-        $this->container->share('ServerRequestErrorResponseGenerator', function () {
-            return Closure::fromCallable(function () {
-                return $this->container->get(ResponseInterface::class)->withStatus(500);
-            });
-        });
+        $this->container->share(
+            'ServerRequestErrorResponseGenerator',
+            function () {
+                return Closure::fromCallable(
+                    function () {
+                        return $this->container->get(ResponseInterface::class)->withStatus(500);
+                    }
+                );
+            }
+        );
     }
 }
