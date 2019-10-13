@@ -4,7 +4,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 220px auto;
     grid-template-rows: 100vh;
 }
 
@@ -56,16 +56,15 @@ body {
 .work-overview {
     display: flex;
     flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
 }
 
-.work-overview li {
-    list-style-type: none;
+.work-overview .work-overview__item {
+    display: block;
     width: calc(100% / 3);
+    background: #ddd;
 }
 
-.work-overview li img {
+.work-overview .work-overview__item img {
     display: block;
     width: 100%;
 }
