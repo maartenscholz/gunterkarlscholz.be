@@ -9,6 +9,7 @@ use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteGroup;
 use League\Route\Router;
+use League\Route\Strategy\ApplicationStrategy;
 use Zend\Diactoros\Response;
 
 class RouteServiceProvider extends AbstractServiceProvider
@@ -27,7 +28,13 @@ class RouteServiceProvider extends AbstractServiceProvider
         $this->container->share(
             Router::class,
             function () {
+                $strategy = new ApplicationStrategy();
+
+                $strategy->setContainer($this->container);
+
                 $route = new Router();
+
+                $route->setStrategy($strategy);
 
                 $route->middleware($this->container->get(Middleware\CsrfMiddleware::class));
 
