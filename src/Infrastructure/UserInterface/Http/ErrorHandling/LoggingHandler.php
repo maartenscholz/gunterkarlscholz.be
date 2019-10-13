@@ -5,7 +5,7 @@ namespace Gks\Infrastructure\UserInterface\Http\ErrorHandling;
 use Psr\Log\LoggerInterface;
 use Whoops\Handler\Handler;
 
-class LoggingHandler extends Handler
+final class LoggingHandler extends Handler
 {
     /**
      * @var LoggerInterface
@@ -19,9 +19,12 @@ class LoggingHandler extends Handler
 
     public function handle(): ?int
     {
-        $this->log->error($this->getException()->getMessage(), [
-            'exception' => $this->getException(),
-        ]);
+        $this->log->error(
+            $this->getException()->getMessage(),
+            [
+                'exception' => $this->getException(),
+            ]
+        );
 
         return Handler::DONE;
     }

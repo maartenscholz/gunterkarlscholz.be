@@ -5,7 +5,7 @@ namespace Gks\Infrastructure\UserInterface\Http\ErrorHandling;
 use League\Plates\Engine;
 use Whoops\Handler\Handler;
 
-class ErrorPageHandler extends Handler
+final class ErrorPageHandler extends Handler
 {
     /**
      * @var Engine
