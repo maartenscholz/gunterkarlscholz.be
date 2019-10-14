@@ -7,9 +7,13 @@
 
 <section class="work-overview">
     <?php foreach ($works as $work): ?>
-        <article class="work-overview__item">
+        <article class="work">
+            <div class="work__title">
+                <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
+            </div>
             <?php if (!empty($work->getImages())): ?>
                 <img
+                        class="work__image"
                         src="/image<?= $imageUrlBuilder->getUrl($work->getImages()[0]->getFilename(), ['w' => 500, 'h' => 500, 'fit' => 'crop']) ?>"
                         alt=""
                 >

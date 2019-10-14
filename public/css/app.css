@@ -58,13 +58,35 @@ body {
     flex-wrap: wrap;
 }
 
-.work-overview .work-overview__item {
+.work-overview .work {
     display: block;
     width: calc(100% / 3);
+}
+
+.work {
+    position: relative;
     background: #ddd;
 }
 
-.work-overview .work-overview__item img {
+.work .work__image {
     display: block;
     width: 100%;
+}
+
+.work .work__title {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #eee;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.work .work__title h1 {
+    margin: 0;
+}
+
+.work:hover .work__title {
+    display: block;
 }
