@@ -68,6 +68,10 @@ body {
     background: #ddd;
 }
 
+.work:nth-child(2n) {
+    background-color: #d0d0d0;
+}
+
 .work .work__image {
     display: block;
     width: 100%;
