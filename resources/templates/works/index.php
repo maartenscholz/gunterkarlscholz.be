@@ -21,6 +21,7 @@
             <div class="work__link">
                 <a href="/portfolio/work/<?= $work->getId()->getValue() ?>"></a>
             </div>
+            <div class="work__overlay"></div>
         </article>
     <?php endforeach; ?>
 </section>
