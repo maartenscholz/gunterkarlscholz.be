@@ -18,6 +18,9 @@
                         alt=""
                 >
             <?php endif; ?>
+            <div class="work__link">
+                <a href="/portfolio/work/<?= $work->getId()->getValue() ?>"></a>
+            </div>
         </article>
     <?php endforeach; ?>
 </section>
