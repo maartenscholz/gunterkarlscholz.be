@@ -60,7 +60,7 @@ body {
 
 .work-overview .work {
     display: block;
-    width: calc(100% / 3);
+    width: calc(100% / 4);
 }
 
 .work {
