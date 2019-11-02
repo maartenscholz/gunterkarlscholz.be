@@ -3,6 +3,7 @@
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin;
 
 use Aura\Session\Segment;
+use League\Route\Http\Exception\BadRequestException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\RedirectResponse;
@@ -21,7 +22,11 @@ class LoginRequestHandler
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $credentials = $request->getParsedBody();
+        $credentials = (array) $request->getParsedBody();
+
+        if (!array_key_exists('username', $credentials) || !array_key_exists('password', $credentials)) {
+            throw new BadRequestException();
+        }
 
         if ($credentials['username'] === 'admin' && $credentials['password'] === getenv('APP_ADMIN_PASSWORD')) {
             $this->session->set('authenticated', true);
