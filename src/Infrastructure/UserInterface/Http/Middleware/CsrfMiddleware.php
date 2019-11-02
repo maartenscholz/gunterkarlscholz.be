@@ -35,8 +35,10 @@ class CsrfMiddleware implements MiddlewareInterface
         $this->templates->addData(['csrf_token' => $csrfToken->getValue()]);
 
         if ($this->requestNeedsToBeValidated($request)) {
-            if ($this->requestHasCsrfToken($request)) {
-                if (!$this->csrfTokenIsValid($csrfToken, $request->getParsedBody()['_csrf_token'])) {
+            $parsedBody = (array) $request->getParsedBody();
+
+            if ($this->requestHasCsrfToken($parsedBody)) {
+                if (!$this->csrfTokenIsValid($csrfToken, $parsedBody['_csrf_token'])) {
                     throw new InvalidArgumentException('Invalid csrf token.');
                 }
             } else {
@@ -52,9 +54,9 @@ class CsrfMiddleware implements MiddlewareInterface
         return in_array($request->getMethod(), ['POST', 'PUT', 'PATCH', 'DELETE'], true);
     }
 
-    private function requestHasCsrfToken(ServerRequestInterface $request): bool
+    private function requestHasCsrfToken(array $parsedBody): bool
     {
-        return array_key_exists('_csrf_token', $request->getParsedBody());
+        return array_key_exists('_csrf_token', $parsedBody);
     }
 
     private function csrfTokenIsValid(CsrfToken $csrfToken, string $requestToken): bool
