@@ -19,3 +19,5 @@ jobs:
         run: docker-compose exec -T php composer install
       - name: Run tests
         run: docker-compose exec -T php vendor/bin/phpunit
+      - name: Static analysis
+        run: docker-compose exec -T php vendor/bin/phpstan analyse src/ --level 1
