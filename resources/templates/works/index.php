@@ -7,21 +7,21 @@
 
 <section class="work-overview">
     <?php foreach ($works as $work): ?>
-        <article class="work">
-            <div class="work__title">
-                <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
-            </div>
-            <?php if (!empty($work->getImages())): ?>
-                <img
-                        class="work__image"
-                        src="/image<?= $imageUrlBuilder->getUrl($work->getImages()[0]->getFilename(), ['w' => 500, 'h' => 500, 'fit' => 'crop']) ?>"
-                        alt=""
-                >
-            <?php endif; ?>
-            <div class="work__link">
-                <a href="/portfolio/work/<?= $work->getId()->getValue() ?>"></a>
-            </div>
-            <div class="work__overlay"></div>
-        </article>
+        <?php if (!empty($work->getImages())): ?>
+            <article class="work">
+                <div class="work__title">
+                    <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
+                </div>
+                    <img
+                            class="work__image"
+                            src="/image<?= $imageUrlBuilder->getUrl($work->getImages()[0]->getFilename(), ['w' => 500, 'h' => 500, 'fit' => 'crop']) ?>"
+                            alt=""
+                    >
+                <div class="work__link">
+                    <a href="/portfolio/work/<?= $work->getId()->getValue() ?>"></a>
+                </div>
+                <div class="work__overlay"></div>
+            </article>
+        <?php endif; ?>
     <?php endforeach; ?>
 </section>
