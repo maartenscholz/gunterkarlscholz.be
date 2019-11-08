@@ -9,8 +9,10 @@
     <?php foreach ($works as $work): ?>
         <?php if (!empty($work->getImages())): ?>
             <article class="work">
-                <div class="work__title">
-                    <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
+                <div class="work__content">
+                    <div class="work__title">
+                        <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
+                    </div>
                 </div>
                     <img
                             class="work__image"
