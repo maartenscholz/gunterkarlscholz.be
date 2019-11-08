@@ -121,3 +121,13 @@ body {
 .work:hover .work__title {
     display: inline-block;
 }
+
+.work-detail {
+    display: block;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.work-detail .work-detail__image img {
+    max-width: 100%;
+}

@@ -7,4 +7,7 @@
 
 <section class="work-detail">
     <h1><?= $work->getTitle()->getValue('en_US') ?></h1>
+    <div class="work-detail__image">
+        <img src="/image<?= $imageUrlBuilder->getUrl($work->getImages()[0]->getFilename()) ?>" alt="">
+    </div>
 </section>
