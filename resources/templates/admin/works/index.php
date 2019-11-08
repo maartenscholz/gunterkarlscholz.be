@@ -16,7 +16,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Dimensions</th>
+                    <th>Images</th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,7 +30,7 @@
                         <td><?= $work->getTitle()->getValue('en_US') ?>
                             / <?= $work->getTitle()->getValue('nl_BE') ?></td>
                         <td><?= $work->getType()->getValue() ?></td>
-                        <td><?= $work->getDimensions() ?: '-' ?></td>
+                        <td><?= count($work->getImages()) ?></td>
                         <td>
                             <a class='dropdown-trigger btn-small' href='#' data-target='dropdown-<?= $work->getId() ?>'><i
                                         class="material-icons">settings</i></a>
