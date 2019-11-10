@@ -143,3 +143,10 @@ body {
 .work-detail .work-detail__image img {
     max-width: 100%;
 }
+
+.about {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 750px;
+}
