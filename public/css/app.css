@@ -125,7 +125,19 @@ body {
 .work-detail {
     display: block;
     margin: 0 auto;
+    padding: 20px;
     max-width: 1000px;
+}
+
+.work-detail__title {
+    margin: 0 0 5px;
+}
+
+.work-detail__subtitle {
+    margin: 0 0 25px;
+    font-weight: normal;
+    font-size: 1em;
+    color: #999;
 }
 
 .work-detail .work-detail__image img {
