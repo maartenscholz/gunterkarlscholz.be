@@ -51,6 +51,7 @@ final class RoutingServiceProvider extends AbstractServiceProvider
 
                 $router->get('/portfolio', RequestHandlers\Works\Index::class);
                 $router->get('/portfolio/work/{id}', RequestHandlers\Works\Show::class);
+                $router->get('/about', RequestHandlers\AboutRequestHandler::class);
 
                 $router->group(
                     '/admin',
