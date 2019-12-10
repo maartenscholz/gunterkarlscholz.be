@@ -7,7 +7,7 @@
 
 <section class="work-detail">
     <h1 class="work-detail__title"><?= $work->getTitle()->getValue('en_US') ?></h1>
-    <h2 class="work-detail__subtitle">
+    <div class="work-detail__translations">
         <?= $work->getTitle()->getValue('nl_BE') ?> /
         <?= $work->getTitle()->getValue('fr_FR') ?> /
         <?= $work->getTitle()->getValue('de_DE') ?>
