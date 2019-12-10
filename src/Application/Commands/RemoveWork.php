@@ -4,27 +4,16 @@ namespace Gks\Application\Commands;
 
 use Gks\Domain\Model\Works\WorkId;
 
-class RemoveWork
+final class RemoveWork
 {
-    /**
-     * @var WorkId
-     */
-    private $workId;
+    private WorkId $workId;
 
-    /**
-     * RemoveWork constructor.
-     *
-     * @param WorkId $workId
-     */
     public function __construct(WorkId $workId)
     {
         $this->workId = $workId;
     }
 
-    /**
-     * @return WorkId
-     */
-    public function getWorkId()
+    public function getWorkId(): WorkId
     {
         return $this->workId;
     }

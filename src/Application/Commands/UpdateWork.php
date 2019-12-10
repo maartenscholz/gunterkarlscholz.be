@@ -12,33 +12,23 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class UpdateWork
 {
-    /**
-     * @var WorkId
-     */
-    private $workId;
+    private WorkId $workId;
 
-    /**
-     * @var Type
-     */
-    private $type;
+    private Type $type;
 
-    /**
-     * @var Title
-     */
-    private $title;
+    private Title $title;
 
-    /**
-     * @var Description
-     */
-    private $description;
+    private Description $description;
 
-    /**
-     * @var Dimensions|null
-     */
-    private $dimension;
+    private ?Dimensions $dimension;
 
-    public function __construct(WorkId $workId, Type $type, Title $title, Description $description, Dimensions $dimension = null)
-    {
+    public function __construct(
+        WorkId $workId,
+        Type $type,
+        Title $title,
+        Description $description,
+        Dimensions $dimension = null
+    ) {
         $this->workId = $workId;
         $this->type = $type;
         $this->title = $title;
@@ -46,13 +36,7 @@ final class UpdateWork
         $this->dimension = $dimension;
     }
 
-    /**
-     * @param WorkId $workId
-     * @param ServerRequestInterface $request
-     *
-     * @return UpdateWork
-     */
-    public static function fromRequest(WorkId $workId, ServerRequestInterface $request)
+    public static function fromRequest(WorkId $workId, ServerRequestInterface $request): self
     {
         $parsedBody = $request->getParsedBody();
 
@@ -68,7 +52,7 @@ final class UpdateWork
             );
         }
 
-        return new static($workId, $type, $title, $description, $dimension);
+        return new self($workId, $type, $title, $description, $dimension);
     }
 
     public function getWorkId(): WorkId

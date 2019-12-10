@@ -6,12 +6,9 @@ use Gks\Application\Commands\AddWork as AddWorkCommand;
 use Gks\Domain\Model\Work;
 use Gks\Domain\Model\Works\WorksRepository;
 
-class AddWork
+final class AddWork
 {
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
+    private WorksRepository $repository;
 
     public function __construct(WorksRepository $repository)
     {

@@ -8,15 +8,9 @@ use Gks\Domain\Model\Works\WorksRepository;
 
 final class RemoveWork
 {
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
+    private WorksRepository $repository;
 
-    /**
-     * @var Dispatcher
-     */
-    private $eventDispatcher;
+    private Dispatcher $eventDispatcher;
 
     public function __construct(WorksRepository $repository, Dispatcher $eventDispatcher)
     {
@@ -24,10 +18,7 @@ final class RemoveWork
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    /**
-     * @param RemoveWorkCommand $command
-     */
-    public function handle(RemoveWorkCommand $command)
+    public function handle(RemoveWorkCommand $command): void
     {
         $work = $this->repository->findById($command->getWorkId());
 

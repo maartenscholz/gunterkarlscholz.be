@@ -5,34 +5,16 @@ namespace Gks\Application\Commands;
 use Gks\Domain\Model\Works\Images\ImageId;
 use Gks\Domain\Model\Works\WorkId;
 
-class AddImage
+final class AddImage
 {
-    /**
-     * @var WorkId
-     */
-    private $workId;
+    private WorkId $workId;
 
-    /**
-     * @var ImageId
-     */
-    private $imageId;
+    private ImageId $imageId;
 
-    /**
-     * @var string
-     */
-    private $imageFilename;
+    private string $imageFilename;
 
-    /**
-     * @var string
-     */
-    private $imagePath;
+    private string $imagePath;
 
-    /**
-     * @param WorkId $workId
-     * @param ImageId $imageId
-     * @param string $imageFilename
-     * @param string $imagePath
-     */
     public function __construct(WorkId $workId, ImageId $imageId, string $imageFilename, string $imagePath)
     {
         $this->workId = $workId;
@@ -41,33 +23,21 @@ class AddImage
         $this->imagePath = $imagePath;
     }
 
-    /**
-     * @return WorkId
-     */
     public function getWorkId(): WorkId
     {
         return $this->workId;
     }
 
-    /**
-     * @return ImageId
-     */
     public function getImageId(): ImageId
     {
         return $this->imageId;
     }
 
-    /**
-     * @return string
-     */
     public function getImageFilename(): string
     {
         return $this->imageFilename;
     }
 
-    /**
-     * @return string
-     */
     public function getImagePath(): string
     {
         return $this->imagePath;

@@ -5,12 +5,9 @@ namespace Gks\Application\Handlers;
 use Gks\Application\Commands\UpdateWork as UpdateWorkCommand;
 use Gks\Domain\Model\Works\WorksRepository;
 
-class UpdateWork
+final class UpdateWork
 {
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
+    private WorksRepository $repository;
 
     public function __construct(WorksRepository $repository)
     {

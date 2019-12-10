@@ -6,17 +6,11 @@ use BigName\EventDispatcher\Dispatcher;
 use Gks\Application\Commands\RemoveImage as RemoveImageCommand;
 use Gks\Domain\Model\Works\WorksRepository;
 
-class RemoveImage
+final class RemoveImage
 {
-    /**
-     * @var WorksRepository
-     */
-    private $worksRepository;
+    private WorksRepository $worksRepository;
 
-    /**
-     * @var Dispatcher
-     */
-    private $eventDispatcher;
+    private Dispatcher $eventDispatcher;
 
     public function __construct(WorksRepository $worksRepository, Dispatcher $eventDispatcher)
     {

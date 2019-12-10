@@ -10,32 +10,17 @@ use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\ValueObjects\NonZeroUnsignedInteger;
 use Psr\Http\Message\ServerRequestInterface;
 
-class AddWork
+final class AddWork
 {
-    /**
-     * @var WorkId
-     */
-    private $workId;
+    private WorkId $workId;
 
-    /**
-     * @var Type
-     */
-    private $type;
+    private Type $type;
 
-    /**
-     * @var Title
-     */
-    private $title;
+    private Title $title;
 
-    /**
-     * @var Description
-     */
-    private $description;
+    private Description $description;
 
-    /**
-     * @var Dimensions|null
-     */
-    private $dimension;
+    private Dimensions $dimension;
 
     public function __construct(
         WorkId $workId,
@@ -67,7 +52,7 @@ class AddWork
             );
         }
 
-        return new static(WorkId::generate(), $type, $title, $description, $dimension);
+        return new self(WorkId::generate(), $type, $title, $description, $dimension);
     }
 
     public function getWorkId(): WorkId

@@ -5,25 +5,16 @@ namespace Gks\Application\Handlers;
 use Gks\Application\Commands\AddImage as AddImageCommand;
 use Gks\Domain\Model\Works\WorksRepository;
 
-class AddImage
+final class AddImage
 {
-    /**
-     * @var WorksRepository
-     */
-    private $worksRepository;
+    private WorksRepository $worksRepository;
 
-    /**
-     * @param WorksRepository $worksRepository
-     */
     public function __construct(WorksRepository $worksRepository)
     {
         $this->worksRepository = $worksRepository;
     }
 
-    /**
-     * @param AddImageCommand $command
-     */
-    public function handle(AddImageCommand $command)
+    public function handle(AddImageCommand $command): void
     {
         $work = $this->worksRepository->findById($command->getWorkId());
 

@@ -9,10 +9,7 @@ use League\Flysystem\FilesystemInterface;
 
 final class RemoveImageFiles implements Listener
 {
-    /**
-     * @var FilesystemInterface
-     */
-    private $filesystem;
+    private FilesystemInterface $filesystem;
 
     public function __construct(FilesystemInterface $filesystem)
     {
