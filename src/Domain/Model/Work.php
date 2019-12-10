@@ -57,22 +57,22 @@ class Work
     /**
      * @Column(name="description_nl_be")
      */
-    private string $descriptionNl;
+    private ?string $descriptionNl;
 
     /**
      * @Column(name="description_en_us")
      */
-    private string $descriptionEn;
+    private ?string $descriptionEn;
 
     /**
      * @Column(name="description_de_de")
      */
-    private string $descriptionDe;
+    private ?string $descriptionDe;
 
     /**
      * @Column(name="description_fr_fr")
      */
-    private string $descriptionFr;
+    private ?string $descriptionFr;
 
     /**
      * @Column(type="integer")
