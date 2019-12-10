@@ -7,12 +7,9 @@ use Gks\Domain\Model\Work;
 use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\Model\Works\WorksRepository;
 
-class WorkRepository implements WorksRepository
+final class WorkRepository implements WorksRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {

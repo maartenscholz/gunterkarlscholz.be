@@ -7,12 +7,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response;
 
-class HomeRequestHandler
+final class HomeRequestHandler
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
     public function __construct(Engine $templates)
     {

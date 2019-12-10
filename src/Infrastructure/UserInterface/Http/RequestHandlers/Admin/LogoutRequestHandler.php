@@ -6,12 +6,9 @@ use Aura\Session\Segment;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 
-class LogoutRequestHandler
+final class LogoutRequestHandler
 {
-    /**
-     * @var Segment
-     */
-    private $session;
+    private Segment $session;
 
     public function __construct(Segment $session)
     {

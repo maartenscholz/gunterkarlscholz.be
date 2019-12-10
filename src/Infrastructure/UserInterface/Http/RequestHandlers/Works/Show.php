@@ -13,15 +13,9 @@ use Zend\Diactoros\Response;
 
 final class Show
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
+    private WorksRepository $repository;
 
     public function __construct(Engine $templates, WorksRepository $repository)
     {

@@ -8,17 +8,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response;
 
-class LoginPageRequestHandler
+final class LoginPageRequestHandler
 {
-    /**
-     * @var Segment
-     */
-    private $session;
+    private Segment $session;
 
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
     public function __construct(Segment $session, Engine $templates)
     {

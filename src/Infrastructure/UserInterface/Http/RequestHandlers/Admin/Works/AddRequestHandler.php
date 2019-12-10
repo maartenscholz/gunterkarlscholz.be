@@ -3,22 +3,20 @@
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use League\Plates\Engine;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response;
 
-class AddRequestHandler
+final class AddRequestHandler
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
     public function __construct(Engine $templates)
     {
         $this->templates = $templates;
     }
 
-    public function __invoke(ServerRequestInterface $request)
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $response = new Response();
 

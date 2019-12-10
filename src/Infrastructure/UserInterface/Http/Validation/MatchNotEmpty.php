@@ -5,7 +5,7 @@ namespace Gks\Infrastructure\UserInterface\Http\Validation;
 use InvalidArgumentException;
 use Sirius\Validation\Rule\AbstractRule;
 
-class MatchNotEmpty extends AbstractRule
+final class MatchNotEmpty extends AbstractRule
 {
     const MESSAGE = 'Value is required when {item} is set.';
     const LABELED_MESSAGE = '{label} is required when {item} is set.';
@@ -18,7 +18,7 @@ class MatchNotEmpty extends AbstractRule
      *
      * @return bool
      */
-    public function validate($value, $valueIdentifier = null)
+    public function validate($value, $valueIdentifier = null): bool
     {
         if (!array_key_exists(self::OPTION_ITEM, $this->options)) {
             throw new InvalidArgumentException('Option '.self::OPTION_ITEM.' must be set.');

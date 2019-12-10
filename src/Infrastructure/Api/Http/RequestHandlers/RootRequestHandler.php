@@ -5,12 +5,9 @@ namespace Gks\Infrastructure\Api\Http\RequestHandlers;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
-class RootRequestHandler
+final class RootRequestHandler
 {
-    /**
-     * @return ResponseInterface
-     */
-    public function __invoke()
+    public function __invoke(): ResponseInterface
     {
         return new JsonResponse([
             'data' => [

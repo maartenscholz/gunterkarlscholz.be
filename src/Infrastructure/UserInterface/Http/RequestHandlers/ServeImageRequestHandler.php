@@ -10,17 +10,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Teapot\StatusCode;
 use Zend\Diactoros\Response;
 
-class ServeImageRequestHandler
+final class ServeImageRequestHandler
 {
-    /**
-     * @var Server
-     */
-    private $glide;
+    private Server $glide;
 
-    /**
-     * @var Signature
-     */
-    private $glideSignature;
+    private Signature $glideSignature;
 
     public function __construct(Server $glide, Signature $glideSignature)
     {

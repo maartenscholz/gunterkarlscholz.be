@@ -8,17 +8,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response;
 
-class IndexRequestHandler
+final class IndexRequestHandler
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
+    private WorksRepository $repository;
 
     public function __construct(Engine $templates, WorksRepository $repository)
     {

@@ -8,12 +8,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 
-class LoginRequestHandler
+final class LoginRequestHandler
 {
-    /**
-     * @var Segment
-     */
-    private $session;
+    private Segment $session;
 
     public function __construct(Segment $session)
     {

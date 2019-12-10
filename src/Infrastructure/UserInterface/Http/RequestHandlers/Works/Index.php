@@ -12,15 +12,9 @@ use Zend\Diactoros\Response;
 
 final class Index
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
-    /**
-     * @var WorksRepository
-     */
-    private $repository;
+    private WorksRepository $repository;
 
     public function __construct(Engine $templates, WorksRepository $repository)
     {

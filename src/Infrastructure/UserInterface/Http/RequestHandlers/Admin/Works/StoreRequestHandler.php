@@ -17,15 +17,9 @@ use Zend\Diactoros\Response\RedirectResponse;
 
 final class StoreRequestHandler
 {
-    /**
-     * @var Segment
-     */
-    private $session;
+    private Segment $session;
 
-    /**
-     * @var CommandBus
-     */
-    private $commandBus;
+    private CommandBus $commandBus;
 
     public function __construct(Segment $session, CommandBus $commandBus)
     {

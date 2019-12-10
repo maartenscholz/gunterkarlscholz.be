@@ -12,17 +12,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Diactoros\UploadedFile;
 
-class StoreRequestHandler
+final class StoreRequestHandler
 {
-    /**
-     * @var CommandBus
-     */
-    private $commandBus;
+    private CommandBus $commandBus;
 
-    /**
-     * @var FilesystemInterface
-     */
-    private $filesystem;
+    private FilesystemInterface $filesystem;
 
     public function __construct(CommandBus $commandBus, FilesystemInterface $filesystem)
     {
@@ -38,7 +32,7 @@ class StoreRequestHandler
         /** @var UploadedFile $image */
         $image = $request->getUploadedFiles()['image'];
 
-        $filename = $imageId.'_'.str_replace(' ', '_',$image->getClientFilename());
+        $filename = $imageId.'_'.str_replace(' ', '_', $image->getClientFilename());
         $this->filesystem->writeStream("images/source/$filename", $image->getStream()->detach());
 
         $this->commandBus->handle(new AddImage($workId, $imageId, $filename, $image->getClientFilename()));

@@ -16,17 +16,11 @@ use Sirius\Validation\Rule\Required;
 use Sirius\Validation\Validator;
 use Zend\Diactoros\Response\RedirectResponse;
 
-class UpdateRequestHandler
+final class UpdateRequestHandler
 {
-    /**
-     * @var Segment
-     */
-    private $session;
+    private Segment $session;
 
-    /**
-     * @var CommandBus
-     */
-    private $commandBus;
+    private CommandBus $commandBus;
 
     public function __construct(Segment $session, CommandBus $commandBus)
     {

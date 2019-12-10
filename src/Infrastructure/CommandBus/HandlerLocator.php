@@ -6,18 +6,10 @@ use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator as HandlerLocatorContract;
 use Psr\Container\ContainerInterface;
 
-class HandlerLocator implements HandlerLocatorContract
+final class HandlerLocator implements HandlerLocatorContract
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    private ContainerInterface $container;
 
-    /**
-     * HandlerLocator constructor.
-     *
-     * @param ContainerInterface $container
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;

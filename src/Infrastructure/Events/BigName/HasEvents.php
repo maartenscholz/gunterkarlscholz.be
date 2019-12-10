@@ -6,7 +6,7 @@ use BigName\EventDispatcher\Event;
 
 trait HasEvents
 {
-    private $events = [];
+    private array $events = [];
 
     protected function recordEvent(Event $event): void
     {

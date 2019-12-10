@@ -7,12 +7,9 @@ use Sentry\Client;
 use Sentry\State\Scope;
 use Throwable;
 
-class SentryHandler extends AbstractProcessingHandler
+final class SentryHandler extends AbstractProcessingHandler
 {
-    /**
-     * @var Client
-     */
-    private $sentryClient;
+    private Client $sentryClient;
 
     public function __construct(Client $sentryClient)
     {

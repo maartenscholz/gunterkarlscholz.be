@@ -9,17 +9,11 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 
-class AuthorizationMiddleware implements MiddlewareInterface
+final class AuthorizationMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Segment
-     */
-    private $session;
+    private Segment $session;
 
-    /**
-     * @var string
-     */
-    private $redirectUri;
+    private string $redirectUri;
 
     public function __construct(Segment $session, $redirectUri)
     {

@@ -11,10 +11,7 @@ use Zend\Diactoros\Response;
 
 final class AboutRequestHandler
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
     public function __construct(Engine $templates)
     {

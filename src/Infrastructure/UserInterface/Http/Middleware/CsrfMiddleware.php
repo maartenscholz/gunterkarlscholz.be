@@ -11,17 +11,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class CsrfMiddleware implements MiddlewareInterface
+final class CsrfMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Session
-     */
-    private $session;
+    private Session $session;
 
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
     public function __construct(Session $session, Engine $templates)
     {

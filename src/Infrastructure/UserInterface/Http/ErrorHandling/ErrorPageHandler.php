@@ -7,10 +7,7 @@ use Whoops\Handler\Handler;
 
 final class ErrorPageHandler extends Handler
 {
-    /**
-     * @var Engine
-     */
-    private $templates;
+    private Engine $templates;
 
     public function __construct(Engine $templates)
     {
