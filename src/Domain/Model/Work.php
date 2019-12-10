@@ -24,89 +24,65 @@ class Work
     use HasEvents;
 
     /**
-     * @var string
-     *
      * @Id
      * @Column
      */
-    private $id;
+    private string $id;
 
     /**
-     * @var string
-     *
      * @Column
      */
-    private $type;
+    private string $type;
 
     /**
-     * @var string
-     *
      * @Column(name="title_nl_be")
      */
-    private $titleNl;
+    private string $titleNl;
 
     /**
-     * @var string
-     *
      * @Column(name="title_en_us")
      */
-    private $titleEn;
+    private string $titleEn;
 
     /**
-     * @var string
-     *
      * @Column(name="title_de_de")
      */
-    private $titleDe;
+    private string $titleDe;
 
     /**
-     * @var string
-     *
      * @Column(name="title_fr_fr")
      */
-    private $titleFr;
+    private string $titleFr;
 
     /**
-     * @var string
-     *
      * @Column(name="description_nl_be")
      */
-    private $descriptionNl;
+    private string $descriptionNl;
 
     /**
-     * @var string
-     *
      * @Column(name="description_en_us")
      */
-    private $descriptionEn;
+    private string $descriptionEn;
 
     /**
-     * @var string
-     *
      * @Column(name="description_de_de")
      */
-    private $descriptionDe;
+    private string $descriptionDe;
 
     /**
-     * @var string
-     *
      * @Column(name="description_fr_fr")
      */
-    private $descriptionFr;
+    private string $descriptionFr;
 
     /**
-     * @var int
-     *
      * @Column(type="integer")
      */
-    private $width;
+    private ?int $width;
 
     /**
-     * @var int
-     *
      * @Column(type="integer")
      */
-    private $height;
+    private ?int $height;
 
     /**
      * @var Image[]|Collection
@@ -119,7 +95,7 @@ class Work
      *     indexBy="id"
      * )
      */
-    private $images;
+    private Collection $images;
 
     public function __construct(
         WorkId $id,

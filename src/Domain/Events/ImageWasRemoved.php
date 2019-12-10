@@ -7,15 +7,9 @@ use Gks\Domain\Model\Works\Images\ImageId;
 
 final class ImageWasRemoved implements Event
 {
-    /**
-     * @var ImageId
-     */
-    private $imageId;
+    private ImageId $imageId;
 
-    /**
-     * @var string
-     */
-    private $fileName;
+    private string $fileName;
 
     public function __construct(ImageId $imageId, string $fileName)
     {
@@ -23,7 +17,7 @@ final class ImageWasRemoved implements Event
         $this->fileName = $fileName;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return self::class;
     }

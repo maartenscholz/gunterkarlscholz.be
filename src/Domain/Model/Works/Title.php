@@ -7,16 +7,8 @@ use InvalidArgumentException;
 
 final class Title
 {
-    /**
-     * @var array|string[]
-     */
-    private $values;
+    private array $values;
 
-    /**
-     * Title constructor.
-     *
-     * @param array $values
-     */
     public function __construct(array $values)
     {
         $processedLanguages = [];
@@ -36,20 +28,12 @@ final class Title
         $this->values = $processedLanguages;
     }
 
-    /**
-     * @return array
-     */
-    public function getValues()
+    public function getValues(): array
     {
         return $this->values;
     }
 
-    /**
-     * @param string $language
-     *
-     * @return string
-     */
-    public function getValue($language)
+    public function getValue(string $language): string
     {
         if (!in_array($language, Languages::getAll())) {
             throw new InvalidArgumentException("Language $language not supported");

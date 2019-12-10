@@ -16,16 +16,8 @@ final class Type
         self::SCULPTURE,
     ];
 
-    /**
-     * @var string
-     */
-    private $value;
+    private string $value;
 
-    /**
-     * Type constructor.
-     *
-     * @param string $value
-     */
     public function __construct(string $value)
     {
         if (!in_array($value, static::TYPES)) {
@@ -35,33 +27,21 @@ final class Type
         $this->value = $value;
     }
 
-    /**
-     * @return string
-     */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * @return static
-     */
     public static function painting()
     {
         return new static(static::PAINTING);
     }
 
-    /**
-     * @return static
-     */
     public static function drawing()
     {
         return new static(static::DRAWING);
     }
 
-    /**
-     * @return static
-     */
     public static function sculpture()
     {
         return new static(static::SCULPTURE);

@@ -2,7 +2,7 @@
 
 namespace Gks\Domain\ValueObjects;
 
-class Languages
+final class Languages
 {
     public static function getAll()
     {

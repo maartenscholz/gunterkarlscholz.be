@@ -7,10 +7,7 @@ use InvalidArgumentException;
 
 final class Description
 {
-    /**
-     * @var string[]
-     */
-    private $values;
+    private array $values;
 
     public function __construct(array $values)
     {

@@ -4,16 +4,10 @@ namespace Gks\Domain\ValueObjects;
 
 use InvalidArgumentException;
 
-class NonZeroUnsignedInteger
+final class NonZeroUnsignedInteger
 {
-    /**
-     * @var int
-     */
-    private $value;
+    private int $value;
 
-    /**
-     * @param int $value
-     */
     public function __construct(int $value)
     {
         if ($value <= 0) {
@@ -23,17 +17,11 @@ class NonZeroUnsignedInteger
         $this->value = $value;
     }
 
-    /**
-     * @return int
-     */
     public function getValue(): int
     {
         return $this->value;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string) $this->value;
