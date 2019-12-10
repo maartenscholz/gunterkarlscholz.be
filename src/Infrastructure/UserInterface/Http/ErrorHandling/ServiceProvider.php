@@ -27,7 +27,7 @@ final class ServiceProvider extends AbstractServiceProvider
             function () {
                 $whoops = new Run();
 
-                $whoops->appendHandler(new ErrorPageHandler($this->container->get(Engine::class)));
+                $whoops->appendHandler(new LoggingHandler($this->container->get(LoggerInterface::class)));
 
                 if (getenv('APP_ENV') !== 'production') {
                     $handler = new PrettyPageHandler();
@@ -37,7 +37,7 @@ final class ServiceProvider extends AbstractServiceProvider
                     $whoops->appendHandler($handler);
                 }
 
-                $whoops->appendHandler(new LoggingHandler($this->container->get(LoggerInterface::class)));
+                $whoops->appendHandler(new ErrorPageHandler($this->container->get(Engine::class)));
 
                 return $whoops;
             }
