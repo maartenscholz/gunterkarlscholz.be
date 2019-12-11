@@ -11,7 +11,7 @@
         <?= $work->getTitle()->getValue('nl_BE') ?> /
         <?= $work->getTitle()->getValue('fr_FR') ?> /
         <?= $work->getTitle()->getValue('de_DE') ?>
-    </h2>
+    </div>
     <div class="work-detail__image">
         <img src="/image<?= $imageUrlBuilder->getUrl($work->getImages()[0]->getFilename()) ?>" alt="">
     </div>
