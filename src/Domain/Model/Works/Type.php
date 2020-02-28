@@ -6,11 +6,11 @@ use InvalidArgumentException;
 
 final class Type
 {
-    CONST PAINTING = 'painting';
-    CONST DRAWING = 'drawing';
-    CONST SCULPTURE = 'sculpture';
+    private const PAINTING = 'painting';
+    private const DRAWING = 'drawing';
+    private const SCULPTURE = 'sculpture';
 
-    CONST TYPES = [
+    private const TYPES = [
         self::PAINTING,
         self::DRAWING,
         self::SCULPTURE,
