@@ -3,9 +3,9 @@
 namespace Gks\Infrastructure\Events;
 
 use BigName\EventDispatcher\Dispatcher;
-use Gks\Application\Listeners\RemoveImageFiles;
 use Gks\Domain\Events\ImageWasRemoved;
 use Gks\Infrastructure\Events\BigName\PsrContainerAdapter;
+use Gks\Infrastructure\Filesystem\EventListeners\RemoveImageFiles;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 

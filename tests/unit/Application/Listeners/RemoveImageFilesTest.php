@@ -3,9 +3,9 @@
 namespace Gks\Tests\Unit\Application\Listeners;
 
 use BigName\EventDispatcher\Event;
-use Gks\Application\Listeners\RemoveImageFiles;
 use Gks\Domain\Events\ImageWasRemoved;
 use Gks\Domain\Model\Works\Images\ImageId;
+use Gks\Infrastructure\Filesystem\EventListeners\RemoveImageFiles;
 use League\Flysystem\FilesystemInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

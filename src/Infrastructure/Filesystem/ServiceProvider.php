@@ -2,18 +2,20 @@
 
 namespace Gks\Infrastructure\Filesystem;
 
+use Gks\Infrastructure\Filesystem\EventListeners\RemoveImageFiles;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemInterface;
 
-class ServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array
      */
     protected $provides = [
         FilesystemInterface::class,
+        RemoveImageFiles::class,
     ];
 
     /**
@@ -26,5 +28,12 @@ class ServiceProvider extends AbstractServiceProvider
 
             return new Filesystem($adapter);
         });
+
+        $this->container->share(
+            RemoveImageFiles::class,
+            function () {
+                return new RemoveImageFiles($this->container->get(FilesystemInterface::class));
+            }
+        );
     }
 }

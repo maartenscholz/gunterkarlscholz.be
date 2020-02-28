@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Application\Listeners;
+namespace Gks\Infrastructure\Filesystem\EventListeners;
 
 use BigName\EventDispatcher\Event;
 use BigName\EventDispatcher\Listener;

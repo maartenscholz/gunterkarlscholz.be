@@ -43,5 +43,4 @@ $container->addServiceProvider(HTTPUserInterfaceServiceProvider::class);
 $container->addServiceProvider(RedisServiceProvider::class);
 $container->addServiceProvider(MySQLServiceProvider::class);
 $container->addServiceProvider(HttpServiceProvider::class);
-$container->addServiceProvider(Application\Listeners\ServiceProvider::class);
 $container->addServiceProvider(Infrastructure\Events\ServiceProvider::class);
