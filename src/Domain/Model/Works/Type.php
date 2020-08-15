@@ -32,6 +32,18 @@ final class Type
         return $this->value;
     }
 
+    /**
+     * @return Type[]
+     */
+    public static function all(): array
+    {
+        return [
+            self::painting(),
+            self::drawing(),
+            self::sculpture(),
+        ];
+    }
+
     public static function painting()
     {
         return new static(static::PAINTING);

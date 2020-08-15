@@ -48,7 +48,7 @@ final class StoreRequestHandler
         $validator = new Validator();
 
         $validator->add('type', Required::class);
-        $validator->add('type', InList::class, [InList::OPTION_LIST => Type::TYPES]);
+        $validator->add('type', InList::class, [InList::OPTION_LIST => array_map(static function (Type $type) { return $type->getValue(); }, Type::all())]);
         $validator->add('title[nl_BE]', Required::class);
         $validator->add('title[en_US]', Required::class);
         $validator->add('title[fr_FR]', Required::class);

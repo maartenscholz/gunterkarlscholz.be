@@ -6,8 +6,8 @@
     <div class="col s12">
         <div class="input-field <?= array_key_exists('type', $errors) ? 'invalid' : '' ?>">
             <select name="type" id="type">
-                <?php foreach (\Gks\Domain\Model\Works\Type::TYPES as $type): ?>
-                    <option value="<?= $type ?>" <?= array_key_exists('type', $input) && $input['type'] === $type ? 'selected' : (isset($work) && $type === $work->getType()->getValue() ? 'selected' : '') ?>><?= $type ?></option>
+                <?php foreach (\Gks\Domain\Model\Works\Type::all() as $type): ?>
+                    <option value="<?= $type->getValue() ?>" <?= array_key_exists('type', $input) && $input['type'] === $type->getValue() ? 'selected' : (isset($work) && $type->getValue() === $work->getType()->getValue() ? 'selected' : '') ?>><?= $type->getValue() ?></option>
                 <?php endforeach; ?>
             </select>
             <?php if (array_key_exists('type', $errors)): ?>
