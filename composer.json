@@ -23,6 +23,7 @@
         "php-http/curl-client": "^2.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.4",
+        "robmorgan/phinx": "^0.12.3",
         "sentry/sentry": "^2.0",
         "shrikeh/teapot": "^2.1",
         "siriusphp/validation": "^2.1",
