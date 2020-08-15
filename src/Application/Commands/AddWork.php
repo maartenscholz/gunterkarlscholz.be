@@ -20,7 +20,7 @@ final class AddWork
 
     private Description $description;
 
-    private Dimensions $dimension;
+    private ?Dimensions $dimension;
 
     public function __construct(
         WorkId $workId,
