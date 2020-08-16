@@ -137,7 +137,10 @@ class ServiceProvider extends AbstractServiceProvider
         });
 
         $this->container->share(RequestHandlers\Admin\Works\AddRequestHandler::class, function () {
-            return new RequestHandlers\Admin\Works\AddRequestHandler($this->container->get(Engine::class));
+            return new RequestHandlers\Admin\Works\AddRequestHandler(
+                $this->container->get(Engine::class),
+                $this->container->get(Session::class)->getSegment('validation'),
+            );
         });
 
         $this->container->share(RequestHandlers\Admin\Works\StoreRequestHandler::class, function () {
@@ -150,7 +153,8 @@ class ServiceProvider extends AbstractServiceProvider
         $this->container->share(RequestHandlers\Admin\Works\EditRequestHandler::class, function () {
             return new RequestHandlers\Admin\Works\EditRequestHandler(
                 $this->container->get(Engine::class),
-                $this->container->get(WorksRepository::class)
+                $this->container->get(WorksRepository::class),
+                $this->container->get(Session::class)->getSegment('validation'),
             );
         });
 
