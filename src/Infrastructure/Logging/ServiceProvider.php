@@ -8,14 +8,16 @@ use DebugBar\DataCollector\PhpInfoCollector;
 use DebugBar\DataCollector\TimeDataCollector;
 use DebugBar\DebugBar;
 use Doctrine\ORM\EntityManagerInterface;
-use Gks\Infrastructure\Logging\Monolog\SentryHandler;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
-use Sentry\Client;
 use Sentry\ClientBuilder;
+use Sentry\Monolog\Handler;
+use Sentry\SentrySdk;
+use Sentry\State\Hub;
+use Sentry\State\HubInterface;
 
 class ServiceProvider extends AbstractServiceProvider
 {
@@ -26,7 +28,7 @@ class ServiceProvider extends AbstractServiceProvider
 
     protected $provides = [
         LoggerInterface::class,
-        Client::class,
+        HubInterface::class,
         DebugBar::class,
     ];
 
@@ -40,7 +42,7 @@ class ServiceProvider extends AbstractServiceProvider
                 $log->pushHandler(new RotatingFileHandler(realpath(__DIR__.'/../../../storage/logs').'/error.log', 5));
 
                 if (getenv('APP_ENV') === 'production') {
-                    $log->pushHandler(new SentryHandler($this->container->get(Client::class)));
+                    $log->pushHandler(new Handler($this->container->get(HubInterface::class)));
                 }
 
                 return $log;
@@ -48,13 +50,20 @@ class ServiceProvider extends AbstractServiceProvider
         );
 
         $this->container->share(
-            Client::class,
-            function () {
-                return ClientBuilder::create(
+            HubInterface::class,
+            static function () {
+                $client = ClientBuilder::create(
                     [
+                        'dsn' => getenv('SENTRY_DSN'),
                         'environment' => getenv('APP_ENV'),
                     ]
                 )->getClient();
+
+                $hub = new Hub($client);
+
+                SentrySdk::setCurrentHub($hub);
+
+                return $hub;
             }
         );
 
