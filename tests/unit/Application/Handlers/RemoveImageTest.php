@@ -80,7 +80,7 @@ final class RemoveImageTest extends TestCase
 
         $this->eventDispatcher->expects($this->once())
             ->method('dispatch')
-            ->with($this->contains(new ImageWasRemoved($imageId, $imageFileName), false));
+            ->with([new ImageWasRemoved($imageId, $imageFileName)]);
 
         $this->handler->handle(new RemoveImageCommand($workId, $imageId));
     }

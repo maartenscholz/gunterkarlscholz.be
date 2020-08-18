@@ -45,6 +45,6 @@
         "kriswallsmith/assetic": "^1.4",
         "maximebf/debugbar": "^1.15",
         "phpstan/phpstan": "^0.12.37",
-        "phpunit/phpunit": "^8.1"
+        "phpunit/phpunit": "^9.3"
     }
 }

@@ -84,10 +84,10 @@ final class RemoveWorkTest extends TestCase
         $this->eventDispatcher->expects($this->once())
             ->method('dispatch')
             ->with(
-                $this->logicalAnd(
-                    $this->contains(new ImageWasRemoved($imageId1, $imageFileName1), false),
-                    $this->contains(new ImageWasRemoved($imageId2, $imageFileName2), false)
-                )
+                [
+                    new ImageWasRemoved($imageId1, $imageFileName1),
+                    new ImageWasRemoved($imageId2, $imageFileName2),
+                ]
             );
 
         $this->handler->handle(new RemoveWorkCommand($workId));
