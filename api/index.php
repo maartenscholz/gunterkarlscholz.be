@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Gks\Infrastructure\Api\Http\RoutingServiceProvider;
 use Gks\Infrastructure\Http\ApplicationRequestHandler;
-use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
-use Zend\HttpHandlerRunner\RequestHandlerRunner;
+use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
+use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 
 require_once __DIR__.'/../bootstrap.php';
 

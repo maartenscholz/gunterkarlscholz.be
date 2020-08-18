@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 use Gks\Infrastructure\Http\ApplicationRequestHandler;
 use Gks\Infrastructure\UserInterface\Http\RoutingServiceProvider;
+use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
+use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 use Predis\Session\Handler;
 use Whoops\Run;
-use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
-use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 require_once __DIR__.'/../bootstrap.php';
 

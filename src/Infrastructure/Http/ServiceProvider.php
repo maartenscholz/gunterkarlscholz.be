@@ -3,14 +3,14 @@
 namespace Gks\Infrastructure\Http;
 
 use Closure;
+use Laminas\Diactoros\Response;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\HttpHandlerRunner\Emitter\EmitterInterface;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 final class ServiceProvider extends AbstractServiceProvider
 {
