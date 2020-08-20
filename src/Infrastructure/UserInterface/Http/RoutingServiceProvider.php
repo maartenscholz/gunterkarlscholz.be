@@ -2,7 +2,6 @@
 
 namespace Gks\Infrastructure\UserInterface\Http;
 
-use DebugBar\DebugBar;
 use Gks\Infrastructure\UserInterface\Http\Middleware;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 use League\Container\Container;
@@ -77,36 +76,6 @@ final class RoutingServiceProvider extends AbstractServiceProvider
                         );
                     }
                 )->middleware($this->container->get(Middleware\AuthorizationMiddleware::class));
-
-                if (getenv('APP_ENV') === 'dev') {
-                    $router->get(
-                        '/debugbar/css',
-                        function () {
-                            $response = new Response();
-
-                            $debugBar = $this->container->get(DebugBar::class);
-
-                            $response->getBody()->write(
-                                $debugBar->getJavascriptRenderer()->getAsseticCollection('css')->dump()
-                            );
-
-                            return $response->withHeader('Content-Type', 'text/css');
-                        }
-                    );
-                    $router->get(
-                        '/debugbar/js',
-                        function () {
-                            $response = new Response();
-                            $debugBar = $this->container->get(DebugBar::class);
-
-                            $javascriptRenderer = $debugBar->getJavascriptRenderer();
-
-                            $response->getBody()->write($javascriptRenderer->getAsseticCollection('js')->dump());
-
-                            return $response->withHeader('Content-Type', 'text/javascript');
-                        }
-                    );
-                }
 
                 return $router;
             }

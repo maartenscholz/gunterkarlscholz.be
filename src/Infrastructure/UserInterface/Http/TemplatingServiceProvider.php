@@ -4,7 +4,6 @@ namespace Gks\Infrastructure\UserInterface\Http;
 
 use Aura\Session\Segment;
 use Aura\Session\Session;
-use DebugBar\DebugBar;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Glide\Urls\UrlBuilder;
@@ -39,10 +38,6 @@ class TemplatingServiceProvider extends AbstractServiceProvider
                 $engine->addData(['errors' => $validationSession->getFlash('errors', [])]);
                 $engine->addData(['input' => $validationSession->getFlash('input', [])]);
                 $engine->addData(['imageUrlBuilder' => $this->container->get(UrlBuilder::class)]);
-
-                if (getenv('APP_ENV') === 'dev') {
-                    $engine->addData(['debugBar' => $this->container->get(DebugBar::class)->getJavascriptRenderer()]);
-                }
 
                 return $engine;
             }

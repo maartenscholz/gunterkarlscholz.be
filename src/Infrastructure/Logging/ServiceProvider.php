@@ -2,12 +2,6 @@
 
 namespace Gks\Infrastructure\Logging;
 
-use DebugBar\Bridge\DoctrineCollector;
-use DebugBar\DataCollector\MemoryCollector;
-use DebugBar\DataCollector\PhpInfoCollector;
-use DebugBar\DataCollector\TimeDataCollector;
-use DebugBar\DebugBar;
-use Doctrine\ORM\EntityManagerInterface;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\RotatingFileHandler;
@@ -29,7 +23,6 @@ class ServiceProvider extends AbstractServiceProvider
     protected $provides = [
         LoggerInterface::class,
         HubInterface::class,
-        DebugBar::class,
     ];
 
     public function register(): void
@@ -64,20 +57,6 @@ class ServiceProvider extends AbstractServiceProvider
                 SentrySdk::setCurrentHub($hub);
 
                 return $hub;
-            }
-        );
-
-        $this->container->share(
-            DebugBar::class,
-            function () {
-                $debugBar = new DebugBar();
-
-                $debugBar->addCollector(new PhpInfoCollector());
-                $debugBar->addCollector(new MemoryCollector());
-                $debugBar->addCollector(new TimeDataCollector());
-                $debugBar->addCollector(new DoctrineCollector($this->container->get(EntityManagerInterface::class)));
-
-                return $debugBar;
             }
         );
     }
