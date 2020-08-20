@@ -14,12 +14,12 @@ abstract class UuidIdentifier
         $this->value = $value;
     }
 
-    public static function generate()
+    public static function generate(): self
     {
         return new static(Uuid::uuid4());
     }
 
-    public static function fromString(string $string)
+    public static function fromString(string $string): self
     {
         return new static(Uuid::fromString($string));
     }
