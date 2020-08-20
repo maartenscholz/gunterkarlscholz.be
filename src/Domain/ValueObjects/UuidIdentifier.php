@@ -9,7 +9,7 @@ abstract class UuidIdentifier
 {
     private UuidInterface $value;
 
-    protected function __construct(UuidInterface $value)
+    final protected function __construct(UuidInterface $value)
     {
         $this->value = $value;
     }
