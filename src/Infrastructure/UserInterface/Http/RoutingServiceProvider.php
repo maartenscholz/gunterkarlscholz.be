@@ -4,7 +4,6 @@ namespace Gks\Infrastructure\UserInterface\Http;
 
 use Gks\Infrastructure\UserInterface\Http\Middleware;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
-use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteGroup;
 use League\Route\Router;
@@ -12,18 +11,13 @@ use League\Route\Strategy\ApplicationStrategy;
 
 final class RoutingServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         Router::class,
     ];
 
     public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             Router::class,
             function () {
                 $strategy = new ApplicationStrategy();

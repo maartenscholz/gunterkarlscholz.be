@@ -11,23 +11,21 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 
 final class ServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         Dispatcher::class,
     ];
 
     public function register(): void
     {
-        $this->container->share(Dispatcher::class, function () {
-            $dispatcher = new Dispatcher(new PsrContainerAdapter($this->container));
+        $this->leagueContainer->share(
+            Dispatcher::class,
+            function () {
+                $dispatcher = new Dispatcher(new PsrContainerAdapter($this->container));
 
-            $dispatcher->addLazyListener(ImageWasRemoved::class, RemoveImageFiles::class);
+                $dispatcher->addLazyListener(ImageWasRemoved::class, RemoveImageFiles::class);
 
-            return $dispatcher;
-        });
+                return $dispatcher;
+            }
+        );
     }
 }

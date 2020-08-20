@@ -8,7 +8,7 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
 
-class RoutingServiceProvider extends AbstractServiceProvider
+final class RoutingServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array
@@ -17,14 +17,11 @@ class RoutingServiceProvider extends AbstractServiceProvider
         Router::class,
     ];
 
-    /**
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             Router::class,
-            function () {
+            static function () {
                 $router = new Router();
 
                 $router->setStrategy(new JsonStrategy(new ResponseFactory()));

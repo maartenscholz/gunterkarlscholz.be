@@ -23,11 +23,14 @@ final class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->container->share(FilesystemInterface::class, function () {
-            $adapter = new Local(__DIR__.'/../../../storage');
+        $this->container->share(
+            FilesystemInterface::class,
+            static function () {
+                $adapter = new Local(__DIR__.'/../../../storage');
 
-            return new Filesystem($adapter);
-        });
+                return new Filesystem($adapter);
+            }
+        );
 
         $this->container->share(
             RemoveImageFiles::class,

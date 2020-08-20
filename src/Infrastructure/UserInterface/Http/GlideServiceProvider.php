@@ -3,7 +3,6 @@
 namespace Gks\Infrastructure\UserInterface\Http;
 
 use Laminas\Diactoros\Stream;
-use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Glide\Responses\PsrResponseFactory;
 use League\Glide\Server;
@@ -14,13 +13,8 @@ use League\Glide\Urls\UrlBuilder;
 use League\Glide\Urls\UrlBuilderFactory;
 use Psr\Http\Message\ResponseInterface;
 
-class GlideServiceProvider extends AbstractServiceProvider
+final class GlideServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         Server::class,
         Signature::class,
@@ -29,7 +23,7 @@ class GlideServiceProvider extends AbstractServiceProvider
 
     public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             Server::class,
             function () {
                 return ServerFactory::create(
@@ -49,16 +43,16 @@ class GlideServiceProvider extends AbstractServiceProvider
             }
         );
 
-        $this->container->share(
+        $this->leagueContainer->share(
             Signature::class,
-            function () {
+            static function () {
                 return SignatureFactory::create(getenv('GLIDE_SIGNATURE_KEY'));
             }
         );
 
-        $this->container->share(
+        $this->leagueContainer->share(
             UrlBuilder::class,
-            function () {
+            static function () {
                 return UrlBuilderFactory::create('', getenv('GLIDE_SIGNATURE_KEY'));
             }
         );

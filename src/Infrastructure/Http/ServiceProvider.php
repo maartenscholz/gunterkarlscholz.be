@@ -26,16 +26,13 @@ final class ServiceProvider extends AbstractServiceProvider
         'ServerRequestErrorResponseGenerator',
     ];
 
-    /**
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        $this->container->share(EmitterInterface::class, SapiEmitter::class);
+        $this->leagueContainer->share(EmitterInterface::class, SapiEmitter::class);
 
-        $this->container->share(
+        $this->leagueContainer->share(
             ServerRequestInterface::class,
-            function () {
+            static function () {
                 $request = ServerRequestFactory::fromGlobals();
                 $path = $request->getUri()->getPath();
                 $parsedBody = $request->getParsedBody();
@@ -48,16 +45,16 @@ final class ServiceProvider extends AbstractServiceProvider
             }
         );
 
-        $this->container->share(ResponseInterface::class, Response::class);
+        $this->leagueContainer->share(ResponseInterface::class, Response::class);
 
-        $this->container->share(
+        $this->leagueContainer->share(
             ApplicationRequestHandler::class,
             function () {
                 return new ApplicationRequestHandler($this->container->get(Router::class));
             }
         );
 
-        $this->container->share(
+        $this->leagueContainer->share(
             'ServerRequestFactory',
             function () {
                 return Closure::fromCallable(
@@ -68,7 +65,7 @@ final class ServiceProvider extends AbstractServiceProvider
             }
         );
 
-        $this->container->share(
+        $this->leagueContainer->share(
             'ServerRequestErrorResponseGenerator',
             function () {
                 return Closure::fromCallable(

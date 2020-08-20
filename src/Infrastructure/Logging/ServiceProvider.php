@@ -2,7 +2,6 @@
 
 namespace Gks\Infrastructure\Logging;
 
-use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
@@ -13,13 +12,8 @@ use Sentry\SentrySdk;
 use Sentry\State\Hub;
 use Sentry\State\HubInterface;
 
-class ServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         LoggerInterface::class,
         HubInterface::class,
@@ -27,7 +21,7 @@ class ServiceProvider extends AbstractServiceProvider
 
     public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             LoggerInterface::class,
             function () {
                 $log = new Logger('main');
@@ -42,7 +36,7 @@ class ServiceProvider extends AbstractServiceProvider
             }
         );
 
-        $this->container->share(
+        $this->leagueContainer->share(
             HubInterface::class,
             static function () {
                 $client = ClientBuilder::create(

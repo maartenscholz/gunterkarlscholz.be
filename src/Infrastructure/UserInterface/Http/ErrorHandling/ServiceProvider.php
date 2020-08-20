@@ -2,7 +2,6 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\ErrorHandling;
 
-use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Plates\Engine;
 use Psr\Log\LoggerInterface;
@@ -11,18 +10,13 @@ use Whoops\Run;
 
 final class ServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         Run::class,
     ];
 
     public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             Run::class,
             function () {
                 $whoops = new Run();

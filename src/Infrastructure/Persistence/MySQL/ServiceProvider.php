@@ -8,24 +8,18 @@ use Doctrine\DBAL\Logging\DebugStack;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Predis\ClientInterface;
 
-class ServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         EntityManagerInterface::class,
     ];
 
     public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             EntityManagerInterface::class,
             function () {
                 $config = new Configuration();

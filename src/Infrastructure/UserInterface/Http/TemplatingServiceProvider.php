@@ -4,25 +4,19 @@ namespace Gks\Infrastructure\UserInterface\Http;
 
 use Aura\Session\Segment;
 use Aura\Session\Session;
-use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Glide\Urls\UrlBuilder;
 use League\Plates\Engine;
 
-class TemplatingServiceProvider extends AbstractServiceProvider
+final class TemplatingServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var Container
-     */
-    protected $container;
-
     protected $provides = [
         Engine::class,
     ];
 
     public function register(): void
     {
-        $this->container->share(
+        $this->leagueContainer->share(
             Engine::class,
             function () {
                 /** @var Segment $authenticationSession */

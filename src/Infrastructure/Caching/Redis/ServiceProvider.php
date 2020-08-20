@@ -7,7 +7,7 @@ use Predis\Client;
 use Predis\ClientInterface;
 use Predis\Session\Handler;
 
-class ServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array
@@ -20,25 +20,37 @@ class ServiceProvider extends AbstractServiceProvider
     /**
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->container->share(ClientInterface::class, function () {
-            return new Client([
-                'host' => getenv('REDIS_HOST'),
-            ]);
-        });
+        $this->leagueContainer->share(
+            ClientInterface::class,
+            static function () {
+                return new Client(
+                    [
+                        'host' => getenv('REDIS_HOST'),
+                    ]
+                );
+            }
+        );
 
-        $this->container->share(Handler::class, function () {
-            $client = new Client([
-                'host' => getenv('REDIS_HOST'),
-                'database' => 1,
-            ], [
-                'prefix' => 'session:',
-            ]);
+        $this->leagueContainer->share(
+            Handler::class,
+            static function () {
+                $client = new Client(
+                    [
+                        'host' => getenv('REDIS_HOST'),
+                        'database' => 1,
+                    ], [
+                        'prefix' => 'session:',
+                    ]
+                );
 
-            return new Handler($client, [
-                'gc_maxlifetime' => 604800, // one week
-            ]);
-        });
+                return new Handler(
+                    $client, [
+                        'gc_maxlifetime' => 604800, // one week
+                    ]
+                );
+            }
+        );
     }
 }
