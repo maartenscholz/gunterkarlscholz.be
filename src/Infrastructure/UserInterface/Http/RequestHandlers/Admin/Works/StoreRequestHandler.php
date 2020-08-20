@@ -6,6 +6,7 @@ use Aura\Session\Segment;
 use Gks\Application\Commands\AddWork;
 use Gks\Domain\Model\Works\Type;
 use Gks\Infrastructure\UserInterface\Http\Validation\MatchNotEmpty;
+use Laminas\Diactoros\Response\RedirectResponse;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,7 +14,6 @@ use Sirius\Validation\Rule\GreaterThan;
 use Sirius\Validation\Rule\InList;
 use Sirius\Validation\Rule\Required;
 use Sirius\Validation\Validator;
-use Zend\Diactoros\Response\RedirectResponse;
 
 final class StoreRequestHandler
 {

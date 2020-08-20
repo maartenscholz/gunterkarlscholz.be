@@ -4,10 +4,10 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use Gks\Application\Commands\RemoveWork;
 use Gks\Domain\Model\Works\WorkId;
+use Laminas\Diactoros\Response\RedirectResponse;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\RedirectResponse;
 
 final class DestroyRequestHandler
 {

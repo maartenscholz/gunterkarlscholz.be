@@ -9,7 +9,6 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\RouteGroup;
 use League\Route\Router;
 use League\Route\Strategy\ApplicationStrategy;
-use Zend\Diactoros\Response;
 
 final class RoutingServiceProvider extends AbstractServiceProvider
 {

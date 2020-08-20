@@ -5,12 +5,12 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works\Imag
 use Gks\Application\Commands\AddImage;
 use Gks\Domain\Model\Works\Images\ImageId;
 use Gks\Domain\Model\Works\WorkId;
+use Laminas\Diactoros\Response\RedirectResponse;
+use Laminas\Diactoros\UploadedFile;
 use League\Flysystem\FilesystemInterface;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Diactoros\UploadedFile;
 
 final class StoreRequestHandler
 {

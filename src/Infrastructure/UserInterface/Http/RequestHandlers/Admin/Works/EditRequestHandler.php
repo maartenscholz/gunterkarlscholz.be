@@ -7,10 +7,10 @@ use Gks\Domain\Model\Work;
 use Gks\Domain\Model\Works\Type;
 use Gks\Domain\Model\Works\WorkId;
 use Gks\Domain\Model\Works\WorksRepository;
+use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 final class EditRequestHandler
 {

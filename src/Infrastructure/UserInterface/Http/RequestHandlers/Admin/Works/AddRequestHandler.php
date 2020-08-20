@@ -4,10 +4,10 @@ namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
 use Aura\Session\Segment;
 use Gks\Domain\Model\Works\Type;
+use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 final class AddRequestHandler
 {

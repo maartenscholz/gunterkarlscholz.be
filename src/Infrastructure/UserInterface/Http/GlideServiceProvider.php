@@ -2,6 +2,7 @@
 
 namespace Gks\Infrastructure\UserInterface\Http;
 
+use Laminas\Diactoros\Stream;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Glide\Responses\PsrResponseFactory;
@@ -12,7 +13,6 @@ use League\Glide\Signatures\SignatureFactory;
 use League\Glide\Urls\UrlBuilder;
 use League\Glide\Urls\UrlBuilderFactory;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Stream;
 
 class GlideServiceProvider extends AbstractServiceProvider
 {

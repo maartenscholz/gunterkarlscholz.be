@@ -4,12 +4,12 @@ namespace Gks\Tests\Unit\Application\Middleware;
 
 use Aura\Session\Segment;
 use Gks\Infrastructure\UserInterface\Http\Middleware\AuthorizationMiddleware;
+use Laminas\Diactoros\Response\RedirectResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Response\RedirectResponse;
 
 class AuthorizationMiddlewareTest extends TestCase
 {

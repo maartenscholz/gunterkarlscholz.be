@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Works;
 
 use Gks\Domain\Model\Works\WorksRepository;
+use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 final class Index
 {

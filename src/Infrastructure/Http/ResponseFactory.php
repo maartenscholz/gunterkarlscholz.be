@@ -2,9 +2,9 @@
 
 namespace Gks\Infrastructure\Http;
 
+use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Response;
 
 final class ResponseFactory implements ResponseFactoryInterface
 {

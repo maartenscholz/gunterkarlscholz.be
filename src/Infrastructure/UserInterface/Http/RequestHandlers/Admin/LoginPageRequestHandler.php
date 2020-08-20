@@ -3,10 +3,10 @@
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin;
 
 use Aura\Session\Segment;
+use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 final class LoginPageRequestHandler
 {

@@ -3,8 +3,8 @@
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin;
 
 use Aura\Session\Segment;
+use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Response\RedirectResponse;
 
 final class LogoutRequestHandler
 {

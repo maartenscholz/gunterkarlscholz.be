@@ -2,13 +2,13 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 
+use Laminas\Diactoros\Response;
 use League\Glide\Server;
 use League\Glide\Signatures\Signature;
 use League\Glide\Signatures\SignatureException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Teapot\StatusCode;
-use Zend\Diactoros\Response;
 
 final class ServeImageRequestHandler
 {

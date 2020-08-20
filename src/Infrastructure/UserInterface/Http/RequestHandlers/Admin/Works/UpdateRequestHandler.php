@@ -7,6 +7,7 @@ use Gks\Application\Commands\UpdateWork;
 use Gks\Domain\Model\Works\Type;
 use Gks\Domain\Model\Works\WorkId;
 use Gks\Infrastructure\UserInterface\Http\Validation\MatchNotEmpty;
+use Laminas\Diactoros\Response\RedirectResponse;
 use League\Tactician\CommandBus;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,7 +15,6 @@ use Sirius\Validation\Rule\GreaterThan;
 use Sirius\Validation\Rule\InList;
 use Sirius\Validation\Rule\Required;
 use Sirius\Validation\Validator;
-use Zend\Diactoros\Response\RedirectResponse;
 
 final class UpdateRequestHandler
 {

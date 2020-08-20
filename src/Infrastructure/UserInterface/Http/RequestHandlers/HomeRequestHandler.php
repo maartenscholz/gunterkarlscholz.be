@@ -2,10 +2,10 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 
+use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 final class HomeRequestHandler
 {

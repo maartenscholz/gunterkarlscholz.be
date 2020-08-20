@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 
+use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 final class AboutRequestHandler
 {
