@@ -24,7 +24,6 @@ final class Index
 
     public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface
     {
-        throw new \RuntimeException('yeah no');
         $response = new Response();
 
         $works = $this->repository->all();
