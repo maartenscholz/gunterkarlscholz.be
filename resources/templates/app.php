@@ -10,15 +10,15 @@
     </head>
     <body>
         <div class="container">
-            <aside>
-                <h1>Günter-Karl<br>Scholz</h1>
+            <header>
+                <h1>Günter-Karl Scholz</h1>
                 <nav>
                     <ul>
                         <li><a href="/portfolio">Portfolio</a></li>
                         <li><a href="/about">About</a></li>
                     </ul>
                 </nav>
-            </aside>
+            </header>
             <main>
                 <?= $this->section('content') ?>
             </main>

@@ -4,8 +4,30 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 220px auto;
-    grid-template-rows: 100vh;
+    grid-template-columns: 100vw;
+    grid-template-rows: auto auto;
+}
+
+.container header {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+header h1 {
+    text-align: center;
+}
+
+header nav {
+    display: none;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    list-style-type: none;
 }
 
 .container aside {
@@ -48,8 +70,8 @@ body {
 }
 
 .container main {
-    grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
+    grid-column: 1;
     overflow-y: scroll;
 }
 
