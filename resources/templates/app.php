@@ -22,6 +22,9 @@
             <main>
                 <?= $this->section('content') ?>
             </main>
+            <footer>
+                &copy; gunterkarlscholz.be <?= date('Y') ?>
+            </footer>
         </div>
     </body>
 </html>
