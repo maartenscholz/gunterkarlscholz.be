@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\CommandBus;
+namespace Gks\Application\CommandBus;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Tactician\CommandBus;

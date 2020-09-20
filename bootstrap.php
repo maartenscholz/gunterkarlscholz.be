@@ -1,10 +1,10 @@
 <?php
 
 use Gks\Application;
+use Gks\Application\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Application\Handlers\ServiceProvider as CommandHandlerServiceProvider;
 use Gks\Infrastructure;
 use Gks\Infrastructure\Caching\Redis\ServiceProvider as RedisServiceProvider;
-use Gks\Infrastructure\CommandBus\ServiceProvider as CommandBusServiceProvider;
 use Gks\Infrastructure\Filesystem\ServiceProvider as FilesystemServiceProvider;
 use Gks\Infrastructure\Http\ServiceProvider as HttpServiceProvider;
 use Gks\Infrastructure\Logging\ServiceProvider;

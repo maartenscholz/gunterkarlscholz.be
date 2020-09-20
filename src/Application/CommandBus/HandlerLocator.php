@@ -1,6 +1,6 @@
 <?php
 
-namespace Gks\Infrastructure\CommandBus;
+namespace Gks\Application\CommandBus;
 
 use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator as HandlerLocatorContract;
