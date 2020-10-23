@@ -5,6 +5,7 @@ namespace Gks\Application\Handlers;
 use BigName\EventDispatcher\Dispatcher;
 use Gks\Domain\Model\Works\WorksRepository;
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use function Clue\StreamFilter\fun;
 
 final class ServiceProvider extends AbstractServiceProvider
 {
@@ -12,6 +13,7 @@ final class ServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
+        ViewWorks::class,
         AddWork::class,
         UpdateWork::class,
         RemoveWork::class,
@@ -21,6 +23,13 @@ final class ServiceProvider extends AbstractServiceProvider
 
     public function register(): void
     {
+        $this->leagueContainer->share(
+            ViewWorks::class,
+            function () {
+                return new ViewWorks($this->container->get(WorksRepository::class));
+            }
+        );
+
         $this->leagueContainer->share(
             AddWork::class,
             function () {
