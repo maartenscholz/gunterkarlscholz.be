@@ -109,7 +109,7 @@ class ServiceProvider extends AbstractServiceProvider
             function () {
                 return new RequestHandlers\Works\Index(
                     $this->container->get(Engine::class),
-                    $this->container->get(WorksRepository::class)
+                    $this->container->get(CommandBus::class)
                 );
             }
         );
