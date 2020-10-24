@@ -176,6 +176,7 @@ nav ul li {
 
 .work-detail .work-detail__image img {
     max-width: 100%;
+    vertical-align: top
 }
 
 .about {
