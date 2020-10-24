@@ -169,6 +169,11 @@ nav ul li {
     color: #999;
 }
 
+.work-detail .work-detail__image {
+    text-align: center;
+    background: #f3f3f3;
+}
+
 .work-detail .work-detail__image img {
     max-width: 100%;
 }
