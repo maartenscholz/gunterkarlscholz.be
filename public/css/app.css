@@ -1,5 +1,5 @@
 body {
-    background: #eee;
+    background: #f9f9f9;
 }
 
 .container {
@@ -11,6 +11,7 @@ body {
 .container header {
     grid-row: 1;
     grid-column: 1;
+    background: #eee;
 }
 
 header h1 {
