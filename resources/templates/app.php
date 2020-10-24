@@ -11,7 +11,7 @@
     <body>
         <div class="container">
             <header>
-                <h1>Günter-Karl Scholz</h1>
+                <h1><a href="/">Günter-Karl Scholz</a></h1>
                 <nav>
                     <ul>
                         <li><a href="/portfolio">Portfolio</a></li>

@@ -18,6 +18,11 @@ header h1 {
     text-align: center;
 }
 
+header h1 a {
+    color: #000;
+    text-decoration: none;
+}
+
 header nav {
     display: none;
 }
