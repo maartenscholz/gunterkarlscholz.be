@@ -159,7 +159,7 @@ nav ul li {
 .work-detail {
     display: block;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0 0;
     max-width: 1000px;
 }
 
