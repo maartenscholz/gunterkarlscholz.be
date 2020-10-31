@@ -30,7 +30,7 @@ final class RoutingServiceProvider extends AbstractServiceProvider
 
                 $router->middleware($this->container->get(Middleware\CsrfMiddleware::class));
 
-                $router->get('/', RequestHandlers\HomeRequestHandler::class);
+                $router->get('/', RequestHandlers\Works\Index::class);
 
                 $router->get('/login', RequestHandlers\Admin\LoginPageRequestHandler::class)
                     ->middleware($this->container->get(Middleware\GuestMiddleware::class));
@@ -41,8 +41,7 @@ final class RoutingServiceProvider extends AbstractServiceProvider
 
                 $router->get('/image/{path}', RequestHandlers\ServeImageRequestHandler::class);
 
-                $router->get('/portfolio', RequestHandlers\Works\Index::class);
-                $router->get('/portfolio/work/{id}', RequestHandlers\Works\Show::class);
+                $router->get('/works/{id}', RequestHandlers\Works\Show::class);
                 $router->get('/about', RequestHandlers\AboutRequestHandler::class);
 
                 $router->group(
