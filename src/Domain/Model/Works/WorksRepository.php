@@ -12,6 +12,8 @@ interface WorksRepository
 
     public function findById(WorkId $workId): Work;
 
+    public function findBySlug(string $slug): Work;
+
     /**
      * @return Work[]
      */

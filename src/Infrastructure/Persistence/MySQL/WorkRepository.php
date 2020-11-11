@@ -35,6 +35,11 @@ final class WorkRepository implements WorksRepository
         return $this->entityManager->getRepository(Work::class)->find($workId->getValue());
     }
 
+    public function findBySlug(string $slug): Work
+    {
+        return $this->entityManager->getRepository(Work::class)->findOneBy(['slug' => $slug]);
+    }
+
     /**
      * @return Work[]
      */
