@@ -20,7 +20,7 @@
                             alt=""
                     >
                 <div class="work__link">
-                    <a href="/works/<?= $work->id ?>"></a>
+                    <a href="/works/<?= $work->slug ?>"></a>
                 </div>
                 <div class="work__overlay"></div>
             </article>

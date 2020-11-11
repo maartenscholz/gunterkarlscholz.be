@@ -41,7 +41,7 @@ final class RoutingServiceProvider extends AbstractServiceProvider
 
                 $router->get('/image/{path}', RequestHandlers\ServeImageRequestHandler::class);
 
-                $router->get('/works/{id}', RequestHandlers\Works\Show::class);
+                $router->get('/works/{slug}', RequestHandlers\Works\Show::class);
                 $router->get('/about', RequestHandlers\AboutRequestHandler::class);
 
                 $router->group(

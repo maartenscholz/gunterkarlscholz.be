@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Works;
 
-use Gks\Application\Commands\ViewWork;
-use Gks\Domain\Model\Works\WorkId;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Application\Commands\ViewWorkBySlug;
 use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use League\Tactician\CommandBus;
@@ -29,7 +27,7 @@ final class Show
     {
         $response = new Response();
 
-        $work = $this->commandBus->handle(new ViewWork($args['id']));
+        $work = $this->commandBus->handle(new ViewWorkBySlug($args['slug']));
 
         $response->getBody()->write(
             $this->templates->render(
