@@ -7,6 +7,7 @@ namespace Gks\Application\DTOs;
 final class WorkDTO
 {
     public string $id;
+    public string $slug;
     public string $type;
     public TitleDTO $title;
     /** @var ImageDTO[] */

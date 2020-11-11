@@ -13,6 +13,7 @@ final class WorkDTOTransformer
         $dto = new WorkDTO();
 
         $dto->id = $work->getId()->getValue()->toString();
+        $dto->slug = $work->slug();
         $dto->type = $work->getType()->getValue();
 
         $title = new TitleDTO();
