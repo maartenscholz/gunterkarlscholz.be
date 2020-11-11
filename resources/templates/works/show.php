@@ -1,18 +1,18 @@
-<?php /** @var \Gks\Domain\Model\Work $work */ ?>
+<?php /** @var \Gks\Application\DTOs\WorkDTO $work */ ?>
 <?php /** @var \League\Glide\Urls\UrlBuilder $imageUrlBuilder */ ?>
 
 <?php $this->layout('app', [
-    'title' => $work->getTitle()->getValue('en_US') . ' | Portfolio',
+    'title' => $work->title->nl . ' | Portfolio',
 ]) ?>
 
 <section class="work-detail">
-    <h1 class="work-detail__title"><?= $work->getTitle()->getValue('nl_BE') ?></h1>
+    <h1 class="work-detail__title"><?= $work->title->nl ?></h1>
     <div class="work-detail__translations">
-        <?= $work->getTitle()->getValue('en_US') ?> /
-        <?= $work->getTitle()->getValue('fr_FR') ?> /
-        <?= $work->getTitle()->getValue('de_DE') ?>
+        <?= $work->title->en ?> /
+        <?= $work->title->fr ?> /
+        <?= $work->title->de ?>
     </div>
     <div class="work-detail__image">
-        <img src="/image<?= $imageUrlBuilder->getUrl($work->getImages()[0]->getFilename()) ?>" alt="">
+        <img src="/image<?= $imageUrlBuilder->getUrl($work->images[0]->filename) ?>" alt="">
     </div>
 </section>
