@@ -40,6 +40,6 @@ final class WorkRepository implements WorksRepository
      */
     public function all(): array
     {
-        return $this->entityManager->getRepository(Work::class)->findBy([], ['titleEn' => 'ASC']);
+        return $this->entityManager->getRepository(Work::class)->findBy([], ['titleNl' => 'ASC']);
     }
 }
