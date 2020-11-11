@@ -16,7 +16,7 @@
                 </div>
                     <img
                             class="work__image"
-                            src="/image<?= $imageUrlBuilder->getUrl($work->images[0]->filename, ['w' => 500, 'h' => 500, 'fit' => 'crop']) ?>"
+                            src="/image<?= $imageUrlBuilder->getUrl($work->images[0]->filename, ['w' => 500, 'h' => 500, 'fit' => 'crop-50-50-1.1']) ?>"
                             alt=""
                     >
                 <div class="work__link">
