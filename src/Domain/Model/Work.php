@@ -159,6 +159,11 @@ class Work
         return WorkId::fromString($this->id);
     }
 
+    public function slug(): string
+    {
+        return $this->slug;
+    }
+
     public function getType(): Type
     {
         return new Type($this->type);
