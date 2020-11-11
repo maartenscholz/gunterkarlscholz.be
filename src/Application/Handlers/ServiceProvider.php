@@ -14,6 +14,7 @@ final class ServiceProvider extends AbstractServiceProvider
      */
     protected $provides = [
         ViewWorks::class,
+        ViewWork::class,
         AddWork::class,
         UpdateWork::class,
         RemoveWork::class,
@@ -27,6 +28,13 @@ final class ServiceProvider extends AbstractServiceProvider
             ViewWorks::class,
             function () {
                 return new ViewWorks($this->container->get(WorksRepository::class));
+            }
+        );
+
+        $this->leagueContainer->share(
+            ViewWork::class,
+            function () {
+                return new ViewWork($this->container->get(WorksRepository::class));
             }
         );
 
