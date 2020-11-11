@@ -2,6 +2,7 @@
 
 namespace Gks\Domain\Model;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Gks\Domain\Events\ImageWasRemoved;
@@ -28,6 +29,11 @@ class Work
      * @Column
      */
     private string $id;
+
+    /**
+     * @Column
+     */
+    private string $slug;
 
     /**
      * @Column
@@ -106,6 +112,8 @@ class Work
     ) {
         $this->id = $id->getValue()->toString();
         $this->images = new ArrayCollection();
+
+        $this->slug = (new Slugify())->slugify($title->getValue('nl_BE'));
 
         $this->update($type, $title, $description, $dimensions);
     }
