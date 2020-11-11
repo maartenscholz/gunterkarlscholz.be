@@ -14,7 +14,14 @@ final class WorkDTOTransformer
 
         $dto->id = $work->getId()->getValue()->toString();
         $dto->type = $work->getType()->getValue();
-        $dto->title = $work->getTitle()->getValue('nl_BE');
+
+        $title = new TitleDTO();
+        $title->nl = $work->getTitle()->getValue('nl_BE');
+        $title->en = $work->getTitle()->getValue('en_US');
+        $title->fr = $work->getTitle()->getValue('fr_FR');
+        $title->de = $work->getTitle()->getValue('de_DE');
+
+        $dto->title = $title;
 
         foreach ($work->getImages() as $image) {
             $imageDTO = new ImageDTO();

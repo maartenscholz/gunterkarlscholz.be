@@ -8,7 +8,7 @@ final class WorkDTO
 {
     public string $id;
     public string $type;
-    public string $title;
+    public TitleDTO $title;
     /** @var ImageDTO[] */
     public array $images = [];
 }

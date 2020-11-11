@@ -11,7 +11,7 @@
             <article class="work">
                 <div class="work__content">
                     <div class="work__title">
-                        <h1><?= $work->title ?></h1>
+                        <h1><?= $work->title->nl ?></h1>
                     </div>
                 </div>
                     <img
