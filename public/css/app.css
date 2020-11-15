@@ -168,10 +168,19 @@ nav ul li {
 }
 
 .work-detail__translations {
-    margin: 0 0 25px;
+    margin: 0 0 15px;
     font-weight: normal;
     font-size: 1em;
     color: #999;
+}
+
+.work-detail--no-description .work-detail__translations {
+    margin-bottom: 25px;
+}
+
+.work-detail__description {
+    color: #333;
+    margin: 0 0 25px;
 }
 
 .work-detail .work-detail__image {
