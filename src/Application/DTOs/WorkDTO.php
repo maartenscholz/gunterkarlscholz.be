@@ -10,6 +10,7 @@ final class WorkDTO
     public string $slug;
     public string $type;
     public TitleDTO $title;
+    public string $description;
     /** @var ImageDTO[] */
     public array $images = [];
 }

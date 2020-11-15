@@ -23,6 +23,7 @@ final class WorkDTOTransformer
         $title->de = $work->getTitle()->getValue('de_DE');
 
         $dto->title = $title;
+        $dto->description = $work->getDescription()->getValue('nl_BE');
 
         foreach ($work->getImages() as $image) {
             $imageDTO = new ImageDTO();
