@@ -9,6 +9,7 @@ exclude_patterns:
 plugins:
   phan:
     enabled: true
+    channel: "beta"
     config:
       file_extensions: "php"
       ignore-undeclared: true
