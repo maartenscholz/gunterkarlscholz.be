@@ -8,7 +8,7 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Route\Router;
 use League\Route\Strategy\JsonStrategy;
 
-final class RoutingServiceProvider extends AbstractServiceProvider
+final class ServiceProvider extends AbstractServiceProvider
 {
     /**
      * @var array
