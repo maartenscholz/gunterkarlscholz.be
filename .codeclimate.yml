@@ -12,4 +12,5 @@ plugins:
     channel: "beta"
     config:
       file_extensions: "php"
+      target_php_version: "7.4"
       ignore-undeclared: true
