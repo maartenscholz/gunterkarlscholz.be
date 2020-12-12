@@ -23,7 +23,7 @@ final class ServiceProvider extends AbstractServiceProvider
 
                 $whoops->appendHandler(new LoggingHandler($this->container->get(LoggerInterface::class)));
 
-                if (getenv('APP_ENV') !== 'production') {
+                if ($_ENV['APP_ENV'] !== 'production') {
                     $handler = new PrettyPageHandler();
 
                     $handler->setPageTitle('Whoops.');

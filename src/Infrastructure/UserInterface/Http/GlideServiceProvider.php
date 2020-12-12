@@ -46,14 +46,14 @@ final class GlideServiceProvider extends AbstractServiceProvider
         $this->leagueContainer->share(
             Signature::class,
             static function () {
-                return SignatureFactory::create(getenv('GLIDE_SIGNATURE_KEY'));
+                return SignatureFactory::create($_ENV['GLIDE_SIGNATURE_KEY']);
             }
         );
 
         $this->leagueContainer->share(
             UrlBuilder::class,
             static function () {
-                return UrlBuilderFactory::create('', getenv('GLIDE_SIGNATURE_KEY'));
+                return UrlBuilderFactory::create('', $_ENV['GLIDE_SIGNATURE_KEY']);
             }
         );
     }

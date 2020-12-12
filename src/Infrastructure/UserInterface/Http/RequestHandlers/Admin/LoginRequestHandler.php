@@ -25,7 +25,7 @@ final class LoginRequestHandler
             throw new BadRequestException();
         }
 
-        if ($credentials['username'] === 'admin' && $credentials['password'] === getenv('APP_ADMIN_PASSWORD')) {
+        if ($credentials['username'] === 'admin' && $credentials['password'] === $_ENV['APP_ADMIN_PASSWORD']) {
             $this->session->set('authenticated', true);
 
             return new RedirectResponse('/admin');

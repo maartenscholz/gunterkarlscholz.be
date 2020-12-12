@@ -23,7 +23,7 @@ final class SessionServiceProvider extends AbstractServiceProvider
 
                 $session->setCookieParams(
                     [
-                        'secure' => getenv('APP_ENV') !== 'dev',
+                        'secure' => $_ENV['APP_ENV'] !== 'dev',
                         'httponly' => true,
                     ]
                 );

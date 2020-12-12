@@ -27,7 +27,7 @@ final class ServiceProvider extends AbstractServiceProvider
             static function () {
                 return new Client(
                     [
-                        'host' => getenv('REDIS_HOST'),
+                        'host' => $_ENV['REDIS_HOST'],
                     ]
                 );
             }
@@ -38,7 +38,7 @@ final class ServiceProvider extends AbstractServiceProvider
             static function () {
                 $client = new Client(
                     [
-                        'host' => getenv('REDIS_HOST'),
+                        'host' => $_ENV['REDIS_HOST'],
                         'database' => 1,
                     ], [
                         'prefix' => 'session:',

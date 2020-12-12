@@ -28,7 +28,7 @@ final class ServiceProvider extends AbstractServiceProvider
 
                 $log->pushHandler(new RotatingFileHandler(realpath(__DIR__.'/../../../storage/logs').'/error.log', 5));
 
-                if (getenv('APP_ENV') === 'production') {
+                if ($_ENV['APP_ENV'] === 'production') {
                     $log->pushHandler(new Handler($this->container->get(HubInterface::class)));
                 }
 
@@ -41,8 +41,8 @@ final class ServiceProvider extends AbstractServiceProvider
             static function () {
                 $client = ClientBuilder::create(
                     [
-                        'dsn' => getenv('SENTRY_DSN'),
-                        'environment' => getenv('APP_ENV'),
+                        'dsn' => $_ENV['SENTRY_DSN'],
+                        'environment' => $_ENV['APP_ENV'],
                     ]
                 )->getClient();
 
