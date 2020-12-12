@@ -3,22 +3,22 @@
 namespace Gks\Infrastructure\Persistence;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Gks\Domain\Model\Works\WorksRepository;
-use Gks\Infrastructure\Persistence\MySQL\WorkRepository;
+use Gks\Domain\Model\Works\WorkRepository;
+use Gks\Infrastructure\Persistence\MySQL\DoctrineWorkRepository;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
 final class ServiceProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        WorksRepository::class,
+        WorkRepository::class,
     ];
 
     public function register(): void
     {
         $this->leagueContainer->share(
-            WorksRepository::class,
+            WorkRepository::class,
             function () {
-                return new WorkRepository($this->container->get(EntityManagerInterface::class));
+                return new DoctrineWorkRepository($this->container->get(EntityManagerInterface::class));
             }
         );
     }

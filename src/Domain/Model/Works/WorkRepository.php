@@ -4,7 +4,7 @@ namespace Gks\Domain\Model\Works;
 
 use Gks\Domain\Model\Work;
 
-interface WorksRepository
+interface WorkRepository
 {
     public function add(Work $work): void;
 

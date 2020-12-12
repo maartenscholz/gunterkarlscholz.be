@@ -4,15 +4,15 @@ namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\AddWork as AddWorkCommand;
 use Gks\Domain\Model\Work;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 
 final class AddWork
 {
-    private WorksRepository $repository;
+    private WorkRepository $workRepository;
 
-    public function __construct(WorksRepository $repository)
+    public function __construct(WorkRepository $workRepository)
     {
-        $this->repository = $repository;
+        $this->workRepository = $workRepository;
     }
 
     public function handle(AddWorkCommand $command): void
@@ -25,6 +25,6 @@ final class AddWork
             $command->getDimension()
         );
 
-        $this->repository->add($work);
+        $this->workRepository->add($work);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Gks\Infrastructure\UserInterface\Http\RequestHandlers\Admin\Works;
 
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
@@ -12,12 +12,12 @@ final class IndexRequestHandler
 {
     private Engine $templates;
 
-    private WorksRepository $repository;
+    private WorkRepository $repository;
 
-    public function __construct(Engine $templates, WorksRepository $repository)
+    public function __construct(Engine $templates, WorkRepository $workRepository)
     {
         $this->templates = $templates;
-        $this->repository = $repository;
+        $this->repository = $workRepository;
     }
 
     public function __invoke(ServerRequestInterface $request, array $args): ResponseInterface

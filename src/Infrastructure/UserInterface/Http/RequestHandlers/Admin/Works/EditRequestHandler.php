@@ -6,7 +6,7 @@ use Aura\Session\Segment;
 use Gks\Domain\Model\Work;
 use Gks\Domain\Model\Works\Type;
 use Gks\Domain\Model\Works\WorkId;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 use Laminas\Diactoros\Response;
 use League\Plates\Engine;
 use Psr\Http\Message\ResponseInterface;
@@ -15,13 +15,13 @@ use Psr\Http\Message\ServerRequestInterface;
 final class EditRequestHandler
 {
     private Engine $templates;
-    private WorksRepository $repository;
+    private WorkRepository $workRepository;
     private Segment $validationSession;
 
-    public function __construct(Engine $templates, WorksRepository $repository, Segment $validationSession)
+    public function __construct(Engine $templates, WorkRepository $workRepository, Segment $validationSession)
     {
         $this->templates = $templates;
-        $this->repository = $repository;
+        $this->workRepository = $workRepository;
         $this->validationSession = $validationSession;
     }
 
@@ -29,7 +29,7 @@ final class EditRequestHandler
     {
         $response = new Response();
 
-        $work = $this->repository->findById(WorkId::fromString($args['id']));
+        $work = $this->workRepository->findById(WorkId::fromString($args['id']));
 
         $response->getBody()->write($this->templates->render('admin::works/edit', $this->buildTemplateData($work)));
 

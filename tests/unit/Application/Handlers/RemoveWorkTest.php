@@ -12,14 +12,14 @@ use Gks\Domain\Model\Works\Images\ImageId;
 use Gks\Domain\Model\Works\Title;
 use Gks\Domain\Model\Works\Type;
 use Gks\Domain\Model\Works\WorkId;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class RemoveWorkTest extends TestCase
 {
     /**
-     * @var WorksRepository|MockObject
+     * @var WorkRepository|MockObject
      */
     private $workRepository;
 
@@ -35,7 +35,7 @@ final class RemoveWorkTest extends TestCase
 
     public function setUp(): void
     {
-        $this->workRepository = $this->createMock(WorksRepository::class);
+        $this->workRepository = $this->createMock(WorkRepository::class);
         $this->eventDispatcher = $this->createMock(Dispatcher::class);
 
         $this->handler = new RemoveWork($this->workRepository, $this->eventDispatcher);

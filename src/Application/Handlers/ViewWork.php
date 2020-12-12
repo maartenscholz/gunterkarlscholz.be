@@ -8,7 +8,7 @@ use Gks\Application\Commands\ViewWork as ViewWorkCommand;
 use Gks\Application\DTOs\WorkDTO;
 use Gks\Application\DTOs\WorkDTOTransformer;
 use Gks\Domain\Model\Works\WorkId;
-use Gks\Infrastructure\Persistence\MySQL\WorkRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 
 final class ViewWork
 {

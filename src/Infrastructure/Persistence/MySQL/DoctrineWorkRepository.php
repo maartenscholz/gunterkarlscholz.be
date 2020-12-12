@@ -5,9 +5,9 @@ namespace Gks\Infrastructure\Persistence\MySQL;
 use Doctrine\ORM\EntityManagerInterface;
 use Gks\Domain\Model\Work;
 use Gks\Domain\Model\Works\WorkId;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 
-final class WorkRepository implements WorksRepository
+final class DoctrineWorkRepository implements WorkRepository
 {
     private EntityManagerInterface $entityManager;
 

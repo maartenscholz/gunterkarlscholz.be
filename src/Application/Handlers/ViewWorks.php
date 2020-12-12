@@ -6,7 +6,7 @@ namespace Gks\Application\Handlers;
 
 use Gks\Application\Commands\ViewWorks as ViewWorksCommand;
 use Gks\Application\DTOs\WorkDTOTransformer;
-use Gks\Infrastructure\Persistence\MySQL\WorkRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 
 final class ViewWorks
 {

@@ -3,7 +3,7 @@
 namespace Gks\Infrastructure\UserInterface\Http;
 
 use Aura\Session\Session;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 use Gks\Infrastructure\UserInterface\Http\Middleware;
 use Gks\Infrastructure\UserInterface\Http\RequestHandlers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -164,7 +164,7 @@ class ServiceProvider extends AbstractServiceProvider
             function () {
                 return new RequestHandlers\Admin\Works\IndexRequestHandler(
                     $this->container->get(Engine::class),
-                    $this->container->get(WorksRepository::class)
+                    $this->container->get(WorkRepository::class)
                 );
             }
         );
@@ -194,7 +194,7 @@ class ServiceProvider extends AbstractServiceProvider
             function () {
                 return new RequestHandlers\Admin\Works\EditRequestHandler(
                     $this->container->get(Engine::class),
-                    $this->container->get(WorksRepository::class),
+                    $this->container->get(WorkRepository::class),
                     $this->container->get(Session::class)->getSegment('validation'),
                 );
             }
@@ -222,7 +222,7 @@ class ServiceProvider extends AbstractServiceProvider
             function () {
                 return new RequestHandlers\Admin\Works\Images\IndexRequestHandler(
                     $this->container->get(Engine::class),
-                    $this->container->get(WorksRepository::class)
+                    $this->container->get(WorkRepository::class)
                 );
             }
         );

@@ -7,14 +7,13 @@ namespace Gks\Application\Handlers;
 use Gks\Application\Commands\ViewWorkBySlug as ViewWorkBySlugCommand;
 use Gks\Application\DTOs\WorkDTO;
 use Gks\Application\DTOs\WorkDTOTransformer;
-use Gks\Domain\Model\Works\WorkId;
-use Gks\Domain\Model\Works\WorksRepository;
+use Gks\Domain\Model\Works\WorkRepository;
 
 final class ViewWorkBySlug
 {
-    private WorksRepository $workRepository;
+    private WorkRepository $workRepository;
 
-    public function __construct(WorksRepository $workRepository)
+    public function __construct(WorkRepository $workRepository)
     {
         $this->workRepository = $workRepository;
     }
