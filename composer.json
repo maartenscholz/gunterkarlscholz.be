@@ -11,6 +11,7 @@
     "require": {
         "aura/session": "^2.0",
         "cocur/slugify": "^4.0",
+        "doctrine/cache": "^1.11",
         "doctrine/orm": "^2.8",
         "filp/whoops": "^2.1",
         "heybigname/event-dispatcher": "^1.1",
