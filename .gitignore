@@ -1,6 +1,5 @@
-/vendor
-/storage
-/resources/images
+.idea/
+vendor/
+storage/
+resources/images/
 .env
-Homestead.yaml
-Vagrantfile
