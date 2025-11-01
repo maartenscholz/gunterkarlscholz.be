@@ -14,10 +14,10 @@ jobs:
       - name: Create .env file
         run: cp .env.ci .env
       - name: Start docker environment
-        run: docker-compose -f docker-compose.testing.yml up -d
+        run: docker compose -f docker-compose.testing.yml up -d
       - name: Run composer install
-        run: docker-compose exec -T php composer install
+        run: docker compose exec -T php composer install
       - name: Run tests
-        run: docker-compose exec -T php vendor/bin/phpunit
+        run: docker compose exec -T php vendor/bin/phpunit
       - name: Static analysis
-        run: docker-compose exec -T php vendor/bin/phpstan analyse src/ --level 1
+        run: docker compose exec -T php vendor/bin/phpstan analyse src/ --level 1
